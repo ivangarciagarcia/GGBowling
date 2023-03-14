@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Input } from 'src/components/input/Input';
 import './login.scss';
 
-interface LoginFormProps {
-  onSubmit: (email: string, password: string) => void;
+export interface LoginProps {
+  email: string;
+  password: string;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSubmit(email, password);
-  };
+export const LoginForm = () => {
+  const [form, setForm] = useState<LoginProps>({
+    email: '',
+    password: '',
+  });
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <form className="login-form">
       <h2>Iniciar sesión</h2>
       <div className="form-group">
         <label htmlFor="email">Correo electrónico</label>
-        <input
-          type="email"
+        <Input
+          type={'email'}
           id="email"
-          name="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
+          onChange={(value) => {
+            setForm({
+              ...form,
+              email: value,
+            });
+          }}
         />
       </div>
       <div className="form-group">
         <label htmlFor="password">Contraseña</label>
-        <input
-          type="password"
+        <Input
+          type={'password'}
           id="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
+          onChange={(value) => {
+            setForm({
+              ...form,
+              password: value,
+            });
+          }}
         />
       </div>
       <button type="submit">Iniciar sesión</button>
