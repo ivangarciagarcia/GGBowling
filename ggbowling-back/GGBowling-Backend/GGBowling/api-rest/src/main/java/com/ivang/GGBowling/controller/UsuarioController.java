@@ -1,6 +1,5 @@
 package com.ivang.GGBowling.controller;
 
-import com.ivang.GGBowling.entity.UsuarioEntity;
 import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.Usuario.NewUsuarioTO;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @AllArgsConstructor
 @RequestMapping("/usuario")
 public class UsuarioController {
