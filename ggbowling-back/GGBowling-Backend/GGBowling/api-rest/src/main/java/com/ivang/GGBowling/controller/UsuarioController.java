@@ -1,5 +1,6 @@
 package com.ivang.GGBowling.controller;
 
+import com.ivang.GGBowling.entity.UsuarioEntity;
 import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.Usuario.NewUsuarioTO;
@@ -42,6 +43,19 @@ public class UsuarioController {
         getHeader(), HttpStatus.OK);
   }
 
+
+  @PostMapping(value = "/login")
+  public ResponseEntity<String> loginUsuario(@RequestParam("email") String email, @RequestParam("password") String password){
+    UsuarioTO usuario = usuarioMapperTO.toUsuarioTO(usuarioService.findByEmail(email));
+
+    if (usuario == null) {
+      return ResponseEntity.badRequest().body("Usuario no encontrado");
+    }else if (!usuario.getPassword().equals(password)) {
+      return ResponseEntity.badRequest().body("Contraseña incorrecta");
+    }else {
+      return ResponseEntity.ok("Usuario autenticado exitosamente");
+    }
+  }
 
 
   @PostMapping(value = "/create")

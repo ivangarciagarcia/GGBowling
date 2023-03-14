@@ -3,6 +3,7 @@ package com.ivang.GGBowling.servicios;
 
 import com.ivang.GGBowling.dto.usuario.NewUsuarioDTO;
 import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.entity.UsuarioEntity;
 import com.ivang.GGBowling.mapperDTO.UsuarioMapperDTO;
 import com.ivang.GGBowling.repository.UsuarioRepository;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
@@ -28,12 +29,17 @@ public class UsuarioService implements UsuarioServiceInterface {
   public NewUsuarioDTO save(NewUsuarioDTO newUsuarioDTO) {
     return usuarioMapperDTO.toNewUsuarioDTO(
         usuarioRepository.save(
-        usuarioMapperDTO.toUsuarioEntity2(newUsuarioDTO)));
+          usuarioMapperDTO.toUsuarioEntity2(newUsuarioDTO)));
   }
 
   @Override
   public UsuarioDTO findByUsuarioId(Integer usuarioId) {
     return usuarioMapperDTO.toUsuarioDTO(usuarioRepository.getReferenceById(usuarioId));
+  }
+
+  @Override
+  public UsuarioDTO findByEmail(String email) {
+    return usuarioMapperDTO.toUsuarioDTO(usuarioRepository.findByEmail(email));
   }
 
   @Override

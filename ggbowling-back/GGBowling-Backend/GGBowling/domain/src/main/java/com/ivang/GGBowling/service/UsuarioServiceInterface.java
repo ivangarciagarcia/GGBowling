@@ -10,6 +10,7 @@ public interface UsuarioServiceInterface {
   List<UsuarioDTO> findAll();
   NewUsuarioDTO save(NewUsuarioDTO newUsuarioDTO);
   UsuarioDTO findByUsuarioId(Integer reservaId);
+  UsuarioDTO findByEmail(String email);
   void deleteUsuario(Integer usuarioId);
 
 
