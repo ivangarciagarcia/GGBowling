@@ -42,7 +42,10 @@ export const LoginForm = () => {
           }}
         />
       </div>
-      <button type="submit">Iniciar sesión</button>
+      <div>
+        <button type="submit">Iniciar sesión</button>
+      </div>
+      {/*<div>#TODO Registrarse</div>*/}
     </form>
   );
 };
