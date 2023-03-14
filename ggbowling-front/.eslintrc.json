@@ -1,0 +1,33 @@
+{
+  "extends": ["react-app", "eslint:recommended"],
+  "rules": {
+    "semi": "error",
+        "quotes": ["error", "single"],
+        "no-multi-spaces": "error",
+        "key-spacing": "error",
+        "no-unused-vars": "error",
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "complexity": ["error", 30],
+        "block-scoped-var": "error",
+        "no-magic-numbers": [
+          "warn",
+          { "ignoreArrayIndexes": true, "ignore": [-1, 0, 1, 1000] }
+        ],
+        "camelcase": ["error", { "properties": "never" }],
+        "react/no-deprecated": 0,
+        "max-depth": ["error", 6],
+        "max-len": ["error", { "code": 100, "ignoreStrings": true }],
+        "max-lines": ["error", { "max": 600, "skipBlankLines": true }],
+        "max-lines-per-function": [
+          "error",
+          { "max": 600, "skipBlankLines": true }
+        ],
+        "max-nested-callbacks": ["error", 3],
+        "max-params": ["error", 6],
+        "no-console": "warn",
+        "no-debugger": "warn",
+        "no-case-declarations": "off",
+        "no-restricted-globals": "off",
+        "array-callback-return": "off"
+  }
+}
