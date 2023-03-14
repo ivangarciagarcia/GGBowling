@@ -4,19 +4,21 @@ import './login.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-
-
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  
-  axios.defaults.baseURL = 'http://localhost:8080';
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  axios.defaults.baseURL = 'http://localhost:8080';
+  axios.defaults.headers.post['Content-Type'] = 'application/json';
+  axios.defaults.headers.common['Access-Control-Allow-Origin'] =
+    'http://localhost:3000';
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    axios.post('/usuario/login', { email, password })
+    axios
+      .post('/usuario/login', { email, password })
       .then((response) => {
         navigate('/home');
         // #TODO Redirigir a Home
@@ -35,7 +37,6 @@ export const Login = () => {
           type={'email'}
           id="email"
           onChange={(event) => setEmail(event.target.value)}
-          
         />
       </div>
       <div className="form-group">
@@ -44,7 +45,6 @@ export const Login = () => {
           type={'password'}
           id="password"
           onChange={(event) => setPassword(event.target.value)}
-    
         />
       </div>
       <div>
