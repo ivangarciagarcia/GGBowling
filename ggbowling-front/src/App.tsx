@@ -1,9 +1,18 @@
 import React from 'react';
 import './app.scss';
-import { LoginForm } from './modules/login/Login';
+import { Login } from './modules/login/Login';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Home } from './modules/home/Home';
 
 function App() {
-  return <LoginForm/>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
