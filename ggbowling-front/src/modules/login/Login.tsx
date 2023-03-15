@@ -20,10 +20,13 @@ export const Login = () => {
     axios
       .post('/usuario/login', { email, password })
       .then((response) => {
+        console.log(response.data);
+
         navigate('/home');
-        // #TODO Redirigir a Home
       })
       .catch((error) => {
+        console.error(error.response.data);
+
         // #TODO Mensaje de error
       });
   };
@@ -36,7 +39,8 @@ export const Login = () => {
         <Input
           type={'email'}
           id="email"
-          onChange={(event) => setEmail(event.target.value)}
+          name="email"
+          onChange={(event) => setEmail(event.value)}
         />
       </div>
       <div className="form-group">
@@ -44,7 +48,8 @@ export const Login = () => {
         <Input
           type={'password'}
           id="password"
-          onChange={(event) => setPassword(event.target.value)}
+          name="password"
+          onChange={(event) => setPassword(event.value)}
         />
       </div>
       <div>
