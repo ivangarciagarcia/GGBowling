@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -45,7 +46,11 @@ public class UsuarioController {
 
 
   @PostMapping(value = "/login")
-  public ResponseEntity<String> loginUsuario(@RequestParam("email") String email, @RequestParam("password") String password){
+  public ResponseEntity<String> loginUsuario(@RequestBody Map<String, String> loginRequest){
+    String email = loginRequest.get("email");
+    String password = loginRequest.get("password");
+
+
     UsuarioTO usuario = usuarioMapperTO.toUsuarioTO(usuarioService.findByEmail(email));
 
     if (usuario == null) {
