@@ -2,7 +2,6 @@ package com.ivang.GGBowling.servicios;
 
 import com.ivang.GGBowling.dto.reserva.NewReservaDTO;
 import com.ivang.GGBowling.dto.reserva.ReservaDTO;
-import com.ivang.GGBowling.dto.usuario.NewUsuarioDTO;
 import com.ivang.GGBowling.mapperDTO.ReservaMapperDTO;
 import com.ivang.GGBowling.repository.ReservaRepository;
 import com.ivang.GGBowling.service.ReservaServiceInterface;
@@ -33,7 +32,7 @@ public class ReservaService implements ReservaServiceInterface {
   public NewReservaDTO save(NewReservaDTO newReservaDTO) {
     return reservaMapperDTO.toNewReservaDTO(
         reservaRepository.save(
-            reservaMapperDTO.toReservaEntity2(newReservaDTO)));
+            reservaMapperDTO.toNewReservaEntity(newReservaDTO)));
   }
 
   @Override

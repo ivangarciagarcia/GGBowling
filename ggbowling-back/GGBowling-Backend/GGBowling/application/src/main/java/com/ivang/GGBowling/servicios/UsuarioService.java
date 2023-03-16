@@ -28,7 +28,7 @@ public class UsuarioService implements UsuarioServiceInterface {
   public NewUsuarioDTO save(NewUsuarioDTO newUsuarioDTO) {
     return usuarioMapperDTO.toNewUsuarioDTO(
         usuarioRepository.save(
-        usuarioMapperDTO.toUsuarioEntity2(newUsuarioDTO)));
+        usuarioMapperDTO.toNewUsuarioEntity(newUsuarioDTO)));
   }
 
   @Override
