@@ -3,32 +3,32 @@ import { Input } from 'src/components/input/Input';
 import './login.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [, setEmail] = useState('');
+  const [, setPassword] = useState('');
+  const [, setResponse] = useState('');
   const navigate = useNavigate();
+  axios.defaults.baseURL = SERVER_BASE_URL;
+  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
 
-  axios.defaults.baseURL = 'http://localhost:8080';
-  axios.defaults.headers.post['Content-Type'] = 'application/json';
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] =
-    'http://localhost:3000';
+  
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    axios
-      .post('/usuario/login', { email, password })
-      .then((response) => {
-        console.log(response.data);
-
-        navigate('/home');
-      })
-      .catch((error) => {
-        console.error(error.response.data);
-
-        // #TODO Mensaje de error
+    try {
+      const { data } = await axios.post('/usuario/login', {
+        email,
+        password,
       });
+      setResponse(data); // actualiza el estado con la respuesta del servidor
+      navigate('/home');
+    } catch (error) { /*TODO mensaje de error*/ }
   };
 
   return (
@@ -40,7 +40,7 @@ export const Login = () => {
           type={'email'}
           id="email"
           name="email"
-          onChange={(event) => setEmail(event.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form-group">
@@ -49,13 +49,13 @@ export const Login = () => {
           type={'password'}
           id="password"
           name="password"
-          onChange={(event) => setPassword(event.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div>
         <button type="submit">Iniciar sesión</button>
       </div>
-      {/*<div>#TODO Registrarse</div>*/}
+      {/*#TODO enlace para registrarse*/}
     </form>
   );
 };
