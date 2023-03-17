@@ -1,7 +1,7 @@
 package com.ivang.GGBowling.servicios;
 
 
-import com.ivang.GGBowling.dto.MesaDTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
 import com.ivang.GGBowling.mapperDTO.MesaMapperDTO;
 import com.ivang.GGBowling.repository.MesaRepository;
 import com.ivang.GGBowling.service.MesaServiceInterface;

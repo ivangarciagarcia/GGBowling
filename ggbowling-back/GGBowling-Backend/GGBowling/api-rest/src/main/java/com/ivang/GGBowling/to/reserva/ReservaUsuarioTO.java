@@ -1,6 +1,6 @@
 package com.ivang.GGBowling.to.reserva;
 
-import com.ivang.GGBowling.to.MesaTO;
+import com.ivang.GGBowling.to.mesa.MesaTO;
 import com.ivang.GGBowling.to.Pista.PistaTO;
 import lombok.Data;
 

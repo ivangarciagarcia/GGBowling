@@ -2,7 +2,7 @@ package com.ivang.GGBowling.service;
 
 
 
-import com.ivang.GGBowling.dto.MesaDTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
 
 import java.util.List;
 

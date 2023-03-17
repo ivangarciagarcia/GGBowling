@@ -2,7 +2,7 @@ package com.ivang.GGBowling.controller;
 
 import com.ivang.GGBowling.mapperTO.MesaMapperTO;
 import com.ivang.GGBowling.service.MesaServiceInterface;
-import com.ivang.GGBowling.to.MesaTO;
+import com.ivang.GGBowling.to.mesa.MesaTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
