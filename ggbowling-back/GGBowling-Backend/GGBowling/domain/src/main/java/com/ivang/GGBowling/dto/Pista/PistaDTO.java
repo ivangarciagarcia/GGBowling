@@ -1,4 +1,4 @@
-package com.ivang.GGBowling.dto;
+package com.ivang.GGBowling.dto.Pista;
 
 import com.ivang.GGBowling.dto.reserva.ReservaDTO;
 import com.ivang.GGBowling.dto.reserva.ReservaSimpleDTO;

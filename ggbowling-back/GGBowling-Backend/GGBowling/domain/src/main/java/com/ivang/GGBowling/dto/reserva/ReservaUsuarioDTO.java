@@ -2,7 +2,7 @@ package com.ivang.GGBowling.dto.reserva;
 
 
 import com.ivang.GGBowling.dto.MesaDTO;
-import com.ivang.GGBowling.dto.PistaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
 import lombok.Data;
 
 import java.util.Date;

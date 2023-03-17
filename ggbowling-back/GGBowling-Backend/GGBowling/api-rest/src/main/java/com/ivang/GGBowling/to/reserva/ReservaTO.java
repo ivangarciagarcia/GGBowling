@@ -2,7 +2,8 @@ package com.ivang.GGBowling.to.reserva;
 
 
 import com.ivang.GGBowling.to.MesaTO;
-import com.ivang.GGBowling.to.PistaTO;
+import com.ivang.GGBowling.to.Pista.PistaTO;
+import com.ivang.GGBowling.to.Pista.PistaToShowTO;
 import com.ivang.GGBowling.to.Usuario.UsuarioReservaTO;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 public class ReservaTO {
   private Integer reservaId;
   private UsuarioReservaTO usuario;
-  private Set<PistaTO> pistas;
+  private Set<PistaToShowTO> pistas;
   private Set<MesaTO> mesas;
   private Date horaEntrada;
   private Date horaSalida;

@@ -1,6 +1,6 @@
 package com.ivang.GGBowling.servicios;
 
-import com.ivang.GGBowling.dto.PistaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
 import com.ivang.GGBowling.mapperDTO.PistaMapperDTO;
 import com.ivang.GGBowling.repository.PistaRepository;
 import com.ivang.GGBowling.service.PistaServiceInterface;
