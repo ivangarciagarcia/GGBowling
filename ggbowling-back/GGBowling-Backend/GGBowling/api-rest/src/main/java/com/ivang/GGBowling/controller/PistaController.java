@@ -2,7 +2,7 @@ package com.ivang.GGBowling.controller;
 
 import com.ivang.GGBowling.mapperTO.PistaMapperTO;
 import com.ivang.GGBowling.service.PistaServiceInterface;
-import com.ivang.GGBowling.to.PistaTO;
+import com.ivang.GGBowling.to.Pista.PistaTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

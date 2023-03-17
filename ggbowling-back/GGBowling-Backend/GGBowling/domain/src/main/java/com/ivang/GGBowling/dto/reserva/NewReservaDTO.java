@@ -1,8 +1,8 @@
 package com.ivang.GGBowling.dto.reserva;
 
 
-import com.ivang.GGBowling.dto.MesaDTO;
-import com.ivang.GGBowling.dto.PistaDTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
 import com.ivang.GGBowling.dto.usuario.UsuarioReservaDTO;
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.ivang.GGBowling.mapperTO;
 
 
-import com.ivang.GGBowling.dto.MesaDTO;
-import com.ivang.GGBowling.to.MesaTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
+import com.ivang.GGBowling.to.mesa.MesaTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -11,6 +11,5 @@ import java.util.List;
 public interface MesaMapperTO {
   MesaDTO toMesaDTO (MesaTO mesaTO);
   MesaTO toMesaTO(MesaDTO mesaTO);
-  List<MesaDTO> toMesaDTOList(List<MesaTO> mesaTOList);
   List<MesaTO> toMesaTOList(List <MesaDTO> mesaDTOList);
 }

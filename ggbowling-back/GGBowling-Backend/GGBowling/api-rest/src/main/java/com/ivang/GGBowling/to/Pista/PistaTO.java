@@ -1,4 +1,4 @@
-package com.ivang.GGBowling.to;
+package com.ivang.GGBowling.to.Pista;
 
 import com.ivang.GGBowling.to.reserva.ReservaSimpleTO;
 import com.ivang.GGBowling.to.reserva.ReservaTO;

@@ -1,7 +1,7 @@
 package com.ivang.GGBowling.service;
 
 
-import com.ivang.GGBowling.dto.PistaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
 
 import java.util.List;
 

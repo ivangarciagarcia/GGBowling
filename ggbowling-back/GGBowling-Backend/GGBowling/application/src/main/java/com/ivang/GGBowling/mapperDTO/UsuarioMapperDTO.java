@@ -12,9 +12,8 @@ public interface UsuarioMapperDTO {
 
   UsuarioEntity toUsuarioEntity (UsuarioDTO usuarioDTO);
   UsuarioDTO toUsuarioDTO(UsuarioEntity usuarioEntity);
-  UsuarioEntity toUsuarioEntity2 (NewUsuarioDTO newUsuarioDTO);
+  UsuarioEntity toNewUsuarioEntity(NewUsuarioDTO newUsuarioDTO);
   NewUsuarioDTO toNewUsuarioDTO (UsuarioEntity usuarioEntity);
-  List<UsuarioEntity> toUsuarioEntityList(List<UsuarioDTO> usuarioDTOList);
   List<UsuarioDTO> toUsuarioDTOList(List <UsuarioEntity> usuarioEntityList);
 
 

@@ -1,8 +1,10 @@
 package com.ivang.GGBowling.dto.reserva;
 
 
-import com.ivang.GGBowling.dto.MesaDTO;
-import com.ivang.GGBowling.dto.PistaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaToShowDTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
+import com.ivang.GGBowling.dto.mesa.MesaToShowDTO;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,8 +13,8 @@ import java.util.Set;
 @Data
 public class ReservaUsuarioDTO {
   private Integer reservaId;
-  private Set<PistaDTO> pistas;
-  private Set<MesaDTO> mesas;
+  private Set<PistaToShowDTO> pistas;
+  private Set<MesaToShowDTO> mesas;
   private Date horaEntrada;
   private Date horaSalida;
   private Integer personas;

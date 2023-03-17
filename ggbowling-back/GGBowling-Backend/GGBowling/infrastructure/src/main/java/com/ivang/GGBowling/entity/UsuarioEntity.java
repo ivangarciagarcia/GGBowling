@@ -45,7 +45,7 @@ public class UsuarioEntity {
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
 
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ReservaEntity> reserva;
 
 
