@@ -48,6 +48,9 @@ public class ReservaEntity {
     }
     return this.mesas;
   }
+    public void setMesas(Set<MesaEntity> mesas) {
+    this.mesas = mesas;
+  }
 
   public Set<PistaEntity> getPistas() {
     if (this.pistas == null) {
@@ -55,11 +58,13 @@ public class ReservaEntity {
     }
     return this.pistas;
   }
+  public void setPistas(Set<PistaEntity> pistas) {
+    this.pistas = pistas;
+  }
 
   public Integer getReservaId() {
     return reservaId;
   }
-
   public void setReservaId(Integer reservaId) {
     this.reservaId = reservaId;
   }
@@ -67,7 +72,6 @@ public class ReservaEntity {
   public UsuarioEntity getUsuario() {
     return usuario;
   }
-
   public void setUsuario(UsuarioEntity usuario) {
     this.usuario = usuario;
   }
@@ -75,7 +79,6 @@ public class ReservaEntity {
   public Date getHoraEntrada() {
     return horaEntrada;
   }
-
   public void setHoraEntrada(Date horaEntrada) {
     this.horaEntrada = horaEntrada;
   }
@@ -83,7 +86,6 @@ public class ReservaEntity {
   public Date getHoraSalida() {
     return horaSalida;
   }
-
   public void setHoraSalida(Date horaSalida) {
     this.horaSalida = horaSalida;
   }
@@ -91,7 +93,6 @@ public class ReservaEntity {
   public Integer getPersonas() {
     return personas;
   }
-
   public void setPersonas(Integer personas) {
     this.personas = personas;
   }
@@ -99,7 +100,6 @@ public class ReservaEntity {
   public Integer getPartidas() {
     return partidas;
   }
-
   public void setPartidas(Integer partidas) {
     this.partidas = partidas;
   }
@@ -107,7 +107,6 @@ public class ReservaEntity {
   public Float getPrecioPersona() {
     return precioPersona;
   }
-
   public void setPrecioPersona(Float precioPersona) {
     this.precioPersona = precioPersona;
   }
