@@ -55,7 +55,10 @@ export const Login = () => {
       <div>
         <button type="submit">Iniciar sesión</button>
       </div>
-      {/*#TODO enlace para registrarse*/}
+
+      <div className='register'>
+        <p>No tienes cuenta? <a href={'/register'}>Registrate aquí</a></p>
+      </div>
     </form>
   );
 };
