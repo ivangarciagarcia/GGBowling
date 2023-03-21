@@ -1,0 +1,35 @@
+.first-section {
+    height: 100vh; /* Esto hace que la sección ocupe toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .titulo {
+      text-align: center;
+      color: white;
+      font-size: 40px;
+    }
+  
+    .subtitulo {
+      max-width: 60%;
+      margin-top: 2rem;
+      font-size: 40px;
+      text-align: center;
+      color: white;
+    }
+  
+    .contacta {
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      background-color: #ffc800;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
