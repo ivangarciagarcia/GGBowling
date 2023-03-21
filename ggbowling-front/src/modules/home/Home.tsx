@@ -42,8 +42,8 @@ export const Home = () => {
           <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
             alt={'Instalaciones'}
-            title={'Nuestras instalaciones'}
-            description={'Te hacemos un tour por las instalaciones'}
+            title={'Instalaciones'}
+            description={'Descubre nuestras instalaciones'}
             buttonText={'Informacion'}
           />
 
