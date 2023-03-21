@@ -1,5 +1,6 @@
 import './home.scss';
 import { Header } from '../../components/header/Header';
+import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 
 export const Home = () => {
   return (
@@ -9,11 +10,12 @@ export const Home = () => {
         <section
           className="first-section"
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL + '/img/bowling-background.jpg'})`,
+            backgroundImage: `url(${
+              process.env.PUBLIC_URL + '/img/bowling-background.jpg'
+            })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            
           }}
         >
           <div className="titulo">
@@ -34,9 +36,35 @@ export const Home = () => {
           <button className="contacta">Contactanos</button>
         </section>
 
-        <section className="second-section"></section>
 
-        <section className="third.section"></section>
+        <section className="second-section">
+
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
+            alt={'Instalaciones'}
+            title={'Nuestras instalaciones'}
+            description={'Te hacemos un tour por las instalaciones'}
+            buttonText={'Informacion'}
+          />
+
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
+            alt={'Reservar'}
+            title={'Haz tu reserva'}
+            description={'Haz tu reserva completa.'}
+            buttonText={'Reserva aqui'}
+          />
+
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/comodin.jpg'}`}
+            alt={'Reservas'}
+            title={'No se que poner aqui'}
+            description={'Algo de contenido'}
+            buttonText={'IDEAS PORFAVOR'}
+          />
+        </section>
+
+        <section className="third-section"></section>
 
         <footer></footer>
       </main>
