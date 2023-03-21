@@ -1,35 +1,46 @@
 .first-section {
-    height: 100vh; /* Esto hace que la sección ocupe toda la pantalla */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
+    
     .titulo {
       text-align: center;
       color: white;
-      font-size: 40px;
+      font-size: 50px;
+      font-weight: bold;
+      font-family: Lato, sans-serif;
     }
-  
+    
     .subtitulo {
       max-width: 60%;
-      margin-top: 2rem;
-      font-size: 40px;
+      margin-top: 10px;
+      font-size: 35px;
       text-align: center;
       color: white;
+      font-family: Lato, sans-serif;
     }
-  
+    
     .contacta {
-      margin-top: 3rem;
-      padding: 1rem 2rem;
-      background-color: #ffc800;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        transform: scale(1.1);
+        padding: 16px 32px;
+        background-color: #ffc800;
+        border: none;
+        color: white;
+        font-size: 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .first-section {
+      height: auto;
+      background-position: center;
+      background-size: cover;
     }
   }

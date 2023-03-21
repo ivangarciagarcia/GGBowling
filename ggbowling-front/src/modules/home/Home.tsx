@@ -17,7 +17,7 @@ export const Home = () => {
           }}
         >
           <div className="titulo">
-            <h2>GGBowling: Bolera-Restaurante</h2>
+            <p>GGBowling: Bolera-Restaurante</p>
           </div>
           <div className="subtitulo">
             <p>
@@ -28,6 +28,7 @@ export const Home = () => {
               necesitas para disfrutar de una noche de diversión al máximo.
               <br />
               Ven a pasar un rato divertido con nosotros.
+              <br />
             </p>
           </div>
           <button className="contacta">Contactanos</button>
