@@ -1,0 +1,37 @@
+body {
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a3891;
+
+  .titulo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    flex-grow: 1;
+    margin-right: 140px;
+  }
+
+  .icons {
+    margin-left: 30px;
+
+
+    svg {
+      font-size: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        opacity: 0.8;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}

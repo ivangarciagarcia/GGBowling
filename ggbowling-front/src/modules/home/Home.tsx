@@ -1,5 +1,10 @@
 import './home.scss';
+import { Header } from '../../components/header/Header';
 
 export const Home = () => {
-  return <div><h1>HOLA</h1></div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
