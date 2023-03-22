@@ -2,6 +2,7 @@ import './home.scss';
 import { Header } from '../../components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
+import { Footer } from 'src/components/footer/Footer';
 
 export const Home = () => {
   return (
@@ -39,36 +40,43 @@ export const Home = () => {
 
         <section className="second-section">
           <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
+            alt={'Precios generales'}
+            title={'Precios generales'}
+            description={'Consulta nuestros precios.'}
+            buttonText={'Ver'}
+          />
+
+          <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
             alt={'Instalaciones'}
             title={'Instalaciones'}
             description={'Descubre nuestras instalaciones'}
-            buttonText={'Informacion'}
-          />
-
-          <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
-            alt={'Reservar'}
-            title={'Haz tu reserva'}
-            description={'Haz tu reserva completa.'}
-            buttonText={'Reserva aqui'}
+            buttonText={'Ver'}
           />
 
           <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/comodin.jpg'}`}
             alt={'Reservas'}
-            title={'No se que poner aqui'}
-            description={'Algo de contenido'}
-            buttonText={'IDEAS PORFAVOR'}
+            title={'Reservas'}
+            description={'Haz tu reserva'}
+            buttonText={'Reserva aqui'}
           />
         </section>
 
         <section className="third-section">
-          <Map/>
+          <div className="first-half">
+            <Map />
+          </div>
+          <div className="second-half"></div>
         </section>
-
-        <footer></footer>
       </main>
+
+      <footer>
+        <section className="footer-section">
+          <Footer />
+        </section>
+      </footer>
     </div>
   );
 };
