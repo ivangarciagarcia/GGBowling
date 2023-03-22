@@ -2,7 +2,6 @@ import './home.scss';
 import { Header } from '../../components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
-import { Footer } from 'src/components/footer/Footer';
 
 export const Home = () => {
   return (
@@ -72,11 +71,7 @@ export const Home = () => {
         </section>
       </main>
 
-      <footer>
-        <section className="footer-section">
-          <Footer />
-        </section>
-      </footer>
+      <footer></footer>
     </div>
   );
 };
