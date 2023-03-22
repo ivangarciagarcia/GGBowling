@@ -1,6 +1,7 @@
 import './home.scss';
 import { Header } from '../../components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
+import { Map } from 'src/components/map/Map';
 
 export const Home = () => {
   return (
@@ -36,9 +37,7 @@ export const Home = () => {
           <button className="contacta">Contactanos</button>
         </section>
 
-
         <section className="second-section">
-
           <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
             alt={'Instalaciones'}
@@ -64,7 +63,9 @@ export const Home = () => {
           />
         </section>
 
-        <section className="third-section"></section>
+        <section className="third-section">
+          <Map/>
+        </section>
 
         <footer></footer>
       </main>
