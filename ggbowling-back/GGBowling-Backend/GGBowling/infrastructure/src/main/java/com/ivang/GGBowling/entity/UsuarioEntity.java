@@ -2,18 +2,17 @@ package com.ivang.GGBowling.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
-@Table(name = "usuario")
 @NoArgsConstructor
+@Table(name = "usuario")
 public class UsuarioEntity {
 
     @Id

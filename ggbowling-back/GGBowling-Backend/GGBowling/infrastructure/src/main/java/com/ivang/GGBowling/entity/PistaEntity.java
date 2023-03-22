@@ -1,13 +1,12 @@
 package com.ivang.GGBowling.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
 @Table(name = "pista")
 public class PistaEntity {
