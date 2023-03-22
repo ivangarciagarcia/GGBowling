@@ -1,0 +1,46 @@
+.footer {
+  background-color: #ffd800;
+  padding: 2rem;
+  align-items: center;
+  align-content: center;
+
+  .titulo-icons {
+    display: flex;
+    margin-bottom: 2.5rem;
+    align-items: center;
+    justify-content: center;
+
+    .titulo {
+      display: flex;
+      padding-right: 120px;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .icons {
+      display: flex;
+    }
+    svg {
+      font-size: 3rem;
+      margin-right: 1.5rem;
+    }
+  }
+
+  .contacto-legal {
+    display: flex;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    align-items: center;
+
+    .contacto {
+      display: flex;
+      padding-right: 120px;
+      font-size: larger;
+ 
+    }
+    .legal {
+      display: flex;
+      font-size: larger;
+    }
+  }
+}
