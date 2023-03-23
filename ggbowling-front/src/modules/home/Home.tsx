@@ -65,8 +65,12 @@ export const Home = () => {
         </section>
 
         <section className="third-section">
-          <Map />
+          <Map/>
+          <div className="second-half"></div>
         </section>
+        
+
+        <footer></footer>
       </main>
 
       <footer>
