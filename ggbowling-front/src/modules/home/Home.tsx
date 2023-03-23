@@ -67,15 +67,13 @@ export const Home = () => {
         <section className="third-section">
           <Map />
         </section>
-
-        <footer>
-          <section className="footer-section">
-            <Footer />
-          </section>
-        </footer>
       </main>
 
-      <footer></footer>
+      <footer>
+        <section className="footer-section">
+          <Footer />
+        </section>
+      </footer>
     </div>
   );
 };
