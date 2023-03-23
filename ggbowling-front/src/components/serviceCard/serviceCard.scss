@@ -12,11 +12,20 @@
       margin: 34px;
       padding: 1rem;
       text-align: center;
-      @media (max-width: 920px) {
-        text-align: center;
-        margin-left: 333px;
-        width: 300%;
+      @media (max-width: 1195px) {
+        margin-left: 0;
+        margin-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        @media (max-width: 920px) {
+          text-align: center;
+          margin-left: 295px;
+          width: 300%;
+        }
       }
+
+    
   
       img {
         width: 100%;
