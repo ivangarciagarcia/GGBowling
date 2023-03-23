@@ -1,5 +1,7 @@
 import './home.scss';
 import { Header } from '../../components/header/Header';
+import { ServiceCard } from '../../components/serviceCard/ServiceCard';
+import { Map } from 'src/components/map/Map';
 
 export const Home = () => {
   return (
@@ -9,11 +11,12 @@ export const Home = () => {
         <section
           className="first-section"
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL + '/img/bowling-background.jpg'})`,
+            backgroundImage: `url(${
+              process.env.PUBLIC_URL + '/img/bowling-background.jpg'
+            })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            
           }}
         >
           <div className="titulo">
@@ -34,12 +37,41 @@ export const Home = () => {
           <button className="contacta">Contactanos</button>
         </section>
 
-        <section className="second-section"></section>
+        <section className="second-section">
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
+            alt={'Precios generales'}
+            title={'Precios generales'}
+            description={'Consulta nuestros precios.'}
+            buttonText={'Ver'}
+          />
 
-        <section className="third.section"></section>
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
+            alt={'Instalaciones'}
+            title={'Instalaciones'}
+            description={'Descubre nuestras instalaciones'}
+            buttonText={'Ver'}
+          />
 
-        <footer></footer>
+          <ServiceCard
+            src={`${process.env.PUBLIC_URL + '/img/comodin.jpg'}`}
+            alt={'Reservas'}
+            title={'Reservas'}
+            description={'Haz tu reserva'}
+            buttonText={'Reserva aqui'}
+          />
+        </section>
+
+        <section className="third-section">
+          <div className="first-half">
+            <Map />
+          </div>
+          <div className="second-half"></div>
+        </section>
       </main>
+
+      <footer></footer>
     </div>
   );
 };

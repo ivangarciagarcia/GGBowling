@@ -1,46 +1,62 @@
 .first-section {
-    min-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .titulo {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Lato, sans-serif;
+    @media (max-width: 767px) {
+      font-size: 40px;
+    }
+    @media (max-width: 1280px) {
+      font-size: 40px;
+    }
+  }
+
+  .subtitulo {
+    max-width: 60%;
+    margin-top: 10px;
+    font-size: 35px;
+    text-align: center;
+    color: white;
+    font-family: Lato, sans-serif;
+    @media (max-width: 767px) {
+      font-size: 25px;
+    }
+    @media (max-width: 1280px) {
+      font-size: 25px;
+    }
+  }
+
+  .contacta {
+    padding: 16px 32px;
+    background-color: #ffc800;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.third-section {
+  .second-half {
+    background-color: rgb(42, 75, 165);
+    min-height: 50vh;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    .titulo {
-      text-align: center;
-      color: white;
-      font-size: 50px;
-      font-weight: bold;
-      font-family: Lato, sans-serif;
-    }
-    
-    .subtitulo {
-      max-width: 60%;
-      margin-top: 10px;
-      font-size: 35px;
-      text-align: center;
-      color: white;
-      font-family: Lato, sans-serif;
-    }
-    
-    .contacta {
-        padding: 16px 32px;
-        background-color: #ffc800;
-        border: none;
-        color: white;
-        font-size: 24px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
   }
-  
-  @media screen and (max-width: 500px) {
-    .first-section {
-      height: auto;
-      background-position: center;
-      background-size: cover;
-    }
-  }
+}
