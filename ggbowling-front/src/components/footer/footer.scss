@@ -9,20 +9,33 @@
     margin-bottom: 2.5rem;
     align-items: center;
     justify-content: center;
+    
 
     .titulo {
       display: flex;
       padding-right: 120px;
       font-size: 40px;
       font-weight: bold;
+      @media (max-width: 920px) {
+        text-align: center;
+        font-size: 25px;
+        padding-right: 80px;
+        padding-left: 15px;
+      }
     }
 
     .icons {
       display: flex;
+      
     }
     svg {
-      font-size: 3rem;
+      font-size: 48px;
       margin-right: 1.5rem;
+      @media (max-width: 920px) {
+        text-align: center;
+        font-size: 30px;
+
+      }
     }
   }
 
@@ -36,6 +49,9 @@
       display: flex;
       padding-right: 120px;
       font-size: larger;
+      @media (max-width: 920px) {
+        padding-right: 0px;
+      }
  
     }
     .legal {
