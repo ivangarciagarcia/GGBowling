@@ -16,11 +16,11 @@ Este es el repositorio de GitHub para la página web de una bolera. La página w
 
 3. Ejecute el comando `yarn install` en la carpeta del proyecto para instalar las dependencias.
 
-4. Configurar el archivo application.properties para establecer la conexión con la base de datos.
+4. Ejecute la aplicación web con el comando `yarn start`. 
 
-5. Ejecute el servidor con el comando `mvn spring-boot:run`.
+5. Configurar el archivo application.properties para establecer la conexión con la base de datos.
 
-6. Ejecute la aplicación web con el comando `yarn start`.
+6. Ejecute el servidor con el comando `mvn spring-boot:run` o iniciando la clase main que se encuentra en el modulo 'boot'.
 
 
 ## Licencia
