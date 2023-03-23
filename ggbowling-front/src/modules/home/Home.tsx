@@ -66,11 +66,11 @@ export const Home = () => {
 
         <section className="third-section">
           <Map/>
-          <div className="second-half"></div>
+          <div className="second-half">
+            
+          </div>
         </section>
-        
 
-        <footer></footer>
       </main>
 
       <footer>
