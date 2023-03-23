@@ -3,6 +3,7 @@ import { Header } from '../../components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
+import { Schedule } from 'src/components/schedule/Schedule';
 
 export const Home = () => {
   return (
@@ -38,6 +39,10 @@ export const Home = () => {
           <button className="contacta">Contactanos</button>
         </section>
 
+        <section>
+          <Schedule />
+        </section>
+
         <section className="second-section">
           <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
@@ -65,10 +70,8 @@ export const Home = () => {
         </section>
 
         <section className="third-section">
-          <Map/>
-          <div className="second-half"></div>
+          <Map />
         </section>
-        
 
         <footer></footer>
       </main>
