@@ -61,12 +61,19 @@
     @media (max-width: 920px) {
       .titulo1 {
         font-size: 17px;
-        margin-top: 174px;
         text-align: center;
       }
 
       li {
         font-size: 12px;
+      }
+      .icono {
+        font-size: 60px;
+        margin-left: 0;
+        text-align: center;
+        svg {
+          margin: 0 auto;
+        }
       }
     }
   }
