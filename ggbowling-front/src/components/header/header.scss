@@ -13,25 +13,10 @@ body {
     font-weight: bold;
     color: white;
     flex-grow: 1;
-    margin-right: 140px;
   }
 
-  .icons {
-    margin-left: 30px;
+}
 
-
-    svg {
-      font-size: 24px;
-      margin-right: 10px;
-      cursor: pointer;
-      color: white;
-
-      &:hover {
-        opacity: 0.8;
-      }
-      &:last-of-type {
-        margin-right: 0;
-      }
-    }
-  }
+a {
+  margin-right: 10px;
 }

@@ -10,9 +10,27 @@ export const Footer = () => {
       <div className="titulo-icons">
         <div className="titulo">GGBowling</div>
         <div className="icons">
-          <AiFillTwitterCircle />
-          <AiFillInstagram />
-          <AiFillLinkedin />
+          <a
+            href="https://twitter.com/Ivangg__"
+            target={'_blank'}
+            rel="noreferrer"
+          >
+            <AiFillTwitterCircle />
+          </a>
+          <a
+            href="https://www.instagram.com/ivangg._"
+            target={'_blank'}
+            rel="noreferrer"
+          >
+            <AiFillInstagram />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ivan-garcia-garcia/"
+            target={'_blank'}
+            rel="noreferrer"
+          >
+            <AiFillLinkedin />
+          </a>
         </div>
       </div>
 
