@@ -8,7 +8,7 @@ import { Schedule } from 'src/components/schedule/Schedule';
 export const Home = () => {
   return (
     <div>
-      <Header />
+      <Header img={'/img/logo.png'} />
       <main>
         <section
           className="first-section"
