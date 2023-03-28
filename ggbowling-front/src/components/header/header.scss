@@ -7,16 +7,10 @@ body {
   align-items: center;
   background-color: #1a3891;
 
-  .titulo {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
+  .logo {
+    text-align: left;
     flex-grow: 1;
+    margin: 15px;
   }
 
-}
-
-a {
-  margin-right: 10px;
 }
