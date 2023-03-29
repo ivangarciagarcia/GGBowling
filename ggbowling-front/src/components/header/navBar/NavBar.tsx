@@ -43,13 +43,13 @@ export function Navbar() {
           </a>
           <ul className="dropdown-menu">
             <li>
-              <a href="#">Precios</a>
+              <a href="/prices">Precios</a>
             </li>
             <li>
-              <a href="#">Instalaciones</a>
+              <a href="/instalaciones">Instalaciones</a>
             </li>
             <li>
-              <a href="#">Reservas</a>
+              <a href="/reservas">Reservas</a>
             </li>
           </ul>
         </li>

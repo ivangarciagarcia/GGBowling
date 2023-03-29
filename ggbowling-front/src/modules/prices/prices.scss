@@ -1,0 +1,15 @@
+.header {
+  max-height: 20vh;
+}
+
+.info {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  max-height: 30vh;
+}

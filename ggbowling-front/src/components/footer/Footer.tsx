@@ -26,7 +26,7 @@ export const Footer = (props: FooterProps) => {
     supPage1, supPage2, supPage3 } = props;
 
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="titulo-icons">
         <div className="titulo">{title}</div>
         <div className="icons">
@@ -70,6 +70,6 @@ export const Footer = (props: FooterProps) => {
           </ul>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
