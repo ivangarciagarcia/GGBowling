@@ -1,6 +1,8 @@
 import './header.scss';
-import { BiUserCircle } from 'react-icons/bi';
-import { FaAngleDown } from 'react-icons/fa';
+
+import { Navbar } from './navBar/NavBar';
+
+
 
 export interface HeaderProps {
   img: string;
@@ -13,40 +15,7 @@ export const Header = (props: HeaderProps) => {
       <div className="content">
         <img src={`${process.env.PUBLIC_URL + img}`} alt="logo" />
       </div>
-      <nav className="navbar">
-        <ul className="menu">
-          <li>
-            <a href="/home">Inicio</a>
-          </li>
-          <li>
-            <a href="/restaurante">Restaurante</a>
-          </li>
-          <li>
-            <a href="/ofertas">Ofertas</a>
-          </li>
-          <li className="dropdown">
-            <a>
-              Bolera <FaAngleDown />
-            </a>
-            <ul className="dropdown-menu">
-              <li>
-                <a href="#">Precios</a>
-              </li>
-              <li>
-                <a href="#">Instalaciones</a>
-              </li>
-              <li>
-                <a href="#">Reservas</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="/perfil">
-              <BiUserCircle />
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
     </header>
   );
 };
