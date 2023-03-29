@@ -41,7 +41,15 @@ export const Home = () => {
         </section>
 
         <section>
-          <Schedule />
+          <Schedule
+            dias1={'LUNES A JUEVES'}
+            horario1={'De 10:00h a 00:00h'} 
+            dias2={'VIERNES, SABADOS Y DOMINGOS'}
+            horario2={'De 10:00h a 02:00h'} 
+            info1={'Uso obligatorio de zapatos de bolos'}
+            info2={'No esta permitido ningun tipo de comida en las pistas'}
+            info3={'No esta permitido entrar al establecimiento con comida o bebida del exterior'}
+            info4={'Restaurante con reserva previa'}/>
         </section>
 
         <section className="second-section">
@@ -87,7 +95,7 @@ export const Home = () => {
             rel={'noreferrer'}
             street={'Dirección: Calle Falsa 123, Springfield'}
             phone={'Teléfono: 555-1234'}
-            email={'Correo electrónico: info@bolera.com'} 
+            email={'Correo electrónico: info@bolera.com'}
             supPage1={'Términos y condiciones'}
             supPage2={'Política de privacidad'}
             supPage3={'Política de cookies'}
