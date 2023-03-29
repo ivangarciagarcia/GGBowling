@@ -1,9 +1,10 @@
 import './home.scss';
-import { Header } from '../../components/header/Header';
+
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
 import { Schedule } from 'src/components/schedule/Schedule';
+import { Header } from 'src/components/header/Header';
 
 export const Home = () => {
   return (
