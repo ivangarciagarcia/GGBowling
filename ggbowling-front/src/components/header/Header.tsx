@@ -25,7 +25,7 @@ export const Header = (props: HeaderProps) => {
             <a href="/ofertas">Ofertas</a>
           </li>
           <li className="dropdown">
-            <a href="#">
+            <a>
               Bolera <FaAngleDown />
             </a>
             <ul className="dropdown-menu">

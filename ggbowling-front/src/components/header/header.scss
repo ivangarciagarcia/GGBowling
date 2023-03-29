@@ -24,69 +24,71 @@ body {
     }
 
     .navbar {
-  padding-right: 70px;
-  font-size: 25px;
+      margin-right: 70px;
+      font-size: 25px;
+      cursor: pointer;
 
-  ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-
-    li {
-      margin-left: 1rem;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 0.5rem;
-
-        &:hover {
-          background-color: white;
-          color: black;
-          border-radius: 5px;
-        }
-      }
-
-      .dropdown-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: white;
-        padding: 0.5rem;
-        width: 100%;
+      ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
 
         li {
-          margin-top: 0.5em;
+          margin-left: 1rem;
 
           &:first-child {
-            margin-top: 0;
+            margin-left: 0;
           }
-          
+
           a {
-            color: black;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
 
             &:hover {
-              background-color: lightgray;
-              color: black;
+              background-color: #0f225a;
+              border-radius: 5px;
             }
+          }
+
+          .dropdown-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+            padding-top: 40px;
+            width: 96%;
+            color: white;
+            align-items: end;
+
+
+            li {
+              margin-top: 12px;
+
+              &:first-child {
+                margin-top: 0;
+              }
+
+              a {
+                margin-right: 130px;
+                color: white;
+                text-align: center;
+                
+
+                &:hover {
+                  background-color: #0f225a;
+                }
+              }
+            }
+          }
+
+          &:hover .dropdown-menu {
+            display: flex;
+            z-index: 1;
           }
         }
       }
-
-      &:hover .dropdown-menu {
-        display: flex;
-        z-index: 1;
-      }
     }
-  }
-}
-
   }
 }
