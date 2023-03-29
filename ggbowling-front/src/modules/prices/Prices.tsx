@@ -5,7 +5,7 @@ import { Header } from 'src/components/header/Header';
 export const Prices = () => {
   return (
     <div>
-      <Header img={'/img/logo.png'} />
+      <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
         <section
           className="info"

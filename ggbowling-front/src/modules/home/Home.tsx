@@ -9,7 +9,7 @@ import { Footer } from 'src/components/footer/Footer';
 export const Home = () => {
   return (
     <div>
-      <Header img={'/img/logo.png'} />
+      <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
         <section
           className="first-section"
