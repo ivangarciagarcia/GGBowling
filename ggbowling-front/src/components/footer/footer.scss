@@ -27,6 +27,11 @@
 
     .icons {
       display: flex;
+
+      a{
+        color: white;
+        text-decoration: none;
+      }
       
     }
     svg {
@@ -36,6 +41,9 @@
         text-align: center;
         font-size: 30px;
 
+      }
+      &:hover{
+        opacity: 0.8;
       }
     }
   }

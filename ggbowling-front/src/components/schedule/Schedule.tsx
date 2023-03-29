@@ -1,38 +1,49 @@
 import './schedule.scss';
 import { AiOutlineClockCircle, AiOutlineInfoCircle } from 'react-icons/ai';
 
-export const Schedule = () => {
+export interface ScheduleProps {
+  dias1: string;
+  dias2?: string;
+  horario1: string;
+  horario2?: string;
+  info1: string;
+  info2?: string;
+  info3?: string;
+  info4?: string;
+
+}
+export const Schedule = (props: ScheduleProps) => {
+  const { dias1, dias2, horario1, horario2, info1, info2, info3, info4 } = props;
+
+
   return (
     <div className="horarios">
+            
       <div className="columna1">
         <h1 className="icono">
           <AiOutlineClockCircle />
         </h1>
         <h1 className="titulo1">-HORARIOS-</h1>
-        <h2 className="titulo2">LUNES A JUEVES</h2>
-        <p>De 10:00h a 00:00h</p>
-        <h2 className="titulo2">VIERNES Y SABADOS</h2>
-        <p>De 10:00h a 02:00h</p>
-        <h2 className="titulo2">DOMINGOS</h2>
-        <p>De 10:00h a 00:00h</p>
+        <h2 className="titulo2">{dias1}</h2>
+        <p>{horario1}</p>
+        <h2 className="titulo2">{dias2}</h2>
+        <p>{horario2}</p>
+
       </div>
+
       <div className="columna2">
         <h1 className="icono">
           <AiOutlineInfoCircle />
         </h1>
-
         <h1 className="titulo1">-INFORMACION IMPORTANTE-</h1>
         <ul>
-          <li>Uso obligatorio de zapatos de bolos</li>
+          <li>{info1}</li>
           <br />
-          <li>No esta permitido ningun tipo de comida en las pistas</li>
+          <li>{info2}</li>
           <br />
-          <li>
-            No esta permitido entrar al establecimiento con comida o bebida del
-            exterior
-          </li>
+          <li>{info3}</li>
           <br />
-          <li>Restaurante con reserva previa</li>
+          <li>{info4}</li>
         </ul>
       </div>
     </div>

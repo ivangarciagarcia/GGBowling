@@ -1,20 +1,21 @@
 import './header.scss';
-import {
-  AiFillTwitterCircle,
-  AiFillInstagram,
-  AiFillLinkedin,
-} from 'react-icons/ai';
 
-export const Header = () => {
+import { Navbar } from './navBar/NavBar';
+
+
+
+export interface HeaderProps {
+  img: string;
+}
+export const Header = (props: HeaderProps) => {
+  const { img } = props;
+
   return (
     <header className="header">
-      <div className="icons">
-        <AiFillTwitterCircle />
-        <AiFillInstagram />
-        <AiFillLinkedin />
+      <div className="content">
+        <img src={`${process.env.PUBLIC_URL + img}`} alt="logo" />
       </div>
-      <div className='titulo'><p>GGBowling</p></div>
-      <div className='menu-icon'></div>
+      <Navbar />
     </header>
   );
 };
