@@ -1,36 +1,25 @@
+$logo-size: 100px;
+
 body {
   margin: 0 auto;
-}
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #1a3891;
 
-  .titulo {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    flex-grow: 1;
-    margin-right: 140px;
-  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a3891;
 
-  .icons {
-    margin-left: 30px;
+    .content {
+      display: inline-block;
+      margin: 15px;
 
-
-    svg {
-      font-size: 24px;
-      margin-right: 10px;
-      cursor: pointer;
-      color: white;
-
-      &:hover {
-        opacity: 0.8;
+      img {
+        height: $logo-size;
+        width: $logo-size;
       }
-      &:last-of-type {
-        margin-right: 0;
+      @media (max-width: 920px) {
+        display: flex;
+        margin: 15px;
       }
     }
   }

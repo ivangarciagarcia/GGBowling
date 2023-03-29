@@ -4,31 +4,69 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from 'react-icons/ai';
-export const Footer = () => {
+
+export interface FooterProps {
+  title: string;
+  twiLink: string;
+  insLink: string;
+  linLink: string;
+  target: string;
+  rel: string;
+  street: string;
+  phone: string;
+  email: string;
+  supPage1: string;
+  supPage2?: string;
+  supPage3?: string;
+}
+export const Footer = (props: FooterProps) => {
+  const { title, insLink, linLink, 
+    twiLink, target, rel, 
+    street, phone, email, 
+    supPage1, supPage2, supPage3 } = props;
+
   return (
     <div className="footer">
       <div className="titulo-icons">
-        <div className="titulo">GGBowling</div>
+        <div className="titulo">{title}</div>
         <div className="icons">
-          <AiFillTwitterCircle />
-          <AiFillInstagram />
-          <AiFillLinkedin />
+          <a
+            href={twiLink}
+            target={target}
+            rel={rel}
+          >
+            <AiFillTwitterCircle />
+          </a>
+          <a
+            href={insLink}
+            target={target}
+            rel={rel}
+          >
+            <AiFillInstagram />
+          </a>
+          <a
+            href={linLink}
+            target={target}
+            rel={rel}
+          >
+            <AiFillLinkedin />
+          </a>
         </div>
       </div>
 
       <div className="contacto-legal">
         <div className="contacto">
           <ul>
-            <li>{'Dirección: Calle Falsa 123, Springfield'}</li>
-            <li>{'Teléfono: 555-1234 '}</li>
-            <li>{'Correo electrónico: info@bolera.com'}</li>
+            <li>{street}</li>
+            <li>{phone}</li>
+            <li>{email}</li>
           </ul>
         </div>
         <div className="legal">
           <ul>
-            <li>{'Términos y condiciones'}</li>
-            <li>{'Política de privacidad'}</li>
-            <li>{'Política de cookies'}</li>
+            <li>{supPage1}</li>
+            <li>{supPage2}</li>
+            <li>{supPage3}</li>
           </ul>
         </div>
       </div>

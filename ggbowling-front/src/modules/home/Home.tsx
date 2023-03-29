@@ -1,14 +1,15 @@
 import './home.scss';
-import { Header } from '../../components/header/Header';
+
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
 import { Schedule } from 'src/components/schedule/Schedule';
+import { Header } from 'src/components/header/Header';
 
 export const Home = () => {
   return (
     <div>
-      <Header />
+      <Header img={'/img/logo.png'} />
       <main>
         <section
           className="first-section"
@@ -70,17 +71,27 @@ export const Home = () => {
         </section>
 
         <section className="third-section">
-          <Map/>
-          <div className="second-half">
-            
-          </div>
+          <Map />
+          <div className="second-half"></div>
         </section>
-
       </main>
 
       <footer>
         <section className="footer-section">
-          <Footer />
+          <Footer
+            title={'GGBowling'}
+            twiLink={'https://twitter.com/Ivangg__'}
+            insLink={'https://www.instagram.com/ivangg._'}
+            linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
+            target={'_blank'}
+            rel={'noreferrer'}
+            street={'Dirección: Calle Falsa 123, Springfield'}
+            phone={'Teléfono: 555-1234'}
+            email={'Correo electrónico: info@bolera.com'} 
+            supPage1={'Términos y condiciones'}
+            supPage2={'Política de privacidad'}
+            supPage3={'Política de cookies'}
+          />
         </section>
       </footer>
     </div>
