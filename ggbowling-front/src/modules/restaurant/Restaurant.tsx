@@ -7,7 +7,7 @@ import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 export const Restaurant = () => {
   return (
     <div>
-      <Header img={'/img/logo.png'} />
+      <Header img={'/img/logo.png'} alt={'Logo GGBowling'} />
 
       <main>
         <section
