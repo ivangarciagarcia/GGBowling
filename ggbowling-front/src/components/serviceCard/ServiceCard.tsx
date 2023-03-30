@@ -5,8 +5,8 @@ export interface ServiceCardProps {
   alt: string;
   title: string;
   description: string;
-  buttonText: string;
-  href: string;
+  buttonText?: string;
+  href?: string;
 }
 
 export const ServiceCard = (props: ServiceCardProps) => {

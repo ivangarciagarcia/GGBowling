@@ -37,7 +37,7 @@ export const Home = () => {
               <br />
             </p>
           </div>
-          <button className="contacta">Contactanos</button>
+          <button className="reserva">Haz tu reserva</button>
         </section>
 
         <section>

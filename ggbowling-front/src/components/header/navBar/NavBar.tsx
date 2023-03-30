@@ -32,10 +32,10 @@ export function Navbar() {
           <a href="/home">Inicio</a>
         </li>
         <li>
-          <a href="/restaurante">Restaurante</a>
+          <a href="/restaurant">Restaurante</a>
         </li>
         <li>
-          <a href="/ofertas">Ofertas</a>
+          <a href="/offers">Ofertas</a>
         </li>
         <li className="dropdown">
           <a>
@@ -46,15 +46,15 @@ export function Navbar() {
               <a href="/prices">Precios</a>
             </li>
             <li>
-              <a href="/instalaciones">Instalaciones</a>
+              <a href="/installations">Instalaciones</a>
             </li>
             <li>
-              <a href="/reservas">Reservas</a>
+              <a href="/bookings">Reservas</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="/perfil">
+          <a href="/profile">
             <BiUserCircle />
           </a>
         </li>
