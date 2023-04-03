@@ -25,7 +25,7 @@ public class RestauranteController {
         File archivo = new File("ruta/al/archivo.pdf");
         InputStreamResource recurso = new InputStreamResource(new FileInputStream(archivo));
         HttpHeaders cabeceras = new HttpHeaders();
-        cabeceras.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=archivo.pdf");
+        cabeceras.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Carta.pdf");
         return ResponseEntity.ok().headers(cabeceras).body(recurso);
     }
 }
