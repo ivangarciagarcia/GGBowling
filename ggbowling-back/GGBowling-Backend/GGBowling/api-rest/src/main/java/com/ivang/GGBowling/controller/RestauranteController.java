@@ -20,9 +20,11 @@ import java.io.IOException;
 @RequestMapping("/restaurante")
 public class RestauranteController {
 
+    final String ROUTE = "resources/Carta.pdf" ;
+
     @GetMapping("/menu")
     public ResponseEntity<Resource> descargarArchivo() throws IOException {
-        File archivo = new File("ruta/al/archivo.pdf");
+        File archivo = new File(ROUTE);
         InputStreamResource recurso = new InputStreamResource(new FileInputStream(archivo));
         HttpHeaders cabeceras = new HttpHeaders();
         cabeceras.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Carta.pdf");

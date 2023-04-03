@@ -5,6 +5,28 @@ import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 
 export const Restaurant = () => {
+
+  const descargarArchivo = async () => {
+    try {
+      const respuesta = await fetch('http://localhost:8080/restaurante/menu');
+      const blob = await respuesta.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Carta.pdf');
+      document.body.appendChild(link);
+      link.click();
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
+    } catch (error) {
+      console.error('Error al descargar el archivo', error);
+    }
+  };
+  
+
+
+
   return (
     <div>
       <Header img={'/img/logo.png'} alt={'Logo GGBowling'} />
@@ -59,7 +81,7 @@ export const Restaurant = () => {
             title={'NUESTRA CARTA'}
             description={'¡Encontrarás todo lo que te apetece en nuestra cocina abierta durante todo el día! Además, puedes disfrutar de nuestras irresistibles tapas. ¡Ven a probar nuestros platos en nuestro establecimiento!'}
             buttonText={'Carta'}
-            href={'restaurant/card'}
+            onClick={descargarArchivo}
           />
           <ServiceCard
             src={`${process.env.PUBLIC_URL + '/img/menu.png'}`}
@@ -67,7 +89,6 @@ export const Restaurant = () => {
             title={'MENU DEL DIA'}
             description={'¡Disfruta de un almuerzo completo con nuestro menú del día! Ofrecemos una variada selección de platos frescos y sabrosos para satisfacer todos los gustos. ¡Ven a probar nuestra cocina en el almuerzo!'}
             buttonText={'Menú'}
-            href={'restaurant/menu'}
           />
         </section>
       </main>
