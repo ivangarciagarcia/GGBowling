@@ -20,14 +20,24 @@ import java.io.IOException;
 @RequestMapping("/restaurante")
 public class RestauranteController {
 
-    final String ROUTE = "resources/Carta.pdf" ;
+    final String CARTA = "resources/Carta.pdf" ;
+    final String MENU = "resources/Menu-del-dia.pdf" ;
 
-    @GetMapping("/menu")
-    public ResponseEntity<Resource> descargarArchivo() throws IOException {
-        File archivo = new File(ROUTE);
+    @GetMapping("/carta")
+    public ResponseEntity<Resource> descargarCarta() throws IOException {
+        File archivo = new File(CARTA);
         InputStreamResource recurso = new InputStreamResource(new FileInputStream(archivo));
         HttpHeaders cabeceras = new HttpHeaders();
         cabeceras.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Carta.pdf");
+        return ResponseEntity.ok().headers(cabeceras).body(recurso);
+    }
+
+    @GetMapping("/menu")
+    public ResponseEntity<Resource> descargarMenu() throws IOException {
+        File archivo = new File(MENU);
+        InputStreamResource recurso = new InputStreamResource(new FileInputStream(archivo));
+        HttpHeaders cabeceras = new HttpHeaders();
+        cabeceras.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Menu-del-dia.pdf");
         return ResponseEntity.ok().headers(cabeceras).body(recurso);
     }
 }
