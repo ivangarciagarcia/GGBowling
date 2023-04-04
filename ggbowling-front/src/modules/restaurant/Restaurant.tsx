@@ -54,7 +54,7 @@ export const Restaurant = () => {
           className="first-section"
           style={{
             backgroundImage: `url(${
-              process.env.PUBLIC_URL + '/img/restaurant.jpg'
+              process.env.PUBLIC_URL + '/img/restaurante/restaurant.jpg'
             })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
@@ -94,7 +94,7 @@ export const Restaurant = () => {
 
         <section className="second-section">
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/cutlery-logo.png'}`}
+            src={`${process.env.PUBLIC_URL + '/img/restaurante/cutlery-logo.png'}`}
             alt={'Carta restaurante GGBowling'}
             title={'NUESTRA CARTA'}
             description={'¡Encontrarás todo lo que te apetece en nuestra cocina abierta durante todo el día! Además, puedes disfrutar de nuestras irresistibles tapas. ¡Ven a probar nuestros platos en nuestro establecimiento!'}
@@ -102,7 +102,7 @@ export const Restaurant = () => {
             onClick={descargarCarta}
           />
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/menu.png'}`}
+            src={`${process.env.PUBLIC_URL + '/img/restaurante/menu.png'}`}
             alt={'Menu del dia GGBowling'}
             title={'MENU DEL DIA'}
             description={'¡Disfruta de un almuerzo completo con nuestro menú del día! Ofrecemos una variada selección de platos frescos y sabrosos para satisfacer todos los gustos. ¡Ven a probar nuestra cocina en el almuerzo!'}

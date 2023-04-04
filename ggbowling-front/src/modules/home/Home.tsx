@@ -57,7 +57,7 @@ export const Home = () => {
 
         <section className="second-section">
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/pista.jpg'}`}
+            src={`${process.env.PUBLIC_URL + '/img/home/pista.jpg'}`}
             alt={'Precios generales'}
             title={'Precios generales'}
             description={'Consulta nuestros precios.'}
@@ -66,7 +66,7 @@ export const Home = () => {
           />
 
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/cafe-bolera.jpg'}`}
+            src={`${process.env.PUBLIC_URL + '/img/home/cafe-bolera.jpg'}`}
             alt={'Instalaciones'}
             title={'Instalaciones'}
             description={'Descubre nuestras instalaciones'}
@@ -75,7 +75,7 @@ export const Home = () => {
           />
 
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/comodin.jpg'}`}
+            src={`${process.env.PUBLIC_URL + '/img/home/comodin.jpg'}`}
             alt={'Reservas'}
             title={'Reservas'}
             description={'Haz tu reserva'}
