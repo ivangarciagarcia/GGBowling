@@ -1,25 +1,54 @@
 import './prices.scss';
 import { Footer } from 'src/components/footer/Footer';
 import { Header } from 'src/components/header/Header';
+import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 
 export const Prices = () => {
   return (
     <div>
       <Header img={'/img/logo.png'} alt={'logo'} />
-      <main>
-        <section
-          className="info"
-          style={{
-            backgroundImage: `url(${
-              process.env.PUBLIC_URL + '/img/background-prices.jpg'
-            })`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-          }}
-        >
+      <main className="main">
+        {/*PRIMERA COLUMNA */}
 
-        </section>
+        <div className="service-card">
+          <ServiceCard
+            src={'img/precios/zapatos.png'}
+            alt={'Alquiler de zapatos'}
+            title={'ALQUILER DE ZAPATOS'}
+            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+          />
+
+          <ServiceCard
+            src={'img/precios/zapatos.png'}
+            alt={'Alquiler de zapatos'}
+            title={'ALQUILER DE ZAPATOS'}
+            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+          />
+        </div>
+
+        {/*SEGUNDA COLUMNA */}
+
+        <div className="service-card">
+          <ServiceCard
+            src={'img/precios/zapatos.png'}
+            alt={'Alquiler de zapatos'}
+            title={'ALQUILER DE ZAPATOS'}
+            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+          />
+
+        </div>
+
+        {/*TERCERA COLUMNA */}
+        <div className="service-card">
+
+          <ServiceCard
+            src={'img/precios/zapatos.png'}
+            alt={'Alquiler de zapatos'}
+            title={'ALQUILER DE ZAPATOS'}
+            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+          />
+
+        </div>
       </main>
       <Footer
         title={'GGBowling'}
