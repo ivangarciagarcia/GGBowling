@@ -5,6 +5,8 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Home } from './modules/home/Home';
 import { Register } from './modules/register/Register';
 import { Prices } from './modules/prices/Prices';
+import { Restaurant } from './modules/restaurant/Restaurant';
+import { Offers } from './modules/offers/Offers';
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path='/prices' element={<Prices/>}></Route>
+        <Route path='/restaurant' element={<Restaurant/>}></Route>
+        <Route path='/offers' element={<Offers/>}></Route>
+
       </Routes>
     </Router>
   );
