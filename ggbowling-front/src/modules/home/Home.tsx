@@ -15,7 +15,7 @@ export const Home = () => {
           className="first-section"
           style={{
             backgroundImage: `url(${
-              process.env.PUBLIC_URL + '/img/bowling-background.jpg'
+              process.env.PUBLIC_URL + '/img/home/bowling-background.jpg'
             })`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
