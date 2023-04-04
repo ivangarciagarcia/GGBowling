@@ -43,7 +43,22 @@
     @media screen and (max-width: 480px) {
       grid-template-columns: 1fr;
     }
+
+    
   }
+  .atention{
+    display: flex;
+    background-color: red;
+    text-align: center;
+    width: 100%;
+    height: 120px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    @media screen and (max-width: 768px) {
+        font-size: 10px;
+    }
+}
   
   .footer {
     max-height: 30vh;

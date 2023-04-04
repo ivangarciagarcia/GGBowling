@@ -13,17 +13,17 @@ export const Offers = () => {
 
         <div className="service-card">
           <ServiceCard
-            src={'img/precios/zapatos.png'}
+            src={'img/ofertas/oferta1.jpg'}
             alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            title={'DE LUNES A VIERNES'}
+            description={'*Todo el dia'}
           />
 
           <ServiceCard
-            src={'img/precios/zapatos.png'}
+            src={'img/ofertas/oferta4.jpg'}
             alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            title={'JUEVES, VIERNES Y SABADOS'}
+            description={'*A partir de las 22:00h'}
           />
         </div>
 
@@ -31,10 +31,10 @@ export const Offers = () => {
 
         <div className="service-card">
           <ServiceCard
-            src={'img/precios/zapatos.png'}
+            src={'img/ofertas/oferta2.jpg'}
             alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            title={'TODOS LOS DIAS'}
+            description={'*Hasta las 22:00h'}
           />
 
         </div>
@@ -43,14 +43,17 @@ export const Offers = () => {
         <div className="service-card">
 
           <ServiceCard
-            src={'img/precios/zapatos.png'}
+            src={'img/ofertas/oferta3.jpg'}
             alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            title={'VIERNES, SABADOS, DOMINGOS Y FESTIVOS'}
+            description={'*Hasta las 22:00h'}
           />
 
         </div>
+
+        
       </main>
+      <div className='atention'><h1>LAS OFERTAS NO SON ACUMULABLES CON OTRAS OFERTAS</h1></div>
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
