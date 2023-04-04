@@ -14,14 +14,7 @@ export const Prices = () => {
           <ServiceCard
             src={'img/precios/zapatos.png'}
             alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
-          />
-
-          <ServiceCard
-            src={'img/precios/zapatos.png'}
-            alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
+            title={'ALQUILER DE ZAPATOS 1,50€'}
             description={'*Solo se podra entrar a pista con zapatos de bolos'}
           />
         </div>
@@ -30,10 +23,10 @@ export const Prices = () => {
 
         <div className="service-card">
           <ServiceCard
-            src={'img/precios/zapatos.png'}
-            alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            src={'img/precios/week.png'}
+            alt={'precios dias laborables'}
+            title={'DIAS LABORABLES 4,00€'}
+            description={'*Precio partida/persona'}
           />
 
         </div>
@@ -42,10 +35,10 @@ export const Prices = () => {
         <div className="service-card">
 
           <ServiceCard
-            src={'img/precios/zapatos.png'}
-            alt={'Alquiler de zapatos'}
-            title={'ALQUILER DE ZAPATOS'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            src={'img/precios/weekend.png'}
+            alt={'Precios fin de semana y festivos'}
+            title={'SABADOS, DOMINGOS Y FESTIVOS 7,00€'}
+            description={'*Precio partida/persona'}
           />
 
         </div>
