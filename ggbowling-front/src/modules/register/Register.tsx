@@ -50,77 +50,80 @@ export const Register = () => {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-      <h2>Registrarse</h2>
-      <div className="form-group">
+    <body>
+      <main>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <h2>Registrarse</h2>
+          <div className="form-group">
+            <label htmlFor="username">Nombre de usuario</label>
+            <Input
+              type={'text'}
+              id={'username'}
+              name={'username'}
+              onChange={(e) => setUsername(e.target.value)}
+            />
 
-        <label htmlFor="username">Nombre de usuario</label>
-        <Input
-          type={'text'}
-          id={'username'}
-          name={'username'}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+            <label htmlFor="password">Contraseña</label>
+            <Input
+              type={'password'}
+              id="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-        <label htmlFor="password">Contraseña</label>
-        <Input
-          type={'password'}
-          id="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+            <label htmlFor="nombre">Nombre</label>
+            <Input
+              type={'text'}
+              id={'nombre'}
+              name={'nombre'}
+              onChange={(e) => setName(e.target.value)}
+            />
 
-        <label htmlFor="nombre">Nombre</label>
-        <Input
-          type={'text'}
-          id={'nombre'}
-          name={'nombre'}
-          onChange={(e) => setName(e.target.value)}
-        />
+            <label htmlFor="primerApellido">Primer apellido</label>
+            <Input
+              type={'text'}
+              id={'primerApellido'}
+              name={'primerApellido'}
+              onChange={(e) => setLastName1(e.target.value)}
+            />
 
-        <label htmlFor="primerApellido">Primer apellido</label>
-        <Input
-          type={'text'}
-          id={'primerApellido'}
-          name={'primerApellido'}
-          onChange={(e) => setLastName1(e.target.value)}
-        />
+            <label htmlFor="segundoApellido">Segundo apellido</label>
+            <Input
+              type={'text'}
+              id={'segundoApellido'}
+              name={'segundoApellido'}
+              onChange={(e) => setLastName2(e.target.value)}
+            />
 
-        <label htmlFor="segundoApellido">Segundo apellido</label>
-        <Input
-          type={'text'}
-          id={'segundoApellido'}
-          name={'segundoApellido'}
-          onChange={(e) => setLastName2(e.target.value)}
-        />
+            <label htmlFor="email">Email</label>
+            <Input
+              type={'email'}
+              id="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        <label htmlFor="email">Email</label>
-        <Input
-          type={'email'}
-          id="email"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+            <label htmlFor="telefono">Numero de Telefono</label>
+            <Input
+              type={'number'}
+              id="telefono"
+              name="telefono"
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
-        <label htmlFor="telefono">Numero de Telefono</label>
-        <Input
-          type={'number'}
-          id="telefono"
-          name="telefono"
-          onChange={(e) => setPhone(e.target.value)}
-        />
-
-        <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
-        <Input
-          type={'date'}
-          id="fechaNacimiento"
-          name="fechaNacimiento"
-          onChange={(e) => setBirthDate(e.target.value)}
-        />
-      </div>
-      <div>
-        <button type="submit">Resgistrar</button>
-      </div>
-    </form>
+            <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
+            <Input
+              type={'date'}
+              id="fechaNacimiento"
+              name="fechaNacimiento"
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
+          </div>
+          <div>
+            <button type="submit">Resgistrar</button>
+          </div>
+        </form>
+      </main>
+    </body>
   );
 };

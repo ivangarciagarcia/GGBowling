@@ -6,7 +6,7 @@ import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 
 export const Offers = () => {
   return (
-    <div>
+    <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main className="main">
         {/*PRIMERA COLUMNA */}
@@ -53,7 +53,9 @@ export const Offers = () => {
 
         
       </main>
+
       <div className='atention'><h1>LAS OFERTAS NO SON ACUMULABLES CON OTRAS OFERTAS</h1></div>
+     
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
@@ -68,6 +70,6 @@ export const Offers = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </div>
+    </body>
   );
 };

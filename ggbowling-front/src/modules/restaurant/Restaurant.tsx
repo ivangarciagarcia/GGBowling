@@ -46,7 +46,7 @@ export const Restaurant = () => {
 
 
   return (
-    <div>
+    <body>
       <Header img={'/img/logo.png'} alt={'Logo GGBowling'} />
 
       <main>
@@ -127,6 +127,6 @@ export const Restaurant = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </div>
+    </body>
   );
 };

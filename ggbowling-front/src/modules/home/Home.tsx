@@ -8,7 +8,7 @@ import { Footer } from 'src/components/footer/Footer';
 
 export const Home = () => {
   return (
-    <div>
+    <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
         <section
@@ -103,6 +103,6 @@ export const Home = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </div>
+    </body>
   );
 };

@@ -5,7 +5,7 @@ import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 
 export const Prices = () => {
   return (
-    <div>
+    <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main className="main">
         {/*PRIMERA COLUMNA */}
@@ -57,6 +57,6 @@ export const Prices = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </div>
+    </body>
   );
 };
