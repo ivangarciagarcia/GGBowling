@@ -1,13 +1,11 @@
 import { Footer } from 'src/components/footer/Footer';
 import { Header } from 'src/components/header/Header';
-import { SliderComponent } from 'src/components/slider/SliderComponent';
 
 export const Installations = () => {
   return (
     <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
-        <SliderComponent images={[]}/>
       </main>
       <Footer
         title={'GGBowling'}
