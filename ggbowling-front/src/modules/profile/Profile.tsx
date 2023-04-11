@@ -7,7 +7,7 @@ export const Profile = () => {
   return (
     <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
-      <User username={''} password={''} firstName={''} lastName={''} email={''} phoneNumber={''} birthdate={''} />
+      <User username={''} password={''} nombre={''} primerApellido={''} email={''} telefono={''} fechaNacimiento={''} />
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
