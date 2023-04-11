@@ -1,5 +1,5 @@
 # GGBowling
-Este es el repositorio de GitHub para la página web de una bolera. La página web está diseñada para permitir a los usuarios reservar pistas de bolos, buscar eventos y torneos, y conocer más sobre la bolera.
+Proyecto final de ciclo superior de Desarrollo de Aplicaciones Web
 
 ## Tecnologías Utilizadas
 
@@ -26,4 +26,5 @@ Este es el repositorio de GitHub para la página web de una bolera. La página w
 ## Licencia
 
 Este proyecto está bajo la Licencia Apache 2.0. Consulte el archivo LICENSE para obtener más información.
+Ivan Garcia Garcia
 
