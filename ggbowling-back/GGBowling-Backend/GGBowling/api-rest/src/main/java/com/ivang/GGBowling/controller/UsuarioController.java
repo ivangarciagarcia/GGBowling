@@ -44,6 +44,16 @@ public class UsuarioController {
         getHeader(), HttpStatus.OK);
   }
 
+  @GetMapping(value = "/findByEmail/{email}")
+  public ResponseEntity<UsuarioTO> getUsuarioByEmail(@PathVariable String email) {
+    return new ResponseEntity<>(usuarioMapperTO.toUsuarioTO(
+            usuarioService.findByEmail(email)
+    ),
+
+            getHeader(), HttpStatus.OK);
+  }
+
+
 
   @PostMapping(value = "/login")
   public ResponseEntity<String> loginUsuario(@RequestBody Map<String, String> loginRequest){
