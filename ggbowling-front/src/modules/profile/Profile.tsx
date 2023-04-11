@@ -5,7 +5,7 @@ import { Footer } from 'src/components/footer/Footer';
 
 export const Profile = () => {
   return (
-    <body>
+    <div>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <User username={''} password={''} nombre={''} primerApellido={''} email={''} telefono={''} fechaNacimiento={''} />
       <Footer
@@ -22,6 +22,6 @@ export const Profile = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </body>
+    </div>
   );
 };
