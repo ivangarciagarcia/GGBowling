@@ -27,7 +27,7 @@ export const Login = () => {
         password,
       });
       setResponse(data); // actualiza el estado con la respuesta del servidor
-      navigate('/home');
+      navigate('/profile');
     } catch (error) { /*TODO mensaje de error*/ }
   };
 
