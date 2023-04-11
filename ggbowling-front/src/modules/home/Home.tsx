@@ -71,7 +71,7 @@ export const Home = () => {
             title={'Instalaciones'}
             description={'Descubre nuestras instalaciones'}
             buttonText={'Ver'}
-            href={'/instalaciones'}
+            href={'/installations'}
           />
 
           <ServiceCard
@@ -80,7 +80,7 @@ export const Home = () => {
             title={'Reservas'}
             description={'Haz tu reserva'}
             buttonText={'Reserva aqui'}
-            href={'reserva'}
+            href={'/booking'}
           />
         </section>
 

@@ -67,7 +67,7 @@ export const NavBar = (props: NavBarProps) => {
             </li>
         
             <li>
-              <a href="/bokings">{subitem3}</a>
+              <a href="/booking">{subitem3}</a>
             </li>
         
           </ul>
