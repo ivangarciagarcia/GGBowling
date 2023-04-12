@@ -7,6 +7,7 @@ import com.ivang.GGBowling.to.Usuario.UsuarioTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,9 +45,19 @@ public class UsuarioController {
         getHeader(), HttpStatus.OK);
   }
 
+  @GetMapping(value = "/findByEmail/{email}")
+  public ResponseEntity<UsuarioTO> getUsuarioByEmail(@PathVariable String email) {
+    return new ResponseEntity<>(usuarioMapperTO.toUsuarioTO(
+            usuarioService.findByEmail(email)
+    ),
 
-  @PostMapping(value = "/login")
-  public ResponseEntity<String> loginUsuario(@RequestBody Map<String, String> loginRequest){
+            getHeader(), HttpStatus.OK);
+  }
+
+
+
+  @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest){
     String email = loginRequest.get("email");
     String password = loginRequest.get("password");
 
@@ -58,7 +69,7 @@ public class UsuarioController {
     }else if (!usuario.getPassword().equals(password)) {
       return ResponseEntity.badRequest().body("Contraseña incorrecta");
     }else {
-      return ResponseEntity.ok("Usuario autenticado exitosamente");
+      return ResponseEntity.ok(usuario);
     }
   }
 
