@@ -9,29 +9,26 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export const Login = () => {
+  axios.defaults.baseURL = SERVER_BASE_URL;
+  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { userInfo } = useSelector((state: any) => state.login);
   const [form, setForm] = useState<LoginProps>({
     email: '',
     password: '',
   });
 
-  const { userInfo } = useSelector((state: any) => state.login);
-
-
   useEffect(() => {
-    
     if (userInfo != null) {
       navigate('/profile');
     }
   }, [userInfo, navigate]);
 
-  axios.defaults.baseURL = SERVER_BASE_URL;
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
-
   return (
     <div className="login-form">
       <h2>Iniciar sesión</h2>
+
       <div className="form-group">
         <label htmlFor="email">Correo electrónico</label>
         <Input
@@ -46,6 +43,7 @@ export const Login = () => {
           }}
         />
       </div>
+
       <div className="form-group">
         <label htmlFor="password">Contraseña</label>
         <Input
@@ -60,10 +58,9 @@ export const Login = () => {
           }}
         />
       </div>
+
       <div>
-        <button onClick={() => dispatch(login(form))}>
-          Iniciar sesión
-        </button>
+        <button onClick={() => dispatch(login(form))}>Iniciar sesión</button>
       </div>
 
       <div className="register">
