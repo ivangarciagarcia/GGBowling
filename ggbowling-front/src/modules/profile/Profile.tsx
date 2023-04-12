@@ -1,13 +1,31 @@
 import './profile.scss';
 import { Header } from '../../components/header/Header';
-import { User } from 'src/components/user/User';
+import { User, UserProps } from 'src/components/user/User';
 import { Footer } from 'src/components/footer/Footer';
+import { useSelector } from 'react-redux';
 
 export const Profile = () => {
+
+  const { userInfo } = useSelector((state: any) => state.login);
+
+  const userProps: UserProps = {
+    username: userInfo?.username,
+    password: userInfo?.password,
+    nombre: userInfo?.nombre,
+    primerApellido: userInfo?.primerApellido,
+    email: userInfo?.email,
+    telefono: userInfo?.telefono,
+    fechaNacimiento: userInfo?.fechaNacimiento,
+  };
+
+
   return (
     <div>
       <Header img={'/img/logo.png'} alt={'logo'} />
-      <User username={''} password={''} nombre={''} primerApellido={''} email={''} telefono={''} fechaNacimiento={''} />
+      
+      <User {...userProps} />
+
+
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
