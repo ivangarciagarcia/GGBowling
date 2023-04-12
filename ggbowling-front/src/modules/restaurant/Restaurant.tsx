@@ -19,9 +19,7 @@ export const Restaurant = () => {
       if (link.parentNode) {
         link.parentNode.removeChild(link);
       }
-    } catch (error) {
-      console.error('Error al descargar el archivo', error);
-    }
+    } catch (error) { /* empty */ }
   };
 
   const descargarMenu = async () => {
@@ -37,9 +35,7 @@ export const Restaurant = () => {
       if (link.parentNode) {
         link.parentNode.removeChild(link);
       }
-    } catch (error) {
-      console.error('Error al descargar el archivo', error);
-    }
+    } catch (error){ /* empty */ }
   };
   
 
