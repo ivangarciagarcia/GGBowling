@@ -25,7 +25,6 @@ export const Profile = () => {
       
       <User {...userProps} />
 
-
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
