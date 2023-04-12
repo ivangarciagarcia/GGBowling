@@ -1,38 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from 'src/components/input/Input';
 import './login.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
+import { LoginProps, login } from './actions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const Login = () => {
-
-  const [, setEmail] = useState('');
-  const [, setPassword] = useState('');
-  const [, setResponse] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [form, setForm] = useState<LoginProps>({
+    email: '',
+    password: '',
+  });
+
+  const { userInfo } = useSelector((state: any) => state.login);
+
+
+  useEffect(() => {
+    
+    if (userInfo != null) {
+      navigate('/profile');
+    }
+  }, [userInfo, navigate]);
+
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
 
-  
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
-    try {
-      const { data } = await axios.post('/usuario/login', {
-        email,
-        password,
-      });
-      setResponse(data); // actualiza el estado con la respuesta del servidor
-      navigate('/profile');
-    } catch (error) { /*TODO mensaje de error*/ }
-  };
-
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <div className="login-form">
       <h2>Iniciar sesión</h2>
       <div className="form-group">
         <label htmlFor="email">Correo electrónico</label>
@@ -40,7 +38,12 @@ export const Login = () => {
           type={'email'}
           id="email"
           name="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(value) => {
+            setForm({
+              ...form,
+              email: value,
+            });
+          }}
         />
       </div>
       <div className="form-group">
@@ -49,16 +52,25 @@ export const Login = () => {
           type={'password'}
           id="password"
           name="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(value) => {
+            setForm({
+              ...form,
+              password: value,
+            });
+          }}
         />
       </div>
       <div>
-        <button type="submit">Iniciar sesión</button>
+        <button onClick={() => dispatch(login(form))}>
+          Iniciar sesión
+        </button>
       </div>
 
-      <div className='register'>
-        <p>No tienes cuenta? <a href={'/register'}>Registrate aquí</a></p>
+      <div className="register">
+        <p>
+          No tienes cuenta? <a href={'/register'}>Registrate aquí</a>
+        </p>
       </div>
-    </form>
+    </div>
   );
 };
