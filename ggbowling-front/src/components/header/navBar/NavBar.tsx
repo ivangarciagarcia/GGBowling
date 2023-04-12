@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './navBar.scss';
 
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { BiUserCircle } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 export interface NavBarProps {
   item1: string;
@@ -15,8 +17,8 @@ export interface NavBarProps {
   subitem3: string;
 }
 export const NavBar = (props: NavBarProps) => {
+  const navigate = useNavigate();
   const { item1, item2, item3, item4, subitem1, subitem2, subitem3 } = props;
-
   const [showMenu, setShowMenu] = useState(false);
 
   function handleMenuToggle() {
@@ -40,45 +42,43 @@ export const NavBar = (props: NavBarProps) => {
 
       {/* Lista de navegación */}
       <ul className={`menu ${showMenu ? 'show' : ''}`}>
-        
         <li>
-          <a href="/home">{item1}</a>
+          <a onClick={() => navigate('/home')}>{item1}</a>
         </li>
-        
+
         <li>
-          <a href="/restaurant">{item2}</a>
+          <a onClick={() => navigate('/restaurant')}>{item2}</a>
         </li>
-        
+
         <li>
-          <a href="/offers">{item3}</a>
+          <a onClick={() => navigate('/offers')}>{item3}</a>
         </li>
 
         <li className="dropdown">
-          <a>{item4} <FaAngleDown /></a>
-          
+          <a>
+            {item4} <FaAngleDown />
+          </a>
+
           <ul className="dropdown-menu">
-        
             <li>
-              <a href="/prices">{subitem1}</a>
+              <a onClick={() => navigate('/prices')}>{subitem1}</a>
             </li>
-        
+
             <li>
-              <a href="/installations">{subitem2}</a>
+              <a onClick={() => navigate('/installations')}>{subitem2}</a>
             </li>
-        
+
             <li>
-              <a href="/booking">{subitem3}</a>
+              <a onClick={() => navigate('/booking')}>{subitem3}</a>
             </li>
-        
           </ul>
         </li>
-        
+
         <li>
-          <a href="/profile">
+          <a onClick={() => navigate('/profile')}>
             <BiUserCircle />
           </a>
         </li>
-      
       </ul>
     </nav>
   );

@@ -7,7 +7,7 @@ import { Register } from './modules/register/Register';
 import { Prices } from './modules/prices/Prices';
 import { Restaurant } from './modules/restaurant/Restaurant';
 import { Offers } from './modules/offers/Offers';
-import { Installations } from './modules/installations/Installations';
+import { Profile } from './modules/profile/Profile';
 
 function App() {
   return (
@@ -19,8 +19,7 @@ function App() {
         <Route path='/prices' element={<Prices/>}></Route>
         <Route path='/restaurant' element={<Restaurant/>}></Route>
         <Route path='/offers' element={<Offers/>}></Route>
-        <Route path='/installations' element={<Installations/>}></Route>
-
+        <Route path='/profile' element={<Profile/>}></Route>
 
       </Routes>
     </Router>
