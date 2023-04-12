@@ -5,8 +5,11 @@ import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <body>
       <Header img={'/img/logo.png'} alt={'logo'} />
@@ -37,7 +40,9 @@ export const Home = () => {
               <br />
             </p>
           </div>
-          <button className="reserva">Haz tu reserva</button>
+          <button className="reserva" onClick={() => navigate('/booking')}>
+            Haz tu reserva
+          </button>
         </section>
 
         <section>
@@ -62,7 +67,7 @@ export const Home = () => {
             title={'Precios generales'}
             description={'Consulta nuestros precios.'}
             buttonText={'Ver'}
-            href={'/prices'}
+            onClick={() => navigate('/prices')}
           />
 
           <ServiceCard
@@ -71,7 +76,7 @@ export const Home = () => {
             title={'Instalaciones'}
             description={'Descubre nuestras instalaciones'}
             buttonText={'Ver'}
-            href={'/installations'}
+            onClick={() => navigate('/installations')}
           />
 
           <ServiceCard
@@ -80,7 +85,7 @@ export const Home = () => {
             title={'Reservas'}
             description={'Haz tu reserva'}
             buttonText={'Reserva aqui'}
-            href={'/booking'}
+            onClick={() => navigate('/booking')}
           />
         </section>
 
