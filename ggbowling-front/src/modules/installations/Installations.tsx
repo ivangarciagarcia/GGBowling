@@ -46,7 +46,7 @@ export const Installations = () => {
   ];
 
   return (
-    <body>
+    <div>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
         <Gallery photos={photos} margin={10} />
@@ -65,6 +65,6 @@ export const Installations = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </body>
+    </div>
   );
 };

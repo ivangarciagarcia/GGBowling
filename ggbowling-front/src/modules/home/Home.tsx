@@ -11,7 +11,7 @@ export const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <body>
+    <div>
       <Header img={'/img/logo.png'} alt={'logo'} />
       <main>
         <section
@@ -108,6 +108,6 @@ export const Home = () => {
         supPage2={'Política de privacidad'}
         supPage3={'Política de cookies'}
       />
-    </body>
+    </div>
   );
 };

@@ -50,7 +50,7 @@ export const Register = () => {
   };
 
   return (
-    <body>
+    <div>
       <main>
         <form className="register-form" onSubmit={handleSubmit}>
           <h2>Registrarse</h2>
@@ -124,6 +124,6 @@ export const Register = () => {
           </div>
         </form>
       </main>
-    </body>
+    </div>
   );
 };
