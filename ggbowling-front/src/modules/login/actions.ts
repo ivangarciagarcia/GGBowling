@@ -10,6 +10,9 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_RESPONSE = 'LOGOUT_RESPONSE';
+
 export const login = (credentials: LoginProps): any => {
   return (
     dispatch: (arg0: { type: string; userInfo?: any; error?: string }) => void
