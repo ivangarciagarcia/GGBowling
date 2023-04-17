@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { LOGOUT_REQUEST, LOGOUT_RESPONSE } from '../../modules/login/actions';
+import { useDispatch } from 'react-redux';
 import './user.scss';
+import { useNavigate } from 'react-router-dom';
 
 export interface UserProps {
   username: string;
@@ -23,12 +25,13 @@ export const User = (props: UserProps) => {
     fechaNacimiento,
   } = props;
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    // Implementación de la función handleLogout
-    // Esta función podría llamar a una API para cerrar sesión
-    // o eliminar los tokens de autenticación almacenados en el cliente
-    // También podría redirigir al usuario a la página de inicio de sesión
-    console.log('Sesión cerrada');
+    dispatch({ type: LOGOUT_REQUEST });
+    dispatch({ type: LOGOUT_RESPONSE, error: null });
+    navigate('/home');
   };
   const handleModify = () => {
     // Implementación de la función handleModify

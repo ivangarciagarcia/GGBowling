@@ -1,4 +1,10 @@
-import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_RESPONSE } from './actions';
+import {
+  LOGIN_ERROR,
+  LOGIN_REQUEST,
+  LOGIN_RESPONSE,
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE,
+} from './actions';
 
 const initialState = {
   loading: false,
@@ -22,12 +28,25 @@ const login = (state = initialState, action: any) => {
         error: action.error,
       };
     case LOGIN_ERROR:
-      return{
+      return {
         ...state,
         loading: false,
         error: action.error,
       };
-      
+    case LOGOUT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case LOGOUT_RESPONSE:
+      return {
+        ...state,
+        loading: false,
+        userInfo: null,
+        error: action.error,
+      };
+
     default:
       return state;
   }
