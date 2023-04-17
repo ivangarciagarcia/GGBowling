@@ -23,6 +23,20 @@ export const User = (props: UserProps) => {
     fechaNacimiento,
   } = props;
 
+  const handleLogout = () => {
+    // Implementación de la función handleLogout
+    // Esta función podría llamar a una API para cerrar sesión
+    // o eliminar los tokens de autenticación almacenados en el cliente
+    // También podría redirigir al usuario a la página de inicio de sesión
+    console.log('Sesión cerrada');
+  };
+  const handleModify = () => {
+    // Implementación de la función handleModify
+    // Esta función podría abrir un formulario para que el usuario pueda modificar sus datos
+    // También podría llamar a una API para guardar los cambios en el servidor
+    console.log('Modificar perfil');
+  };
+
   return (
     <div className="user-container">
       <div className="user-header">
@@ -56,8 +70,12 @@ export const User = (props: UserProps) => {
           <span>{fechaNacimiento}</span>
         </div>
         <div className="user-info-row">
-          <button className="user-btn">Modificar</button>
-          <button className="user-btn">Cerrar sesión</button>
+          <button className="user-btn-modify" onClick={handleModify}>
+            Modificar
+          </button>
+          <button className="user-btn-logout" onClick={handleLogout}>
+            Cerrar sesión
+          </button>
         </div>
       </div>
     </div>

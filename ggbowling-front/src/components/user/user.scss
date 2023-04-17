@@ -41,7 +41,7 @@
       margin-right: 10px;
     }
   }
-  .user-btn {
+  .user-btn-modify {
     /* Estilo de los botones */
     background-color: #3f51b5;
     color: #fff;
@@ -53,6 +53,24 @@
 
     &:hover {
       background-color: #303f9f;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  .user-btn-logout {
+    /* Estilo de los botones */
+    background-color: #b53f3f;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #9f3030;
     }
 
     &:active {
