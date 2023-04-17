@@ -31,7 +31,7 @@ export const User = (props: UserProps) => {
   const handleLogout = () => {
     dispatch({ type: LOGOUT_REQUEST });
     dispatch({ type: LOGOUT_RESPONSE, error: null });
-    navigate('/home');
+    navigate('/login');
   };
   const handleModify = () => {
     // Implementación de la función handleModify

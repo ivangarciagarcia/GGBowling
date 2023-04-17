@@ -43,7 +43,7 @@ export const NavBar = (props: NavBarProps) => {
       {/* Lista de navegación */}
       <ul className={`menu ${showMenu ? 'show' : ''}`}>
         <li>
-          <a onClick={() => navigate('/home')}>{item1}</a>
+          <a onClick={() => navigate('/')}>{item1}</a>
         </li>
 
         <li>
