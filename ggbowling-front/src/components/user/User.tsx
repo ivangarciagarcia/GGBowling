@@ -2,20 +2,26 @@ import React from 'react';
 
 import './user.scss';
 
-export interface UserProps{
-  username:string;
-  password:string;
-  nombre:string;
-  primerApellido:string;
-  email:string;
-  telefono:string;
-  fechaNacimiento:string;
-
+export interface UserProps {
+  username: string;
+  password: string;
+  nombre: string;
+  primerApellido: string;
+  email: string;
+  telefono: string;
+  fechaNacimiento: string;
 }
 
-
-export const User = (props : UserProps) => {
-  const {username, password,nombre,primerApellido,email,telefono,fechaNacimiento} = props;
+export const User = (props: UserProps) => {
+  const {
+    username,
+    password,
+    nombre,
+    primerApellido,
+    email,
+    telefono,
+    fechaNacimiento,
+  } = props;
 
   return (
     <div className="user-container">
@@ -33,7 +39,9 @@ export const User = (props : UserProps) => {
         </div>
         <div className="user-info-row">
           <span className="user-info-label">Name:</span>
-          <span>{nombre} {primerApellido}</span>
+          <span>
+            {nombre} {primerApellido}
+          </span>
         </div>
         <div className="user-info-row">
           <span className="user-info-label">Email:</span>
@@ -46,6 +54,10 @@ export const User = (props : UserProps) => {
         <div className="user-info-row">
           <span className="user-info-label">Birthdate:</span>
           <span>{fechaNacimiento}</span>
+        </div>
+        <div className="user-info-row">
+          <button className="user-btn">Modificar</button>
+          <button className="user-btn">Cerrar sesión</button>
         </div>
       </div>
     </div>
