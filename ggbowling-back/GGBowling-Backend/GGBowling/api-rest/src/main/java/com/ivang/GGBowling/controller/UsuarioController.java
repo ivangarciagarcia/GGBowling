@@ -1,5 +1,6 @@
 package com.ivang.GGBowling.controller;
 
+import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
 import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.Usuario.NewUsuarioTO;
@@ -55,30 +56,13 @@ public class UsuarioController {
   }
 
   @PatchMapping("/update/{usuarioId}")
-  public ResponseEntity<NewUsuarioTO> updateUsuario(@PathVariable Integer usuarioId, @RequestBody NewUsuarioTO usuarioActualizado) {
-    NewUsuarioTO usuarioExistente =  usuarioMapperTO.toNewUsuarioTO(usuarioMapperTO.toNewUsuarioDTO2(usuarioService.findByUsuarioId(usuarioId)));
+  public ResponseEntity<UsuarioTO> updateUsuario(@PathVariable Integer usuarioId, @RequestBody UsuarioTO usuarioActualizado) {
+    UsuarioTO usuarioExistente =  usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
+    UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(
+            usuarioActualizado);
+    usuarioDTO.setUsuarioId(usuarioId);
 
-    if (usuarioActualizado.getUsername() != null) {
-      usuarioExistente.setUsername(usuarioActualizado.getUsername());
-    }else if (usuarioActualizado.getPassword() != null) {
-      usuarioExistente.setPassword(usuarioActualizado.getPassword());
-    }else if (usuarioActualizado.getNombre() != null) {
-      usuarioExistente.setNombre(usuarioActualizado.getNombre());
-    }else if (usuarioActualizado.getPrimerApellido() != null) {
-      usuarioExistente.setPrimerApellido(usuarioActualizado.getPrimerApellido());
-    }else if (usuarioActualizado.getSegundoApellido() != null) {
-      usuarioExistente.setSegundoApellido(usuarioActualizado.getSegundoApellido());
-    }else if (usuarioActualizado.getEmail() != null) {
-      usuarioExistente.setEmail(usuarioActualizado.getEmail());
-    } if (usuarioActualizado.getTelefono() != null) {
-      usuarioExistente.setTelefono(usuarioActualizado.getTelefono());
-    }else if (usuarioActualizado.getFechaNacimiento() != null) {
-      usuarioExistente.setFechaNacimiento(usuarioActualizado.getFechaNacimiento());
-    }
-
-    NewUsuarioTO usuarioActualizadoDB = usuarioMapperTO.toNewUsuarioTO(usuarioService.save(
-            usuarioMapperTO.toNewUsuarioDTO(
-                    usuarioExistente)));
+    UsuarioTO usuarioActualizadoDB = usuarioMapperTO.toUsuarioTO(usuarioService.save2(usuarioDTO));
 
     return ResponseEntity.ok(usuarioActualizadoDB);
   }
