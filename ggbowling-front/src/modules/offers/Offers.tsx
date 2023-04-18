@@ -2,7 +2,7 @@ import './offers.scss';
 
 import { Footer } from 'src/components/footer/Footer';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
-import { NavBar } from 'src/components/header/navBar/NavBar';
+import { NavBar } from 'src/components/navBar/NavBar';
 
 export const Offers = () => {
   return (

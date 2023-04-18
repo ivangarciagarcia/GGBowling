@@ -2,7 +2,7 @@ import './profile.scss';
 import { User, UserProps } from 'src/components/user/User';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
-import { NavBar } from 'src/components/header/navBar/NavBar';
+import { NavBar } from 'src/components/navBar/NavBar';
 
 export const Profile = () => {
   const { userInfo } = useSelector((state: any) => state.login);

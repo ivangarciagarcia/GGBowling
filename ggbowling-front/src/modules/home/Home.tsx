@@ -5,7 +5,7 @@ import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import { NavBar } from '../../components/header/navBar/NavBar';
+import { NavBar } from '../../components/navBar/NavBar';
 
 export const Home = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import './restaurant.scss';
 import { Footer } from 'src/components/footer/Footer';
 import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
-import { NavBar } from 'src/components/header/navBar/NavBar';
+import { NavBar } from 'src/components/navBar/NavBar';
 
 export const Restaurant = () => {
   const descargarCarta = async () => {

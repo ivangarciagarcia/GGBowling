@@ -1,7 +1,7 @@
 import './installations.scss';
 import { Footer } from 'src/components/footer/Footer';
 import Gallery from 'react-photo-gallery';
-import { NavBar } from 'src/components/header/navBar/NavBar';
+import { NavBar } from 'src/components/navBar/NavBar';
 
 export const Installations = () => {
   const photos = [
