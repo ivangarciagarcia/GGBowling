@@ -93,7 +93,7 @@ export const NavBar = (props: NavBarProps) => {
         </li>
 
         <li>
-          <a onClick={handleProfileOnclick}>
+          <a className='profile' onClick={handleProfileOnclick}>
             <BiUserCircle />
           </a>
         </li>
