@@ -15,7 +15,7 @@ public interface UsuarioMapperTO {
   UsuarioTO toUsuarioTO(UsuarioDTO usuarioDTO);
   NewUsuarioTO toNewUsuarioTO(NewUsuarioDTO newUsuarioDTO);
   NewUsuarioDTO toNewUsuarioDTO(NewUsuarioTO newUsuarioTO);
-  List<UsuarioDTO> toUsuarioDTOList(List<UsuarioTO> usuarioTOList);
+  NewUsuarioDTO toNewUsuarioDTO2(UsuarioDTO usuarioDTO);
   List<UsuarioTO> toUsuarioTOList(List <UsuarioDTO> usuarioDTOList);
 
 

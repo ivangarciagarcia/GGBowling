@@ -54,6 +54,35 @@ public class UsuarioController {
             getHeader(), HttpStatus.OK);
   }
 
+  @PatchMapping("/update/{usuarioId}")
+  public ResponseEntity<NewUsuarioTO> updateUsuario(@PathVariable Integer usuarioId, @RequestBody NewUsuarioTO usuarioActualizado) {
+    NewUsuarioTO usuarioExistente =  usuarioMapperTO.toNewUsuarioTO(usuarioMapperTO.toNewUsuarioDTO2(usuarioService.findByUsuarioId(usuarioId)));
+
+    if (usuarioActualizado.getUsername() != null) {
+      usuarioExistente.setUsername(usuarioActualizado.getUsername());
+    }else if (usuarioActualizado.getPassword() != null) {
+      usuarioExistente.setPassword(usuarioActualizado.getPassword());
+    }else if (usuarioActualizado.getNombre() != null) {
+      usuarioExistente.setNombre(usuarioActualizado.getNombre());
+    }else if (usuarioActualizado.getPrimerApellido() != null) {
+      usuarioExistente.setPrimerApellido(usuarioActualizado.getPrimerApellido());
+    }else if (usuarioActualizado.getSegundoApellido() != null) {
+      usuarioExistente.setSegundoApellido(usuarioActualizado.getSegundoApellido());
+    }else if (usuarioActualizado.getEmail() != null) {
+      usuarioExistente.setEmail(usuarioActualizado.getEmail());
+    } if (usuarioActualizado.getTelefono() != null) {
+      usuarioExistente.setTelefono(usuarioActualizado.getTelefono());
+    }else if (usuarioActualizado.getFechaNacimiento() != null) {
+      usuarioExistente.setFechaNacimiento(usuarioActualizado.getFechaNacimiento());
+    }
+
+    NewUsuarioTO usuarioActualizadoDB = usuarioMapperTO.toNewUsuarioTO(usuarioService.save(
+            usuarioMapperTO.toNewUsuarioDTO(
+                    usuarioExistente)));
+
+    return ResponseEntity.ok(usuarioActualizadoDB);
+  }
+
 
 
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
