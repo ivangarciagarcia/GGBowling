@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { BiUserCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export interface NavBarProps {
   item1: string;
@@ -16,13 +17,30 @@ export interface NavBarProps {
   subitem2: string;
   subitem3: string;
 }
+
+interface LoginState {
+  loading: boolean;
+  userInfo: any;
+  error: string | null;
+}
+
 export const NavBar = (props: NavBarProps) => {
   const navigate = useNavigate();
   const { item1, item2, item3, item4, subitem1, subitem2, subitem3 } = props;
   const [showMenu, setShowMenu] = useState(false);
+  const { userInfo } = useSelector((state: { login: LoginState }) => state.login);
 
   function handleMenuToggle() {
     setShowMenu(!showMenu);
+  }
+
+  function handleProfileOnclick() {
+  
+    if (userInfo === null) {
+      navigate('/login');
+    } else {
+      navigate('/profile');
+    }
   }
 
   return (
@@ -75,7 +93,7 @@ export const NavBar = (props: NavBarProps) => {
         </li>
 
         <li>
-          <a onClick={() => navigate('/profile')}>
+          <a onClick={handleProfileOnclick}>
             <BiUserCircle />
           </a>
         </li>
