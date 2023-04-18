@@ -1,18 +1,28 @@
 import './home.scss';
 
-import { Header } from 'src/components/header/Header';
 import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
+import { NavBar } from '../../components/header/navBar/NavBar';
 
 export const Home = () => {
   const navigate = useNavigate();
 
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
+      <NavBar
+        img={'/img/logo.png'} 
+        alt={'logo'}
+        item1={'Inicio'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Bowling'}
+        subitem1={'Precios'}
+        subitem2={'Instalaciones'}
+        subitem3={'Reserva'}
+      />
       <main>
         <section
           className="first-section"

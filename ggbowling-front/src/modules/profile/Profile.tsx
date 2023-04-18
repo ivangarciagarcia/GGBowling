@@ -1,11 +1,10 @@
 import './profile.scss';
-import { Header } from '../../components/header/Header';
 import { User, UserProps } from 'src/components/user/User';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
+import { NavBar } from 'src/components/header/navBar/NavBar';
 
 export const Profile = () => {
-
   const { userInfo } = useSelector((state: any) => state.login);
 
   const userProps: UserProps = {
@@ -18,11 +17,19 @@ export const Profile = () => {
     fechaNacimiento: userInfo?.fechaNacimiento,
   };
 
-
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
-      
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Inicio'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Bowling'}
+        subitem1={'Precios'}
+        subitem2={'Instalaciones'}
+        subitem3={'Reserva'}
+      />
       <User {...userProps} />
 
       <Footer

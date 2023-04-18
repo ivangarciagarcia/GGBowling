@@ -1,7 +1,7 @@
 import './installations.scss';
 import { Footer } from 'src/components/footer/Footer';
-import { Header } from 'src/components/header/Header';
 import Gallery from 'react-photo-gallery';
+import { NavBar } from 'src/components/header/navBar/NavBar';
 
 export const Installations = () => {
   const photos = [
@@ -30,7 +30,7 @@ export const Installations = () => {
       width: 318,
       height: 159,
     },
-    
+
     {
       src: 'img/installations/cafeteria.jpeg',
       width: 2250,
@@ -41,13 +41,21 @@ export const Installations = () => {
       width: 1400,
       height: 900,
     },
-    
-
   ];
 
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Inicio'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Bowling'}
+        subitem1={'Precios'}
+        subitem2={'Instalaciones'}
+        subitem3={'Reserva'}
+      />
       <main>
         <Gallery photos={photos} margin={10} />
       </main>

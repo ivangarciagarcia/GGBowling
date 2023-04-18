@@ -1,11 +1,10 @@
 import './restaurant.scss';
-import { Header } from '../../components/header/Header';
 import { Footer } from 'src/components/footer/Footer';
 import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
+import { NavBar } from 'src/components/header/navBar/NavBar';
 
 export const Restaurant = () => {
-
   const descargarCarta = async () => {
     try {
       const respuesta = await fetch('http://localhost:8080/restaurante/carta');
@@ -19,7 +18,9 @@ export const Restaurant = () => {
       if (link.parentNode) {
         link.parentNode.removeChild(link);
       }
-    } catch (error) { /* empty */ }
+    } catch (error) {
+      /* empty */
+    }
   };
 
   const descargarMenu = async () => {
@@ -35,16 +36,24 @@ export const Restaurant = () => {
       if (link.parentNode) {
         link.parentNode.removeChild(link);
       }
-    } catch (error){ /* empty */ }
+    } catch (error) {
+      /* empty */
+    }
   };
-  
-
-
 
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'Logo GGBowling'} />
-
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Inicio'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Bowling'}
+        subitem1={'Precios'}
+        subitem2={'Instalaciones'}
+        subitem3={'Reserva'}
+      />
       <main>
         <section
           className="first-section"
@@ -90,10 +99,14 @@ export const Restaurant = () => {
 
         <section className="second-section">
           <ServiceCard
-            src={`${process.env.PUBLIC_URL + '/img/restaurante/cutlery-logo.png'}`}
+            src={`${
+              process.env.PUBLIC_URL + '/img/restaurante/cutlery-logo.png'
+            }`}
             alt={'Carta restaurante GGBowling'}
             title={'NUESTRA CARTA'}
-            description={'¡Encontrarás todo lo que te apetece en nuestra cocina abierta durante todo el día! Además, puedes disfrutar de nuestras irresistibles tapas. ¡Ven a probar nuestros platos en nuestro establecimiento!'}
+            description={
+              '¡Encontrarás todo lo que te apetece en nuestra cocina abierta durante todo el día! Además, puedes disfrutar de nuestras irresistibles tapas. ¡Ven a probar nuestros platos en nuestro establecimiento!'
+            }
             buttonText={'Carta'}
             onClick={descargarCarta}
           />
@@ -101,10 +114,11 @@ export const Restaurant = () => {
             src={`${process.env.PUBLIC_URL + '/img/restaurante/menu.png'}`}
             alt={'Menu del dia GGBowling'}
             title={'MENU DEL DIA'}
-            description={'¡Disfruta de un almuerzo completo con nuestro menú del día! Ofrecemos una variada selección de platos frescos y sabrosos para satisfacer todos los gustos. ¡Ven a probar nuestra cocina en el almuerzo!'}
+            description={
+              '¡Disfruta de un almuerzo completo con nuestro menú del día! Ofrecemos una variada selección de platos frescos y sabrosos para satisfacer todos los gustos. ¡Ven a probar nuestra cocina en el almuerzo!'
+            }
             buttonText={'Menú'}
             onClick={descargarMenu}
-
           />
         </section>
       </main>

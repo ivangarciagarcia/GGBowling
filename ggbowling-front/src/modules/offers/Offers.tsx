@@ -1,13 +1,23 @@
 import './offers.scss';
 
 import { Footer } from 'src/components/footer/Footer';
-import { Header } from 'src/components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
+import { NavBar } from 'src/components/header/navBar/NavBar';
 
 export const Offers = () => {
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Inicio'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Bowling'}
+        subitem1={'Precios'}
+        subitem2={'Instalaciones'}
+        subitem3={'Reserva'}
+      />
       <main className="main">
         {/*PRIMERA COLUMNA */}
 
@@ -36,26 +46,23 @@ export const Offers = () => {
             title={'TODOS LOS DIAS'}
             description={'*Hasta las 22:00h'}
           />
-
         </div>
 
         {/*TERCERA COLUMNA */}
         <div className="service-card">
-
           <ServiceCard
             src={'img/ofertas/oferta3.jpg'}
             alt={'Alquiler de zapatos'}
             title={'VIERNES, SABADOS, DOMINGOS Y FESTIVOS'}
             description={'*Hasta las 22:00h'}
           />
-
         </div>
-
-        
       </main>
 
-      <div className='atention'><h1>LAS OFERTAS NO SON ACUMULABLES CON OTRAS OFERTAS</h1></div>
-     
+      <div className="atention">
+        <h1>LAS OFERTAS NO SON ACUMULABLES CON OTRAS OFERTAS</h1>
+      </div>
+
       <Footer
         title={'GGBowling'}
         twiLink={'https://twitter.com/Ivangg__'}
