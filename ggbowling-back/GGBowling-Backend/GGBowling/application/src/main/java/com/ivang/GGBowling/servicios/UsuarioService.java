@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UsuarioService implements UsuarioServiceInterface {
   private final UsuarioRepository usuarioRepository;
-
   private final UsuarioMapperDTO usuarioMapperDTO;
 
 
@@ -37,13 +36,9 @@ public class UsuarioService implements UsuarioServiceInterface {
     UsuarioEntity userToUpdate = usuarioRepository.getReferenceById(usuarioDTO.getUsuarioId());
     updateUser(userToUpdate, usuarioDTO);
 
-
-
     return usuarioMapperDTO.toUsuarioDTO(
             usuarioRepository.save(
-              userToUpdate
-            )
-    );
+              userToUpdate));
   }
 
   @Override

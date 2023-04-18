@@ -67,8 +67,6 @@ public class UsuarioController {
     return ResponseEntity.ok(usuarioActualizadoDB);
   }
 
-
-
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest){
     String email = loginRequest.get("email");
@@ -85,7 +83,6 @@ public class UsuarioController {
       return ResponseEntity.ok(usuario);
     }
   }
-
 
   @PostMapping(value = "/create")
   public ResponseEntity<NewUsuarioTO> createUsuario(@RequestBody NewUsuarioTO newUsuarioTO){
@@ -106,5 +103,4 @@ public class UsuarioController {
     headers.add("Content-type", "application/json");
     return headers;
   }
-
 }
