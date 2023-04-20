@@ -1,10 +1,39 @@
 import { NavBar } from 'src/components/navBar/NavBar';
 import './booking.scss';
 import { Footer } from 'src/components/footer/Footer';
+import { useEffect } from 'react';
 
 export const Booking = () => {
-  
-  
+  useEffect(() => {
+    const horaSelect = document.getElementById('hora') as HTMLSelectElement;
+    const horaActual = new Date().getHours();
+
+    if (horaActual >= 10 && horaActual < 24) {
+      // Si es entre las 10:00 y las 23:59, todas las opciones están disponibles
+      horaSelect.disabled = false;
+    } else if (horaActual < 10) {
+      // Si es antes de las 10:00, todas las opciones están disponibles
+      horaSelect.disabled = false;
+    } else {
+      // Si es después de las 23:59, no hay opciones disponibles
+      horaSelect.disabled = true;
+      return;
+    }
+
+    for (let i = 0; i < horaSelect.options.length; i++) {
+      const horaOption = horaSelect.options[i];
+      const horaValue = parseInt(horaOption.value);
+
+      if (horaActual < horaValue) {
+        // Si la hora actual es menor que la hora de la opción, está disponible
+        horaOption.disabled = false;
+      } else {
+        // Si la hora actual es mayor o igual que la hora de la opción, está deshabilitada
+        horaOption.disabled = true;
+      }
+    }
+  }, []);
+
   function handleReserva() {
     console.log('RESERVA HECHA');
   }
@@ -54,6 +83,21 @@ export const Booking = () => {
               Hora:
               <select id="hora">
                 <option value="">Selecciona una hora</option>
+                <option value="10">10:00</option>
+                <option value="11">11:00</option>
+                <option value="12">12:00</option>
+                <option value="13">13:00</option>
+                <option value="14">14:00</option>
+                <option value="15">15:00</option>
+                <option value="16">16:00</option>
+                <option value="17">17:00</option>
+                <option value="18">18:00</option>
+                <option value="19">19:00</option>
+                <option value="20">20:00</option>
+                <option value="21">21:00</option>
+                <option value="22">22:00</option>
+                <option value="23">23:00</option>
+                <option value="24">24:00</option>
               </select>
             </label>
             <br />
