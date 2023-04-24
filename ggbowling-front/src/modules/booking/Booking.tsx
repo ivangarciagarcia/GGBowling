@@ -2,8 +2,16 @@ import { NavBar } from 'src/components/navBar/NavBar';
 import './booking.scss';
 import { Footer } from 'src/components/footer/Footer';
 import { useEffect } from 'react';
+import axios from 'axios';
+import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
+import { useNavigate } from 'react-router-dom';
 
 export const Booking = () => {
+  axios.defaults.baseURL = SERVER_BASE_URL;
+  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
@@ -35,7 +43,19 @@ export const Booking = () => {
   }, []);
 
   function handleReserva() {
-    console.log('RESERVA HECHA');
+    axios
+      .request({
+        url: '/reserva/create',
+        method: 'POST',
+        baseURL: SERVER_BASE_URL,
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate('/profile');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -57,13 +77,13 @@ export const Booking = () => {
           <div className="column">
             <h2>Horario</h2>
             <ul>
-              <li>Lunes: 9:00 - 17:00</li>
-              <li>Martes: 9:00 - 17:00</li>
-              <li>Miércoles: 9:00 - 17:00</li>
-              <li>Jueves: 9:00 - 17:00</li>
-              <li>Viernes: 9:00 - 17:00</li>
-              <li>Sábado: 10:00 - 22:00</li>
-              <li>Domingo: Cerrado</li>
+              <li>Lunes: 10:00 - 00:00</li>
+              <li>Martes: 10:00 - 00:00</li>
+              <li>Miércoles: 10:00 - 00:00</li>
+              <li>Jueves: 10:00 - 00:00</li>
+              <li>Viernes: 10:00 - 02:00</li>
+              <li>Sábado: 10:00 - 02:00</li>
+              <li>Domingo: 10:00 - 02:00</li>
             </ul>
           </div>
 
@@ -100,7 +120,9 @@ export const Booking = () => {
                 <option value="24">24:00</option>
               </select>
             </label>
+
             <br />
+
             <label className="pistas">
               Pistas:
               <select name="pistas">
@@ -113,6 +135,7 @@ export const Booking = () => {
                 <option value="6">6</option>
               </select>
             </label>
+
             <label className="mesas">
               Mesas:
               <select name="mesas">
@@ -123,7 +146,9 @@ export const Booking = () => {
                 <option value="4">4</option>
               </select>
             </label>
+
             <br />
+
             <label className="partidas">
               Partidas:
               <select name="partidas">
@@ -132,6 +157,7 @@ export const Booking = () => {
                 <option value="2">2</option>
               </select>
             </label>
+
             <label className="jugadores">
               Jugadores:
               <select name="jugadores">
@@ -144,6 +170,7 @@ export const Booking = () => {
               </select>
               <br />
             </label>
+
             <button className="button" type="button" onClick={handleReserva}>
               Reservar
             </button>
