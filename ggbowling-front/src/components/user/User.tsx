@@ -124,7 +124,7 @@ export const User = (props: UserProps) => {
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Birthdate:</label>
-          <input type="text" name="fechaNacimiento" value={newUserData.fechaNacimiento} onChange={handleInputChange} />
+          <input type="date" name="fechaNacimiento" value={newUserData.fechaNacimiento} onChange={handleInputChange} />
         </div>
         <div className="user-info-row">
           <button className="user-btn-modify" onClick={handleModify}>
