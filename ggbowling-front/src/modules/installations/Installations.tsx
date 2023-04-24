@@ -48,13 +48,10 @@ export const Installations = () => {
       <NavBar
         img={'/img/logo.png'}
         alt={'logo'}
-        item1={'Inicio'}
+        item1={'Bowling'}
         item2={'Restaurante'}
         item3={'Ofertas'}
-        item4={'Bowling'}
-        subitem1={'Precios'}
-        subitem2={'Instalaciones'}
-        subitem3={'Reserva'}
+        item4={'Reserva'}
       />
       <main>
         <Gallery photos={photos} margin={10} />

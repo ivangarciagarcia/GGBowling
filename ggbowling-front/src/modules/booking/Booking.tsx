@@ -11,7 +11,6 @@ export const Booking = () => {
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
@@ -64,13 +63,10 @@ export const Booking = () => {
         <NavBar
           img={'/img/logo.png'}
           alt={'logo'}
-          item1={'Inicio'}
+          item1={'Bowling'}
           item2={'Restaurante'}
           item3={'Ofertas'}
-          item4={'Bowling'}
-          subitem1={'Precios'}
-          subitem2={'Instalaciones'}
-          subitem3={'Reserva'}
+          item4={'Reserva'}
         />
 
         <div className="columns">
