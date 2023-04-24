@@ -15,10 +15,9 @@ public class ReservaUsuarioDTO {
   private Integer reservaId;
   private Set<PistaToShowDTO> pistas;
   private Set<MesaToShowDTO> mesas;
-  private Date horaEntrada;
-  private Date horaSalida;
+  private String fechaEntrada;
+  private String horaEntrada;
   private Integer personas;
   private Integer partidas;
-  private Float precioPersona;
 
 }

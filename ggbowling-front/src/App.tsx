@@ -9,6 +9,8 @@ import { Restaurant } from './modules/restaurant/Restaurant';
 import { Offers } from './modules/offers/Offers';
 import { Profile } from './modules/profile/Profile';
 import { Installations } from './modules/installations/Installations';
+import { Booking } from './modules/booking/Booking';
+
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/offers" element={<Offers />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/installations" element={<Installations />}></Route>
+        <Route path="/booking" element={<Booking />}></Route>
+
       </Routes>
     </Router>
   );

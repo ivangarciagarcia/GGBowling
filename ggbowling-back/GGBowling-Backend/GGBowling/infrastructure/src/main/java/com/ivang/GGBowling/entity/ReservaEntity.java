@@ -29,11 +29,11 @@ public class ReservaEntity {
   @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<MesaEntity> mesas;
 
-  @Column(name = "fecha_hora_inicio")
-  private Date horaEntrada;
+  @Column(name = "fecha")
+  private String fechaEntrada;
 
-  @Column(name = "fecha_hora_final")
-  private Date horaSalida;
+  @Column(name = "hora")
+  private String horaEntrada;
 
   @Column( name = "personas")
   private Integer personas;
@@ -41,7 +41,5 @@ public class ReservaEntity {
   @Column(name = "partidas")
   private Integer partidas;
 
-  @Column(name = "precio_persona")
-  private Float precioPersona;
 
 }

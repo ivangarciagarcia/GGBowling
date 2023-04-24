@@ -12,5 +12,5 @@ public class UsuarioReservaDTO {
   private String segundoApellido;
   private String email;
   private Integer telefono;
-  private Date fechaNacimiento;
+  private String fechaNacimiento;
 }

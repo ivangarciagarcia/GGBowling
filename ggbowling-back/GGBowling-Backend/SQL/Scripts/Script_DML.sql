@@ -7,8 +7,8 @@ VALUES('Robert24', 'Abc123..', 'Robert', 'Martinez', 'Perez', 'Robert@gmail.com'
 /*select * from usuario us;*/
 
 INSERT INTO ggbowling.reserva
-(usuario_id, fecha_hora_inicio, fecha_hora_final, personas, partidas, precio_persona)
-VALUES(1,'2023-01-01 17:00:00', '2023-01-01 18:00:00', 5, 1, 6);
+(usuario_id, fecha, hora, personas, partidas)
+VALUES(1,'2023-01-01', '17:00', 5, 1);
 
 /*select * from reserva re;*/
 
