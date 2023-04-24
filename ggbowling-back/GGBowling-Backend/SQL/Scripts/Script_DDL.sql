@@ -13,17 +13,16 @@ primer_apellido varchar(100),
 segundo_apellido varchar(100),
 email varchar(100) unique,
 telefono integer,
-fecha_nacimiento date
+fecha_nacimiento varchar(20)
 );
 
 create table if not exists reserva(
 reserva_id integer primary key auto_increment,
 usuario_id integer references usuario(usuario_id),
-fecha_hora_inicio datetime,
-fecha_hora_final datetime,
+fecha varchar(20),
+hora varchar (10),
 personas integer,
-partidas integer,
-precio_persona float
+partidas integer
 );
 
 

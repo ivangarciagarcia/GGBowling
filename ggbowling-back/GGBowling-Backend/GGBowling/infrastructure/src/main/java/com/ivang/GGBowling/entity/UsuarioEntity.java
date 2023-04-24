@@ -42,7 +42,7 @@ public class UsuarioEntity {
     private Integer telefono;
 
     @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ReservaEntity> reserva;

@@ -12,8 +12,8 @@ public class NewReservaTO {
   private UsuarioReservaDTO usuario;
   private Set<PistaTO> pistas;
   private Set<MesaTO> mesas;
-  private Date horaEntrada;
-  private Date horaSalida;
+  private String fechaEntrada;
+  private String horaEntrada;
   private Integer personas;
   private Integer partidas;
 }
