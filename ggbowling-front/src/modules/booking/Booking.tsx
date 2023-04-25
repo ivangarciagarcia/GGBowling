@@ -14,11 +14,13 @@ export const Booking = () => {
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
+    const horaEntrada = 10;
+    const horaSalida = 24;
 
-    if (horaActual >= 10 && horaActual < 24) {
+    if (horaActual >= horaEntrada && horaActual < horaSalida) {
       // Si es entre las 10:00 y las 23:59, todas las opciones están disponibles
       horaSelect.disabled = false;
-    } else if (horaActual < 10) {
+    } else if (horaActual < horaEntrada) {
       // Si es antes de las 10:00, todas las opciones están disponibles
       horaSelect.disabled = false;
     } else {
@@ -48,12 +50,11 @@ export const Booking = () => {
         method: 'POST',
         baseURL: SERVER_BASE_URL,
       })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
         navigate('/profile');
       })
       .catch((error) => {
-        console.log(error);
+        error.log(error);
       });
   }
 
