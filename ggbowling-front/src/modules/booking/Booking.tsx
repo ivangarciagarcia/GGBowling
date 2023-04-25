@@ -10,24 +10,14 @@ export const Booking = () => {
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
   const navigate = useNavigate();
+  const todayString = new Date().toISOString().split('T')[0];
+
 
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
-    const horaEntrada = 10;
-    const horaSalida = 24;
 
-    if (horaActual >= horaEntrada && horaActual < horaSalida) {
-      // Si es entre las 10:00 y las 23:59, todas las opciones están disponibles
-      horaSelect.disabled = false;
-    } else if (horaActual < horaEntrada) {
-      // Si es antes de las 10:00, todas las opciones están disponibles
-      horaSelect.disabled = false;
-    } else {
-      // Si es después de las 23:59, no hay opciones disponibles
-      horaSelect.disabled = true;
-      return;
-    }
+    //const diaSelect = document.getElementById('dia');
 
     for (let i = 0; i < horaSelect.options.length; i++) {
       const horaOption = horaSelect.options[i];
@@ -91,7 +81,7 @@ export const Booking = () => {
               <input
                 type="date"
                 className="dia"
-                min={new Date().toISOString().split('T')[0]}
+                min={todayString}
               />
             </label>
 
