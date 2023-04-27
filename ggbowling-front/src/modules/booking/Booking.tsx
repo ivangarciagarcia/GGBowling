@@ -12,14 +12,28 @@ export const Booking = () => {
   const navigate = useNavigate();
   const todayString = new Date().toISOString().split('T')[0];
 
-
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
 
-    //const diaSelect = document.getElementById('dia');
+    /* const inputDia = document.querySelector('.dia') as HTMLInputElement;
+    const now: Date = new Date();
+    const currentDate: string = now.toLocaleDateString();
+    console.log(currentDate);
 
-    for (let i = 0; i < horaSelect.options.length; i++) {
+    inputDia.addEventListener('change', (event) => {
+      if (event.target instanceof HTMLInputElement) {
+        const fechaSeleccionada = event.target.value;
+        console.log(fechaSeleccionada);
+        if (inputDia.value === todayString && horaActual >= horaValue) {
+          // Si la fecha seleccionada es igual a la fecha actual,
+          // y la hora actual es mayor o igual que la hora de la opción, está deshabilitada
+          horaOption.disabled = true;
+        }
+      }
+    });*/
+
+    for (let i = 0; i < horaSelect.length; i++) {
       const horaOption = horaSelect.options[i];
       const horaValue = parseInt(horaOption.value);
 
@@ -78,11 +92,7 @@ export const Booking = () => {
             <h2>Reserva</h2>
             <label className="dia">
               Dia:
-              <input
-                type="date"
-                className="dia"
-                min={todayString}
-              />
+              <input type="date" className="dia" min={todayString} />
             </label>
 
             <br />
