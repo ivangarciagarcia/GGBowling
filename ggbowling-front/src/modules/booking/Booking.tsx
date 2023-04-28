@@ -42,7 +42,7 @@ export const Booking = () => {
         navigate('/profile');
       })
       .catch((error) => {
-        console.log(error);
+        error.log(error);
       });
   }
 
