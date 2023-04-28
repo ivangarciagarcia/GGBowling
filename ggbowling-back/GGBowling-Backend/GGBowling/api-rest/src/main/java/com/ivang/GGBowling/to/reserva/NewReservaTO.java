@@ -1,5 +1,6 @@
 package com.ivang.GGBowling.to.reserva;
 
+import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
 import com.ivang.GGBowling.dto.usuario.UsuarioReservaDTO;
 import com.ivang.GGBowling.to.mesa.MesaTO;
 import com.ivang.GGBowling.to.Pista.PistaTO;
@@ -9,9 +10,9 @@ import java.util.Date;
 import java.util.Set;
 @Data
 public class NewReservaTO {
-  private UsuarioReservaDTO usuario;
-  private Set<PistaTO> pistas;
-  private Set<MesaTO> mesas;
+  private Integer usuario;
+  private Set<Integer> pistas;
+  private Set<Integer> mesas;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;

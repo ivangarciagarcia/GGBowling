@@ -1,7 +1,11 @@
 package com.ivang.GGBowling.controller;
 
+import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.dto.usuario.UsuarioReservaDTO;
 import com.ivang.GGBowling.mapperTO.ReservaMapperTO;
+import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.ReservaServiceInterface;
+import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.reserva.NewReservaTO;
 import com.ivang.GGBowling.to.reserva.ReservaTO;
 import lombok.AllArgsConstructor;
@@ -19,7 +23,8 @@ import java.util.List;
 public class ReservaController {
 
   private final ReservaMapperTO reservaMapperTO;
-
+  private final UsuarioMapperTO usuarioMapperTO;
+  private final UsuarioServiceInterface usuarioService;
   private final ReservaServiceInterface reservaService;
 
   @GetMapping(value = "/status")
@@ -46,11 +51,17 @@ public class ReservaController {
 
   @PostMapping(value = "/create")
   public ResponseEntity<NewReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO){
-    return new ResponseEntity<>(reservaMapperTO.toNewReservaTO(
-        reservaService.save(
-            reservaMapperTO.toNewReservaDTO(newReservaTO))),
+    // Primero, obtenemos el usuario a partir del id
+    UsuarioDTO usuarioDTO = usuarioService.findByUsuarioId(newReservaTO.getUsuario());
 
-        getHeader(), HttpStatus.OK);
+    // Reemplazamos el id del usuario con el usuarioDTO encontrado
+    newReservaTO.setUsuario(usuarioDTO.getUsuarioId());
+
+    // Guardamos la reserva con el usuario actualizado
+    return new ResponseEntity<>(reservaMapperTO.toNewReservaTO(
+            reservaService.save(
+                    reservaMapperTO.toNewReservaDTO(newReservaTO))),
+            getHeader(), HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete/{reservaId}")
