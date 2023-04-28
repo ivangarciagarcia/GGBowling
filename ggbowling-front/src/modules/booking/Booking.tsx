@@ -1,10 +1,11 @@
 import { NavBar } from 'src/components/navBar/NavBar';
 import './booking.scss';
-import { Footer } from 'src/components/footer/Footer';
 import { useEffect } from 'react';
 import axios from 'axios';
+import React from 'react';
 import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
+import { Footer } from 'src/components/footer/Footer';
 
 export const Booking = () => {
   axios.defaults.baseURL = SERVER_BASE_URL;
@@ -15,23 +16,6 @@ export const Booking = () => {
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
     const horaActual = new Date().getHours();
-
-    /* const inputDia = document.querySelector('.dia') as HTMLInputElement;
-    const now: Date = new Date();
-    const currentDate: string = now.toLocaleDateString();
-    console.log(currentDate);
-
-    inputDia.addEventListener('change', (event) => {
-      if (event.target instanceof HTMLInputElement) {
-        const fechaSeleccionada = event.target.value;
-        console.log(fechaSeleccionada);
-        if (inputDia.value === todayString && horaActual >= horaValue) {
-          // Si la fecha seleccionada es igual a la fecha actual,
-          // y la hora actual es mayor o igual que la hora de la opción, está deshabilitada
-          horaOption.disabled = true;
-        }
-      }
-    });*/
 
     for (let i = 0; i < horaSelect.length; i++) {
       const horaOption = horaSelect.options[i];
@@ -58,8 +42,34 @@ export const Booking = () => {
         navigate('/profile');
       })
       .catch((error) => {
-        error.log(error);
+        console.log(error);
       });
+  }
+
+  function handleDiaChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const diaSelect = event.target as HTMLInputElement;
+    const diaValue = diaSelect.value;
+    const horaSelect = document.getElementById('hora') as HTMLSelectElement;
+
+    // Si la fecha seleccionada es mayor que hoy, habilita todas las opciones de hora
+    if (diaValue > todayString) {
+      for (let i = 0; i < horaSelect.length; i++) {
+        horaSelect.options[i].disabled = false;
+      }
+    } else {
+      // Si la fecha seleccionada es hoy, 
+      //deshabilita las opciones de hora anteriores a la hora actual
+      const horaActual = new Date().getHours();
+      for (let i = 0; i < horaSelect.length; i++) {
+        const horaOption = horaSelect.options[i];
+        const horaValue = parseInt(horaOption.value);
+        if (horaActual >= horaValue) {
+          horaOption.disabled = true;
+        } else {
+          horaOption.disabled = false;
+        }
+      }
+    }
   }
 
   return (
@@ -92,7 +102,7 @@ export const Booking = () => {
             <h2>Reserva</h2>
             <label className="dia">
               Dia:
-              <input type="date" className="dia" min={todayString} />
+              <input type="date" className="dia" min={todayString} onChange={handleDiaChange}/>
             </label>
 
             <br />
