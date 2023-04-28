@@ -6,12 +6,22 @@ import React from 'react';
 import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
+import { useSelector } from 'react-redux';
+
+export interface LoginState {
+  loading: boolean;
+  userInfo: any;
+  error: string | null;
+}
 
 export const Booking = () => {
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
   const navigate = useNavigate();
   const todayString = new Date().toISOString().split('T')[0];
+  const { userInfo } = useSelector(
+    (state: { login: LoginState }) => state.login
+  );
 
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
@@ -32,18 +42,22 @@ export const Booking = () => {
   }, []);
 
   function handleReserva() {
-    axios
-      .request({
-        url: '/reserva/create',
-        method: 'POST',
-        baseURL: SERVER_BASE_URL,
-      })
-      .then(() => {
-        navigate('/profile');
-      })
-      .catch((error) => {
-        error.log(error);
-      });
+    if (userInfo === null) {
+      navigate('/login');
+    } else {
+      axios
+        .request({
+          url: '/reserva/create',
+          method: 'POST',
+          baseURL: SERVER_BASE_URL,
+        })
+        .then(() => {
+          navigate('/profile');
+        })
+        .catch((error) => {
+          error.log(error);
+        });
+    }
   }
 
   function handleDiaChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -57,7 +71,7 @@ export const Booking = () => {
         horaSelect.options[i].disabled = false;
       }
     } else {
-      // Si la fecha seleccionada es hoy, 
+      // Si la fecha seleccionada es hoy,
       //deshabilita las opciones de hora anteriores a la hora actual
       const horaActual = new Date().getHours();
       for (let i = 0; i < horaSelect.length; i++) {
@@ -102,7 +116,12 @@ export const Booking = () => {
             <h2>Reserva</h2>
             <label className="dia">
               Dia:
-              <input type="date" className="dia" min={todayString} onChange={handleDiaChange}/>
+              <input
+                type="date"
+                className="dia"
+                min={todayString}
+                onChange={handleDiaChange}
+              />
             </label>
 
             <br />
