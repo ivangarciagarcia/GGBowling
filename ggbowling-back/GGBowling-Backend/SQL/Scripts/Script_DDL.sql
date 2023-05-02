@@ -16,25 +16,23 @@ telefono integer not null,
 fecha_nacimiento varchar(20) not null
 );
 
+create table if not exists pista(
+pista_id integer primary key auto_increment,
+capacidad_pista integer
+);
+
+create table if not exists mesa(
+mesa_id integer primary key auto_increment,
+capacidad_mesa integer
+);
+
 create table if not exists reserva(
 reserva_id integer primary key auto_increment,
 usuario_id integer references usuario(usuario_id),
+pista_id integer references pista(pista_id),
+mesa_id integer references mesa(mesa_id),
 fecha varchar(20),
 hora varchar (10),
 personas integer,
 partidas integer
 );
-
-
-create table if not exists pista(
-pista_id integer primary key auto_increment,
-capacidad_pista integer,
-reserva_id integer references reserva(reserva_id)
-);
-
-create table if not exists mesa(
-mesa_id integer primary key auto_increment,
-capacidad_mesa integer,
-reserva_id integer references reserva(reserva_id)
-);
-
