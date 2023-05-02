@@ -6,14 +6,14 @@ use GGBowling;
 
 create table if not exists usuario(
 usuario_id integer primary key auto_increment,
-user_name varchar(50),
-contrasena varchar (50),
-nombre varchar(50),
-primer_apellido varchar(100),
-segundo_apellido varchar(100),
-email varchar(100) unique,
-telefono integer,
-fecha_nacimiento varchar(20)
+user_name varchar(50)not null ,
+contrasena varchar (50)not null,
+nombre varchar(50)not null,
+primer_apellido varchar(100)not null,
+segundo_apellido varchar(100)not null,
+email varchar(100) unique not null,
+telefono integer not null,
+fecha_nacimiento varchar(20) not null
 );
 
 create table if not exists reserva(
