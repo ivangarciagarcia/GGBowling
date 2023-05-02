@@ -8,7 +8,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class NewUsuarioDTO {
-
   private String username;
   private String password;
   private String nombre;
