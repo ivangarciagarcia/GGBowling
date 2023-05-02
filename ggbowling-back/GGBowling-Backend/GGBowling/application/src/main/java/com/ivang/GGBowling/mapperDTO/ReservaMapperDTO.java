@@ -9,7 +9,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ReservaMapperDTO {
-  ReservaEntity toReservaEntity (ReservaDTO reservaDTO);
   ReservaDTO toReservaDTO(ReservaEntity reservaEntity);
   ReservaEntity toNewReservaEntity(NewReservaDTO newReservaDTO);
   NewReservaDTO toNewReservaDTO (ReservaEntity reservaEntity);

@@ -45,10 +45,14 @@ public class ReservaController {
   }
 
   @PostMapping(value = "/create")
-  public ResponseEntity<NewReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO){
-    return new ResponseEntity<>(reservaMapperTO.toNewReservaTO(
-        reservaService.save(
-            reservaMapperTO.toNewReservaDTO(newReservaTO))),
+  public ResponseEntity<ReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO){
+    return new ResponseEntity<>(reservaMapperTO.toReservaTO2(
+            reservaMapperTO.toNewReservaTO(
+                    reservaService.save(
+                            reservaMapperTO.toNewReservaDTO(newReservaTO)
+                    )
+            )
+    ),
 
         getHeader(), HttpStatus.OK);
   }
