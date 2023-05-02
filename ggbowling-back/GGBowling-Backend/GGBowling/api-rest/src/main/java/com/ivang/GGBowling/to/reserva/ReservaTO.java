@@ -12,8 +12,8 @@ import java.util.Set;
 public class ReservaTO {
   private Integer reservaId;
   private UsuarioReservaTO usuario;
-  private Set<PistaTO> pistas;
-  private Set<MesaTO> mesas;
+  private PistaTO pista;
+  private MesaTO mesa;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;

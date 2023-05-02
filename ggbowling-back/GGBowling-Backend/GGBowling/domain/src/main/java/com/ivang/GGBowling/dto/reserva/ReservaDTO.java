@@ -13,8 +13,8 @@ public class ReservaDTO {
 
   private Integer reservaId;
   private UsuarioEntity usuario;
-  private Set<PistaDTO> pistas;
-  private Set<MesaDTO> mesas;
+  private PistaDTO pista;
+  private MesaDTO mesa;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;

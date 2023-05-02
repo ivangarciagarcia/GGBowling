@@ -10,8 +10,8 @@ import java.util.Set;
 @Data
 public class ReservaUsuarioDTO {
   private Integer reservaId;
-  private Set<PistaDTO> pistas;
-  private Set<MesaDTO> mesas;
+  private PistaDTO pista;
+  private MesaDTO mesa;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;

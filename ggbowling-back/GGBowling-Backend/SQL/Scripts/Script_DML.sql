@@ -10,11 +10,45 @@ INSERT INTO ggbowling.pista
 (capacidad_pista)
 VALUES(6);
 
+INSERT INTO ggbowling.pista
+(capacidad_pista)
+VALUES(6);
+
+INSERT INTO ggbowling.pista
+(capacidad_pista)
+VALUES(6);
+
+INSERT INTO ggbowling.pista
+(capacidad_pista)
+VALUES(6);
+
+INSERT INTO ggbowling.pista
+(capacidad_pista)
+VALUES(6);
+
+INSERT INTO ggbowling.pista
+(capacidad_pista)
+VALUES(6);
+
 /*select * from pista pi;*/
 
 INSERT INTO ggbowling.mesa
 (capacidad_mesa)
 VALUES(4);
+
+INSERT INTO ggbowling.mesa
+(capacidad_mesa)
+VALUES(4);
+
+INSERT INTO ggbowling.mesa
+(capacidad_mesa)
+VALUES(4);
+
+INSERT INTO ggbowling.mesa
+(capacidad_mesa)
+VALUES(4);
+
+
 
 /*select * from mesa me;*/
 

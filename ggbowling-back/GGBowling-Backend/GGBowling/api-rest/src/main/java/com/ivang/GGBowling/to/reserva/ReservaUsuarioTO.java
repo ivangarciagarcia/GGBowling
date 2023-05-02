@@ -9,8 +9,8 @@ import java.util.Set;
 @Data
 public class ReservaUsuarioTO {
   private Integer reservaId;
-  private Set<PistaTO> pistas;
-  private Set<MesaTO> mesas;
+  private PistaTO pista;
+  private MesaTO mesa;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;
