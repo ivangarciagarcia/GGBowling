@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { LOGOUT_REQUEST, LOGOUT_RESPONSE } from '../../modules/login/actions';
 import { useDispatch } from 'react-redux';
 import './user.scss';
@@ -23,7 +23,6 @@ interface LoginState {
 }
 
 export const User = (props: UserProps) => {
-
   const { userInfo } = useSelector(
     (state: { login: LoginState }) => state.login
   );
@@ -65,34 +64,22 @@ export const User = (props: UserProps) => {
 
   const updateUser = () => {
     const url = SERVER_BASE_URL + `/usuario/update/${userInfo.usuarioId}`;
-  
+
     fetch(url, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newUserData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Usuario actualizado:', data);
-        // Aquí puedes actualizar el estado del componente con los datos del usuario actualizado
-      })
-      .catch(error => {
-        console.error('Error al actualizar el usuario:', error);
-      });
+    }).then((response) => response.json());
   };
 
   const handleModify = () => {
-   
-    console.log('Modificar perfil');
-  
     setNewUserData({
       ...newUserData,
     });
 
     updateUser();
-    alert('Usuario actualizado correctamente');
   };
 
   return (
@@ -103,28 +90,63 @@ export const User = (props: UserProps) => {
       <div className="user-info">
         <div className="user-info-row">
           <label className="user-info-label">Username:</label>
-          <input type="text" name="username" value={newUserData.username} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="username"
+            value={newUserData.username}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Password:</label>
-          <input type="password" name="password" value={newUserData.password} onChange={handleInputChange} />
+          <input
+            type="password"
+            name="password"
+            value={newUserData.password}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Name:</label>
-          <input type="text" name="nombre" value={newUserData.nombre} onChange={handleInputChange} />
-          <input type="text" name="primerApellido" value={newUserData.primerApellido} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="nombre"
+            value={newUserData.nombre}
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            name="primerApellido"
+            value={newUserData.primerApellido}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Email:</label>
-          <input type="email" name="email" value={newUserData.email} onChange={handleInputChange} />
+          <input
+            type="email"
+            name="email"
+            value={newUserData.email}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Phone:</label>
-          <input type="number" name="telefono" value={newUserData.telefono} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="telefono"
+            value={newUserData.telefono}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <label className="user-info-label">Birthdate:</label>
-          <input type="date" name="fechaNacimiento" value={newUserData.fechaNacimiento} onChange={handleInputChange} />
+          <input
+            type="date"
+            name="fechaNacimiento"
+            value={newUserData.fechaNacimiento}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="user-info-row">
           <button className="user-btn-modify" onClick={handleModify}>
