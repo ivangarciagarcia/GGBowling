@@ -3,9 +3,6 @@ package com.ivang.GGBowling.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 @Entity
 @Getter
 @Setter
@@ -23,11 +20,13 @@ public class ReservaEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   private UsuarioEntity usuario;
 
-  @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<PistaEntity> pistas;
+  @JoinColumn(name = "pista_id")
+  @ManyToOne(fetch = FetchType.LAZY)
+  private PistaEntity pista;
 
-  @OneToMany(mappedBy = "reserva",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<MesaEntity> mesas;
+  @JoinColumn(name = "mesa_id")
+  @ManyToOne(fetch = FetchType.LAZY)
+  private MesaEntity mesa;
 
   @Column(name = "fecha")
   private String fechaEntrada;

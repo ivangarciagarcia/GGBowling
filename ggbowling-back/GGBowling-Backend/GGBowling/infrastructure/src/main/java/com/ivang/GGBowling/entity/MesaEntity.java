@@ -2,6 +2,7 @@ package com.ivang.GGBowling.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,7 +20,6 @@ public class MesaEntity {
   @Column(name = "capacidad_mesa")
   private String capacidad;
 
-  @JoinColumn(name = "reserva_id")
-  @ManyToOne(fetch = FetchType.LAZY)
-  private ReservaEntity reserva;
+  @OneToMany(mappedBy = "mesa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Set<ReservaEntity> reserva;
 }
