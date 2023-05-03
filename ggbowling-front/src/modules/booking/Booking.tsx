@@ -41,6 +41,22 @@ export const Booking = () => {
     }
   }, []);
 
+  const enviarCorreo = async () => {
+    const response = await fetch('/mail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        destinatario: userInfo.email,
+        asunto: 'Reserva',
+        cuerpo: 'Reserva completada',
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   function handleReserva() {
     if (userInfo === null) {
       navigate('/login');
@@ -54,9 +70,8 @@ export const Booking = () => {
         .then(() => {
           navigate('/profile');
         })
-        .catch((error) => {
-          error.log(error);
-        });
+        .catch(() => {});
+      enviarCorreo();
     }
   }
 
