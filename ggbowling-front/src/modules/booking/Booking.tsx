@@ -42,7 +42,7 @@ export const Booking = () => {
   }, []);
 
   const enviarCorreo = async () => {
-    const response = await fetch('/mail', {
+    const response = await fetch('/mail/send', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
