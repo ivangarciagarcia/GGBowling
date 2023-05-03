@@ -11,6 +11,7 @@ import java.util.List;
 public interface ReservaMapperDTO {
   ReservaDTO toReservaDTO(ReservaEntity reservaEntity);
   ReservaEntity toNewReservaEntity(NewReservaDTO newReservaDTO);
+  ReservaDTO toReservaDTO2(NewReservaDTO newReservaDTO);
   NewReservaDTO toNewReservaDTO (ReservaEntity reservaEntity);
   List<ReservaDTO> toReservaDTOList(List <ReservaEntity> reservaEntityList);
 }

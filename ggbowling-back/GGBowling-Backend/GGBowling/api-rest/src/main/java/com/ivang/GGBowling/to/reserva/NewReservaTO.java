@@ -6,9 +6,9 @@ import com.ivang.GGBowling.to.Pista.PistaTO;
 import lombok.Data;
 @Data
 public class NewReservaTO {
-  private UsuarioReservaTO usuario;
-  private PistaTO pista;
-  private MesaTO mesa;
+  private Integer usuarioId;
+  private Integer pistaId;
+  private Integer mesaId;
   private String fechaEntrada;
   private String horaEntrada;
   private Integer personas;

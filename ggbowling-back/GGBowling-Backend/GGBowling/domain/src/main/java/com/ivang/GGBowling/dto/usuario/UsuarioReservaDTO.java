@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class UsuarioReservaDTO {
+  private Integer usuarioId;
   private String username;
   private String nombre;
   private String primerApellido;

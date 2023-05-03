@@ -60,8 +60,5 @@ INSERT INTO ggbowling.reserva
 (usuario_id, pista_id, mesa_id, fecha, hora, personas, partidas)
 VALUES(1,1,1,'2023-01-01', '17:00', 5, 1);
 
-INSERT INTO ggbowling.reserva
-(usuario_id, pista_id, mesa_id, fecha, hora, personas, partidas)
-VALUES(2,2,2,'2023-01-11', '21:00', 8, 2);
 
 /*select * from reserva re;*/

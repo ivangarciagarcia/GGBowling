@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 public class NewReservaDTO {
-  private UsuarioReservaDTO usuario;
+  private Integer usuarioId;
   private PistaDTO pista;
   private MesaDTO mesa;
   private String fechaEntrada;

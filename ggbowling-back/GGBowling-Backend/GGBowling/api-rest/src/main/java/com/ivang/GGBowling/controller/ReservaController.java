@@ -1,7 +1,16 @@
 package com.ivang.GGBowling.controller;
 
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
+import com.ivang.GGBowling.dto.mesa.MesaDTO;
+import com.ivang.GGBowling.dto.reserva.NewReservaDTO;
+import com.ivang.GGBowling.dto.reserva.ReservaDTO;
+import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.mapperDTO.ReservaMapperDTO;
 import com.ivang.GGBowling.mapperTO.ReservaMapperTO;
+import com.ivang.GGBowling.service.MesaServiceInterface;
+import com.ivang.GGBowling.service.PistaServiceInterface;
 import com.ivang.GGBowling.service.ReservaServiceInterface;
+import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.reserva.NewReservaTO;
 import com.ivang.GGBowling.to.reserva.ReservaTO;
 import lombok.AllArgsConstructor;
@@ -19,8 +28,12 @@ import java.util.List;
 public class ReservaController {
 
   private final ReservaMapperTO reservaMapperTO;
-
+  private final ReservaMapperDTO reservaMapperDTO;
   private final ReservaServiceInterface reservaService;
+
+  private final UsuarioServiceInterface usuarioService;
+  private final PistaServiceInterface pistaService;
+  private final MesaServiceInterface mesaService;
 
   @GetMapping(value = "/status")
   public ResponseEntity<String> status(){
@@ -46,15 +59,26 @@ public class ReservaController {
 
   @PostMapping(value = "/create")
   public ResponseEntity<ReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO){
-    return new ResponseEntity<>(reservaMapperTO.toReservaTO2(
-            reservaMapperTO.toNewReservaTO(
-                    reservaService.save(
-                            reservaMapperTO.toNewReservaDTO(newReservaTO)
-                    )
-            )
-    ),
+    // Buscar los objetos correspondientes
+    UsuarioDTO usuarioDTO = usuarioService.findByUsuarioId(newReservaTO.getUsuarioId());
+    PistaDTO pistaDTO = pistaService.findByPistaId(newReservaTO.getPistaId());
+    MesaDTO mesaDTO = mesaService.findByMesaId(newReservaTO.getMesaId());
 
-        getHeader(), HttpStatus.OK);
+    // Crear una NewReservaDTO con los objetos encontrados
+    NewReservaDTO newReservaDTO = new NewReservaDTO();
+    newReservaDTO.setUsuarioId(usuarioDTO.getUsuarioId());
+    newReservaDTO.setPista(pistaDTO);
+    newReservaDTO.setMesa(mesaDTO);
+    newReservaDTO.setFechaEntrada(newReservaTO.getFechaEntrada());
+    newReservaDTO.setHoraEntrada(newReservaTO.getHoraEntrada());
+    newReservaDTO.setPersonas(newReservaTO.getPersonas());
+    newReservaDTO.setPartidas(newReservaTO.getPartidas());
+
+    // Guardar la reserva y convertirla a un ReservaTO
+    ReservaDTO reservaDTO = reservaMapperDTO.toReservaDTO2(reservaService.save(newReservaDTO));
+    ReservaTO reservaTO = reservaMapperTO.toReservaTO(reservaDTO);
+
+    return new ResponseEntity<>(reservaTO, getHeader(), HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/delete/{reservaId}")
