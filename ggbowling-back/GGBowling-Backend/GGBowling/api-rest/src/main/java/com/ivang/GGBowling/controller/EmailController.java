@@ -18,7 +18,7 @@ public class EmailController {
                                                @RequestParam String asunto,
                                                @RequestParam String cuerpo) {
 
-        emailService.sendEmail(destinatario, asunto, cuerpo);
+        emailService.enviarCorreo(destinatario, asunto, cuerpo);
         return ResponseEntity.ok("Correo electrónico enviado correctamente.");
     }
 }
