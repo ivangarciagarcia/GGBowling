@@ -6,6 +6,7 @@ import com.ivang.GGBowling.dto.reserva.NewReservaDTO;
 import com.ivang.GGBowling.dto.reserva.ReservaDTO;
 import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
 import com.ivang.GGBowling.mapperDTO.ReservaMapperDTO;
+import com.ivang.GGBowling.mapperDTO.UsuarioMapperDTO;
 import com.ivang.GGBowling.mapperTO.ReservaMapperTO;
 import com.ivang.GGBowling.service.MesaServiceInterface;
 import com.ivang.GGBowling.service.PistaServiceInterface;
@@ -32,6 +33,7 @@ public class ReservaController {
   private final ReservaServiceInterface reservaService;
 
   private final UsuarioServiceInterface usuarioService;
+  private final UsuarioMapperDTO usuarioMapperDTO;
   private final PistaServiceInterface pistaService;
   private final MesaServiceInterface mesaService;
 
@@ -66,7 +68,7 @@ public class ReservaController {
 
     // Crear una NewReservaDTO con los objetos encontrados
     NewReservaDTO newReservaDTO = new NewReservaDTO();
-    newReservaDTO.setUsuarioId(usuarioDTO.getUsuarioId());
+    newReservaDTO.setUsuario(usuarioMapperDTO.toUsuarioReservaDTO(usuarioDTO));
     newReservaDTO.setPista(pistaDTO);
     newReservaDTO.setMesa(mesaDTO);
     newReservaDTO.setFechaEntrada(newReservaTO.getFechaEntrada());
