@@ -69,9 +69,9 @@ export const Booking = () => {
         })
         .then(() => {
           navigate('/profile');
+          enviarCorreo();
         })
         .catch(() => {});
-      enviarCorreo();
     }
   }
 
