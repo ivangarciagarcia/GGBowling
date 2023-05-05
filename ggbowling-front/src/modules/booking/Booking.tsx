@@ -1,6 +1,6 @@
 import { NavBar } from 'src/components/navBar/NavBar';
 import './booking.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import React from 'react';
 import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
@@ -15,6 +15,14 @@ export interface LoginState {
 }
 
 export const Booking = () => {
+  const [, setId] = useState('');
+  const [, setDia] = useState('');
+  const [, setHora] = useState('');
+  const [, setPistas] = useState('');
+  const [, setMesas] = useState('');
+  const [, setPartidas] = useState('');
+  const [, setPersonas] = useState('');
+  const [, setResponse] = useState('');
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
   const navigate = useNavigate();
@@ -41,43 +49,8 @@ export const Booking = () => {
     }
   }, []);
 
-  const enviarCorreo = async () => {
-    const response = await fetch('/mail/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        destinatario: userInfo.email,
-        asunto: 'Reserva',
-        cuerpo: 'Reserva completada',
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-  };
-
-  function handleReserva() {
-    if (userInfo === null) {
-      navigate('/login');
-    } else {
-      axios
-        .request({
-          url: '/reserva/create',
-          method: 'POST',
-          baseURL: SERVER_BASE_URL,
-        })
-        .then(() => {
-          navigate('/profile');
-          enviarCorreo();
-        })
-        .catch(() => {});
-    }
-  }
-
-  function handleDiaChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const diaSelect = event.target as HTMLInputElement;
-    const diaValue = diaSelect.value;
+  const handleDiaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const diaValue = e.target.value;
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
 
     // Si la fecha seleccionada es mayor que hoy, habilita todas las opciones de hora
@@ -99,7 +72,57 @@ export const Booking = () => {
         }
       }
     }
-  }
+    setDia(diaValue);
+  };
+
+  const enviarCorreo = async () => {
+    const response = await fetch('/mail/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        destinatario: userInfo.email,
+        asunto: 'Reserva',
+        cuerpo: 'Reserva completada',
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const handleReserva = async (e: any) => {
+    e.preventDefault();
+
+    if (userInfo === null) {
+      navigate('/login');
+    } else {
+      const userId = setId(userInfo.usuarioId);
+      const dia = e.target.dia;
+      const hora = e.target.hora;
+      const pistas = e.target.pistas;
+      const mesas = e.target.mesas;
+      const partidas = e.target.partidas;
+      const personas = e.target.personas;
+
+      try {
+        const { data } = await axios.post('/reserva/create', {
+          userId,
+          dia,
+          hora,
+          pistas,
+          mesas,
+          partidas,
+          personas,
+        });
+        setResponse(data);
+        navigate('/profile');
+        enviarCorreo();
+      } catch (error) {
+        /*TODO mensaje de error*/
+      }
+    }
+  };
 
   return (
     <div>
@@ -142,7 +165,7 @@ export const Booking = () => {
             <br />
             <label className="hora">
               Hora:
-              <select id="hora">
+              <select id="hora" onChange={(e) => setHora(e.target.value)}>
                 <option value="">Selecciona una hora</option>
                 <option value="10">10:00</option>
                 <option value="11">11:00</option>
@@ -166,7 +189,7 @@ export const Booking = () => {
 
             <label className="pistas">
               Pistas:
-              <select name="pistas">
+              <select name="pistas" onChange={(e) => setPistas(e.target.value)}>
                 <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -179,7 +202,7 @@ export const Booking = () => {
 
             <label className="mesas">
               Mesas:
-              <select name="mesas">
+              <select name="mesas" onChange={(e) => setMesas(e.target.value)}>
                 <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -192,7 +215,10 @@ export const Booking = () => {
 
             <label className="partidas">
               Partidas:
-              <select name="partidas">
+              <select
+                name="partidas"
+                onChange={(e) => setPartidas(e.target.value)}
+              >
                 <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -201,7 +227,10 @@ export const Booking = () => {
 
             <label className="jugadores">
               Jugadores:
-              <select name="jugadores">
+              <select
+                name="jugadores"
+                onChange={(e) => setPersonas(e.target.value)}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
