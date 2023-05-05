@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
 
-export interface LoginState {
+interface LoginState {
   loading: boolean;
   userInfo: any;
   error: string | null;
@@ -23,13 +23,18 @@ export const Booking = () => {
   const [, setPartidas] = useState('');
   const [, setPersonas] = useState('');
   const [, setResponse] = useState('');
+
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
+  
   const navigate = useNavigate();
   const todayString = new Date().toISOString().split('T')[0];
+  
+
   const { userInfo } = useSelector(
     (state: { login: LoginState }) => state.login
   );
+
 
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
