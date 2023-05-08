@@ -190,7 +190,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   })
                 }
               >
-                <option value="">Selecciona una horaEntrada</option>
+                <option value="">Selecciona una hora</option>
                 <option value="10:00">10:00</option>
                 <option value="11:00">11:00</option>
                 <option value="12:00">12:00</option>
@@ -220,7 +220,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, pistaId: e.target.value })
                 }
               >
-                <option value="null">0</option>
+                <option value="null">Selecciona una pista</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -239,7 +239,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, mesaId: e.target.value })
                 }
               >
-                <option value="null">0</option>
+                <option value="null">Selecciona una mesa</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -258,7 +258,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, partidas: e.target.value })
                 }
               >
-                <option value="0">0</option>
+                <option value="0">Selecciona el numero de partidas</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
@@ -273,7 +273,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, personas: e.target.value })
                 }
               >
-                <option value="null">0</option>
+                <option value="null">Selecciona el numero de jugadores</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

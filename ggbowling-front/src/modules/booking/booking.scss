@@ -42,7 +42,23 @@
       color: #333;
       text-transform: uppercase;
 
-      &.hora {
+      &.fechaEntrada {
+        margin-bottom: 1rem;
+
+        input {
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 0.5rem;
+          background-color: #f2f2f2;
+          &:focus {
+            outline: none;
+            border-color: #333;
+          }
+        }
+      }
+
+       &.horaEntrada {
         display: flex;
         flex-direction: column;
 
@@ -61,15 +77,75 @@
         }
       }
 
-      &.dia {
-        margin-bottom: 1rem;
+      &.pistaId {
+        display: flex;
+        flex-direction: column;
 
-        input {
+        select {
+          margin-top: 0.5rem;
           padding: 0.5rem;
           font-size: 1rem;
           border: 1px solid #ccc;
           border-radius: 0.5rem;
           background-color: #f2f2f2;
+
+          &:focus {
+            outline: none;
+            border-color: #333;
+          }
+        }
+      }
+
+      &.mesaId {
+        display: flex;
+        flex-direction: column;
+
+        select {
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 0.5rem;
+          background-color: #f2f2f2;
+
+          &:focus {
+            outline: none;
+            border-color: #333;
+          }
+        }
+      }
+
+      &.partidas {
+        display: flex;
+        flex-direction: column;
+
+        select {
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 0.5rem;
+          background-color: #f2f2f2;
+
+          &:focus {
+            outline: none;
+            border-color: #333;
+          }
+        }
+      }
+
+      &.personas {
+        display: flex;
+        flex-direction: column;
+
+        select {
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 0.5rem;
+          background-color: #f2f2f2;
+
           &:focus {
             outline: none;
             border-color: #333;
