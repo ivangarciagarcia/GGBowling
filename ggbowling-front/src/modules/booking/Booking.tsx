@@ -220,7 +220,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, pistaId: e.target.value })
                 }
               >
-                <option value="0">0</option>
+                <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -239,7 +239,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, mesaId: e.target.value })
                 }
               >
-                <option value="0">0</option>
+                <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

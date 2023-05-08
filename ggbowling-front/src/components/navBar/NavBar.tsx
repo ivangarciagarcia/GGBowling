@@ -52,7 +52,7 @@ export const NavBar = (props: NavBarProps) => {
 
   return (
     <header>
-      <img src={`${process.env.PUBLIC_URL + img}`} alt={alt} />
+      <img src={`${process.env.PUBLIC_URL + img}`} alt={alt} onClick={() => navigate('/')} />
       <nav ref={navRef}>
         <a onClick={() => navigate('/')}>{item1}</a>
         <a onClick={() => navigate('/restaurant')}>{item2}</a>
