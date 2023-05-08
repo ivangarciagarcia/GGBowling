@@ -6,11 +6,12 @@ import java.util.Date;
 
 @Data
 public class UsuarioReservaDTO {
+  private Integer usuarioId;
   private String username;
   private String nombre;
   private String primerApellido;
   private String segundoApellido;
   private String email;
   private Integer telefono;
-  private Date fechaNacimiento;
+  private String fechaNacimiento;
 }

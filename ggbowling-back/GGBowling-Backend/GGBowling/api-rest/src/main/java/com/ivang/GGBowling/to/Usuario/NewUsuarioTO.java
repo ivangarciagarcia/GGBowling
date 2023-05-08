@@ -8,6 +8,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class NewUsuarioTO {
+
   private String username;
   private String password;
   private String nombre;
@@ -15,5 +16,5 @@ public class NewUsuarioTO {
   private String segundoApellido;
   private String email;
   private Integer telefono;
-  private Date fechaNacimiento;
+  private String fechaNacimiento;
 }

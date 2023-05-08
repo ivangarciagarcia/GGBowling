@@ -65,8 +65,28 @@
 				<artifactId>mapstruct</artifactId>
 				<version>${mapstruct.version}</version>
 			</dependency>
+
+
+
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>de.vinado.boot</groupId>
+			<artifactId>spring-boot-starter-dkim-javamail</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>de.vinado.spring</groupId>
+			<artifactId>dkim-javamail</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>jakarta.activation</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>

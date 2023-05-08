@@ -6,36 +6,33 @@ use GGBowling;
 
 create table if not exists usuario(
 usuario_id integer primary key auto_increment,
-user_name varchar(50),
-contrasena varchar (50),
-nombre varchar(50),
-primer_apellido varchar(100),
-segundo_apellido varchar(100),
-email varchar(100) unique,
-telefono integer,
-fecha_nacimiento date
+user_name varchar(50)not null ,
+contrasena varchar (50)not null,
+nombre varchar(50)not null,
+primer_apellido varchar(100)not null,
+segundo_apellido varchar(100)not null,
+email varchar(100) unique not null,
+telefono integer not null,
+fecha_nacimiento varchar(20) not null
 );
-
-create table if not exists reserva(
-reserva_id integer primary key auto_increment,
-usuario_id integer references usuario(usuario_id),
-fecha_hora_inicio datetime,
-fecha_hora_final datetime,
-personas integer,
-partidas integer,
-precio_persona float
-);
-
 
 create table if not exists pista(
 pista_id integer primary key auto_increment,
-capacidad_pista integer,
-reserva_id integer references reserva(reserva_id)
+capacidad_pista integer
 );
 
 create table if not exists mesa(
 mesa_id integer primary key auto_increment,
-capacidad_mesa integer,
-reserva_id integer references reserva(reserva_id)
+capacidad_mesa integer
 );
 
+create table if not exists reserva(
+reserva_id integer primary key auto_increment,
+usuario_id integer references usuario(usuario_id) not null,
+pista_id integer references pista(pista_id),
+mesa_id integer references mesa(mesa_id),
+fecha varchar(20) not null,
+hora varchar (10) not null,
+personas integer not null,
+partidas integer
+);

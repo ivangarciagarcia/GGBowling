@@ -1,6 +1,7 @@
 package com.ivang.GGBowling.servicios;
 
 import com.ivang.GGBowling.dto.Pista.PistaDTO;
+import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
 import com.ivang.GGBowling.mapperDTO.PistaMapperDTO;
 import com.ivang.GGBowling.repository.PistaRepository;
 import com.ivang.GGBowling.service.PistaServiceInterface;
@@ -20,6 +21,11 @@ public class PistaService implements PistaServiceInterface {
   @Override
   public List<PistaDTO> findAll() {
     return pistaMapperDTO.toPistaDTOList(pistaRepository.findAll());
+  }
+
+  @Override
+  public PistaDTO findByPistaId(Integer pistaId) {
+    return pistaMapperDTO.toPistaDTO(pistaRepository.getReferenceById(pistaId));
   }
 
   @Override

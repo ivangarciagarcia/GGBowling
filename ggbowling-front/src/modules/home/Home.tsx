@@ -1,15 +1,25 @@
 import './home.scss';
 
-import { Header } from 'src/components/header/Header';
 import { Schedule } from 'src/components/schedule/Schedule';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
 import { Map } from 'src/components/map/Map';
 import { Footer } from 'src/components/footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import { NavBar } from '../../components/navBar/NavBar';
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Bowling'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Reserva'}
+      />
       <main>
         <section
           className="first-section"
@@ -37,7 +47,9 @@ export const Home = () => {
               <br />
             </p>
           </div>
-          <button className="reserva">Haz tu reserva</button>
+          <button className="reserva" onClick={() => navigate('/booking')}>
+            Haz tu reserva
+          </button>
         </section>
 
         <section>
@@ -62,7 +74,7 @@ export const Home = () => {
             title={'Precios generales'}
             description={'Consulta nuestros precios.'}
             buttonText={'Ver'}
-            href={'/prices'}
+            onClick={() => navigate('/prices')}
           />
 
           <ServiceCard
@@ -71,7 +83,7 @@ export const Home = () => {
             title={'Instalaciones'}
             description={'Descubre nuestras instalaciones'}
             buttonText={'Ver'}
-            href={'/instalaciones'}
+            onClick={() => navigate('/installations')}
           />
 
           <ServiceCard
@@ -80,34 +92,29 @@ export const Home = () => {
             title={'Reservas'}
             description={'Haz tu reserva'}
             buttonText={'Reserva aqui'}
-            href={'reserva'}
+            onClick={() => navigate('/booking')}
           />
         </section>
 
         <section className="third-section">
           <Map />
-          <div className="second-half"></div>
         </section>
       </main>
 
-      <footer>
-        <section className="footer-section">
-          <Footer
-            title={'GGBowling'}
-            twiLink={'https://twitter.com/Ivangg__'}
-            insLink={'https://www.instagram.com/ivangg._'}
-            linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
-            target={'_blank'}
-            rel={'noreferrer'}
-            street={'Dirección: Calle Falsa 123, Springfield'}
-            phone={'Teléfono: 555-1234'}
-            email={'Correo electrónico: info@bolera.com'}
-            supPage1={'Términos y condiciones'}
-            supPage2={'Política de privacidad'}
-            supPage3={'Política de cookies'}
-          />
-        </section>
-      </footer>
+      <Footer
+        title={'GGBowling'}
+        twiLink={'https://twitter.com/Ivangg__'}
+        insLink={'https://www.instagram.com/ivangg._'}
+        linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
+        target={'_blank'}
+        rel={'noreferrer'}
+        street={'Dirección: Calle Falsa 123, Springfield'}
+        phone={'Teléfono: 555-1234'}
+        email={'Correo electrónico: info@bolera.com'}
+        supPage1={'Términos y condiciones'}
+        supPage2={'Política de privacidad'}
+        supPage3={'Política de cookies'}
+      />
     </div>
   );
 };

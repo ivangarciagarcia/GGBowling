@@ -1,6 +1,7 @@
 package com.ivang.GGBowling.servicios;
 
 
+import com.ivang.GGBowling.dto.Pista.PistaDTO;
 import com.ivang.GGBowling.dto.mesa.MesaDTO;
 import com.ivang.GGBowling.mapperDTO.MesaMapperDTO;
 import com.ivang.GGBowling.repository.MesaRepository;
@@ -21,6 +22,11 @@ public class MesaService implements MesaServiceInterface {
   @Override
   public List<MesaDTO> findAll() {
     return mesaMapperDTO.toMesaDTOList(mesaRepository.findAll());
+  }
+
+  @Override
+  public MesaDTO findByMesaId(Integer mesaId) {
+    return mesaMapperDTO.toMesaDTO(mesaRepository.getReferenceById(mesaId));
   }
 
   @Override

@@ -1,12 +1,19 @@
 import './prices.scss';
 import { Footer } from 'src/components/footer/Footer';
-import { Header } from 'src/components/header/Header';
 import { ServiceCard } from '../../components/serviceCard/ServiceCard';
+import { NavBar } from 'src/components/navBar/NavBar';
 
 export const Prices = () => {
   return (
     <div>
-      <Header img={'/img/logo.png'} alt={'logo'} />
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Bowling'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Reserva'}
+      />
       <main className="main">
         {/*PRIMERA COLUMNA */}
 
@@ -28,19 +35,16 @@ export const Prices = () => {
             title={'DIAS LABORABLES 4,00€'}
             description={'*Precio partida/persona'}
           />
-
         </div>
 
         {/*TERCERA COLUMNA */}
         <div className="service-card">
-
           <ServiceCard
             src={'img/precios/weekend.png'}
             alt={'Precios fin de semana y festivos'}
             title={'SABADOS, DOMINGOS Y FESTIVOS 7,00€'}
             description={'*Precio partida/persona'}
           />
-
         </div>
       </main>
       <Footer

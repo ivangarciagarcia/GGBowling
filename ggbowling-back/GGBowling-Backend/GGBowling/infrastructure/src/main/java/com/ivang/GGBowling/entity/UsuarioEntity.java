@@ -3,8 +3,6 @@ package com.ivang.GGBowling.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -42,9 +40,9 @@ public class UsuarioEntity {
     private Integer telefono;
 
     @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
-    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ReservaEntity> reserva;
 
 

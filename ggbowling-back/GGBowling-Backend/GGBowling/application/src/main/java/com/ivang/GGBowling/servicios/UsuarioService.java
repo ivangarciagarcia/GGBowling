@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UsuarioService implements UsuarioServiceInterface {
   private final UsuarioRepository usuarioRepository;
-
   private final UsuarioMapperDTO usuarioMapperDTO;
 
 
@@ -30,6 +29,16 @@ public class UsuarioService implements UsuarioServiceInterface {
     return usuarioMapperDTO.toNewUsuarioDTO(
         usuarioRepository.save(
           usuarioMapperDTO.toNewUsuarioEntity(newUsuarioDTO)));
+  }
+
+  @Override
+  public UsuarioDTO save2(UsuarioDTO usuarioDTO) {
+    UsuarioEntity userToUpdate = usuarioRepository.getReferenceById(usuarioDTO.getUsuarioId());
+    updateUser(userToUpdate, usuarioDTO);
+
+    return usuarioMapperDTO.toUsuarioDTO(
+            usuarioRepository.save(
+              userToUpdate));
   }
 
   @Override
@@ -47,4 +56,35 @@ public class UsuarioService implements UsuarioServiceInterface {
     usuarioRepository.deleteById(usuarioId);
   }
 
+
+  private void updateUser(UsuarioEntity usuarioExistente, UsuarioDTO usuarioActualizado){
+    if(usuarioActualizado.getUsername() != null) {
+      usuarioExistente.setUsername(usuarioActualizado.getUsername());
+    }
+    if(usuarioActualizado.getPassword() != null) {
+      usuarioExistente.setPassword(usuarioActualizado.getPassword());
+    }
+    if(usuarioActualizado.getNombre() != null) {
+      usuarioExistente.setNombre(usuarioActualizado.getNombre());
+    }
+    if(usuarioActualizado.getPrimerApellido() != null) {
+      usuarioExistente.setPrimerApellido(usuarioActualizado.getPrimerApellido());
+    }
+    if(usuarioActualizado.getSegundoApellido() != null) {
+      usuarioExistente.setSegundoApellido(usuarioActualizado.getSegundoApellido());
+    }
+    if(usuarioActualizado.getEmail() != null) {
+      usuarioExistente.setEmail(usuarioActualizado.getEmail());
+    }
+    if(usuarioActualizado.getTelefono() != null) {
+      usuarioExistente.setTelefono(usuarioActualizado.getTelefono());
+    }
+    if(usuarioActualizado.getFechaNacimiento() != null) {
+      usuarioExistente.setFechaNacimiento(usuarioActualizado.getFechaNacimiento());
+    }
+  }
+
 }
+
+
+
