@@ -15,7 +15,6 @@ interface LoginState {
 }
 
 export const Booking = () => {
-  const [, setId] = useState('');
   const [, setDia] = useState('');
   const [, setHora] = useState('');
   const [, setPistas] = useState('');
@@ -26,15 +25,13 @@ export const Booking = () => {
 
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
-  
+
   const navigate = useNavigate();
   const todayString = new Date().toISOString().split('T')[0];
-  
 
   const { userInfo } = useSelector(
     (state: { login: LoginState }) => state.login
   );
-
 
   useEffect(() => {
     const horaSelect = document.getElementById('hora') as HTMLSelectElement;
@@ -99,33 +96,44 @@ export const Booking = () => {
   const handleReserva = async (e: any) => {
     e.preventDefault();
 
-    if (userInfo === null) {
+    if (!userInfo) {
       navigate('/login');
-    } else {
-      const userId = setId(userInfo.usuarioId);
-      const dia = e.target.dia;
-      const hora = e.target.hora;
-      const pistas = e.target.pistas;
-      const mesas = e.target.mesas;
-      const partidas = e.target.partidas;
-      const personas = e.target.personas;
+      return;
+    }
+    const userId = userInfo.usuarioId;
+    const dia = e.target.dia;
+    const hora = e.target.hora;
+    const pistas = e.target.pistas;
+    const mesas = e.target.mesas;
+    const partidas = e.target.partidas;
+    const personas = e.target.personas;
+    console.log('userId: ', userId);
+    console.log('dia: ', dia);
+    console.log('hora: ', hora);
+    console.log('pistas: ', pistas);
+    console.log('mesas: ', mesas);
+    console.log('partidas: ', partidas);
+    console.log('personas: ', personas);
 
-      try {
-        const { data } = await axios.post('/reserva/create', {
-          userId,
-          dia,
-          hora,
-          pistas,
-          mesas,
-          partidas,
-          personas,
-        });
-        setResponse(data);
-        navigate('/profile');
-        enviarCorreo();
-      } catch (error) {
-        /*TODO mensaje de error*/
-      }
+
+
+
+    try {
+
+      const { data } = await axios.post('/reserva/create', {
+        userId,
+        dia,
+        hora,
+        pistas,
+        mesas,
+        partidas,
+        personas,
+      });
+      setResponse(data);
+      navigate('/profile');
+      enviarCorreo();
+    } catch (error) {
+    /*TODO Mensaje de error*/      
     }
   };
 
