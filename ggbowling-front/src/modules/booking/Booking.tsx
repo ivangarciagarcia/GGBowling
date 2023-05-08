@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { NavBar } from 'src/components/navBar/NavBar';
 import './booking.scss';
 import { useEffect, useState } from 'react';
@@ -37,7 +38,9 @@ export const Booking = () => {
   );
 
   useEffect(() => {
-    const horaEntradaSelect = document.getElementById('horaEntrada') as HTMLSelectElement;
+    const horaEntradaSelect = document.getElementById(
+      'horaEntrada'
+    ) as HTMLSelectElement;
     const horaEntradaActual = new Date().getHours();
 
     for (let i = 0; i < horaEntradaSelect.length; i++) {
@@ -56,7 +59,9 @@ export const Booking = () => {
 
   const handlefechaEntradaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fechaEntradaValue = e.target.value;
-    const horaEntradaSelect = document.getElementById('horaEntrada') as HTMLSelectElement;
+    const horaEntradaSelect = document.getElementById(
+      'horaEntrada'
+    ) as HTMLSelectElement;
 
     // Si la fecha seleccionada es mayor que hoy, habilita todas las opciones de horaEntrada
     if (fechaEntradaValue > todayString) {
@@ -81,23 +86,26 @@ export const Booking = () => {
   };
 
   const enviarCorreo = async () => {
-    const response = await fetch('/mail/send', {
+    const data = {
+      destinatario: userInfo.email,
+      asunto: 'Reserva',
+      cuerpo: `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
+Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`,
+    };
+
+    const response = await fetch(SERVER_BASE_URL + '/mail/send', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        destinatario: userInfo.email,
-        asunto: 'Reserva',
-        cuerpo: 'Reserva completada',
-      }),
+      body: JSON.stringify(data),
     });
-    const data = await response.json();
-    console.log(data);
+
+    const responseData = await response.json();
+    console.log(responseData);
   };
 
   const handleReserva = async (e: any) => {
-
     if (!userInfo) {
       navigate('/login');
       return;
@@ -118,9 +126,7 @@ export const Booking = () => {
     console.log('partidas: ', partidas);
     console.log('personas: ', personas);
 
-
     try {
-
       const { data } = await axios.post('/reserva/create', {
         usuarioId,
         pistaId,
@@ -129,13 +135,12 @@ export const Booking = () => {
         horaEntrada,
         personas,
         partidas,
-        
       });
       setResponse(data);
-      navigate('/profile');
+      navigate('/');
       enviarCorreo();
     } catch (error) {
-    /*TODO Mensaje de error*/      
+      /*TODO Mensaje de error*/
     }
   };
 
@@ -172,7 +177,7 @@ export const Booking = () => {
               <input
                 type="date"
                 className="fechaEntrada"
-                name='fechaEntrada'
+                name="fechaEntrada"
                 value={reservaData.fechaEntrada}
                 min={todayString}
                 onChange={handlefechaEntradaChange}
@@ -182,11 +187,16 @@ export const Booking = () => {
             <br />
             <label className="horaEntrada">
               Hora:
-              <select 
-                id="horaEntrada" 
-                name='horaEntrada'
-                value={reservaData.horaEntrada}  
-                onChange={(e) => setReservaData({ ...reservaData, horaEntrada: e.target.value })}
+              <select
+                id="horaEntrada"
+                name="horaEntrada"
+                value={reservaData.horaEntrada}
+                onChange={(e) =>
+                  setReservaData({
+                    ...reservaData,
+                    horaEntrada: e.target.value,
+                  })
+                }
               >
                 <option value="">Selecciona una horaEntrada</option>
                 <option value="10:00">10:00</option>
@@ -211,9 +221,14 @@ export const Booking = () => {
 
             <label className="pistaId">
               pista:
-              <select name="pistaId" value={reservaData.pistaId} 
-                onChange={(e) => setReservaData({ ...reservaData, pistaId: e.target.value })}>
-                <option value="null">0</option>
+              <select
+                name="pistaId"
+                value={reservaData.pistaId}
+                onChange={(e) =>
+                  setReservaData({ ...reservaData, pistaId: e.target.value })
+                }
+              >
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -225,9 +240,14 @@ export const Booking = () => {
 
             <label className="mesaId">
               mesa:
-              <select name="mesaId" value={reservaData.mesaId}  
-                onChange={(e) => setReservaData({ ...reservaData, mesaId: e.target.value })}>
-                <option value="null">0</option>
+              <select
+                name="mesaId"
+                value={reservaData.mesaId}
+                onChange={(e) =>
+                  setReservaData({ ...reservaData, mesaId: e.target.value })
+                }
+              >
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -241,10 +261,12 @@ export const Booking = () => {
               partidas:
               <select
                 name="partidas"
-                value={reservaData.partidas}  
-                onChange={(e) => setReservaData({ ...reservaData, partidas: e.target.value })}
+                value={reservaData.partidas}
+                onChange={(e) =>
+                  setReservaData({ ...reservaData, partidas: e.target.value })
+                }
               >
-                <option value="null">0</option>
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
@@ -254,8 +276,10 @@ export const Booking = () => {
               personas:
               <select
                 name="personas"
-                value={reservaData.personas}  
-                onChange={(e) => setReservaData({ ...reservaData, personas: e.target.value })}
+                value={reservaData.personas}
+                onChange={(e) =>
+                  setReservaData({ ...reservaData, personas: e.target.value })
+                }
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
