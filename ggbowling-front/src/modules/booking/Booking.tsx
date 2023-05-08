@@ -16,8 +16,14 @@ interface LoginState {
 }
 
 export const Booking = () => {
-  const [, setResponse] = useState('');
 
+  axios.defaults.baseURL = SERVER_BASE_URL;
+  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
+  
+  const navigate = useNavigate();
+
+  const todayString = new Date().toISOString().split('T')[0];
+  const [, setResponse] = useState('');
   const [reservaData, setReservaData] = useState({
     fechaEntrada: '',
     horaEntrada: '',
@@ -26,13 +32,6 @@ export const Booking = () => {
     partidas: '',
     personas: '',
   });
-
-  axios.defaults.baseURL = SERVER_BASE_URL;
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
-
-  const navigate = useNavigate();
-  const todayString = new Date().toISOString().split('T')[0];
-
   const { userInfo } = useSelector(
     (state: { login: LoginState }) => state.login
   );
@@ -118,13 +117,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
     const personas = reservaData.personas;
     const partidas = reservaData.partidas;
 
-    console.log('usuarioId: ', usuarioId);
-    console.log('fechaEntrada: ', fechaEntrada);
-    console.log('horaEntrada: ', horaEntrada);
-    console.log('pistaId: ', pistaId);
-    console.log('mesaId: ', mesaId);
-    console.log('partidas: ', partidas);
-    console.log('personas: ', personas);
 
     try {
       const { data } = await axios.post('/reserva/create', {
@@ -281,6 +273,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                   setReservaData({ ...reservaData, personas: e.target.value })
                 }
               >
+                <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
