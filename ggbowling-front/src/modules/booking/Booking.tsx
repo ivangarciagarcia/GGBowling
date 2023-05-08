@@ -15,13 +15,16 @@ interface LoginState {
 }
 
 export const Booking = () => {
-  const [, setDia] = useState('');
-  const [, setHora] = useState('');
-  const [, setPistas] = useState('');
-  const [, setMesas] = useState('');
-  const [, setPartidas] = useState('');
-  const [, setPersonas] = useState('');
   const [, setResponse] = useState('');
+
+  const [reservaData, setReservaData] = useState({
+    fechaEntrada: '',
+    horaEntrada: '',
+    pistaId: '',
+    mesaId: '',
+    partidas: '',
+    personas: '',
+  });
 
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
@@ -34,47 +37,47 @@ export const Booking = () => {
   );
 
   useEffect(() => {
-    const horaSelect = document.getElementById('hora') as HTMLSelectElement;
-    const horaActual = new Date().getHours();
+    const horaEntradaSelect = document.getElementById('horaEntrada') as HTMLSelectElement;
+    const horaEntradaActual = new Date().getHours();
 
-    for (let i = 0; i < horaSelect.length; i++) {
-      const horaOption = horaSelect.options[i];
-      const horaValue = parseInt(horaOption.value);
+    for (let i = 0; i < horaEntradaSelect.length; i++) {
+      const horaEntradaOption = horaEntradaSelect.options[i];
+      const horaEntradaValue = parseInt(horaEntradaOption.value);
 
-      if (horaActual < horaValue) {
+      if (horaEntradaActual < horaEntradaValue) {
         // Si la hora actual es menor que la hora de la opción, está disponible
-        horaOption.disabled = false;
+        horaEntradaOption.disabled = false;
       } else {
         // Si la hora actual es mayor o igual que la hora de la opción, está deshabilitada
-        horaOption.disabled = true;
+        horaEntradaOption.disabled = true;
       }
     }
   }, []);
 
-  const handleDiaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const diaValue = e.target.value;
-    const horaSelect = document.getElementById('hora') as HTMLSelectElement;
+  const handlefechaEntradaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fechaEntradaValue = e.target.value;
+    const horaEntradaSelect = document.getElementById('horaEntrada') as HTMLSelectElement;
 
-    // Si la fecha seleccionada es mayor que hoy, habilita todas las opciones de hora
-    if (diaValue > todayString) {
-      for (let i = 0; i < horaSelect.length; i++) {
-        horaSelect.options[i].disabled = false;
+    // Si la fecha seleccionada es mayor que hoy, habilita todas las opciones de horaEntrada
+    if (fechaEntradaValue > todayString) {
+      for (let i = 0; i < horaEntradaSelect.length; i++) {
+        horaEntradaSelect.options[i].disabled = false;
       }
     } else {
       // Si la fecha seleccionada es hoy,
-      //deshabilita las opciones de hora anteriores a la hora actual
-      const horaActual = new Date().getHours();
-      for (let i = 0; i < horaSelect.length; i++) {
-        const horaOption = horaSelect.options[i];
-        const horaValue = parseInt(horaOption.value);
-        if (horaActual >= horaValue) {
-          horaOption.disabled = true;
+      //deshabilita las opciones de horaEntrada anteriores a la horaEntrada actual
+      const horaEntradaActual = new Date().getHours();
+      for (let i = 0; i < horaEntradaSelect.length; i++) {
+        const horaEntradaOption = horaEntradaSelect.options[i];
+        const horaEntradaValue = parseInt(horaEntradaOption.value);
+        if (horaEntradaActual >= horaEntradaValue) {
+          horaEntradaOption.disabled = true;
         } else {
-          horaOption.disabled = false;
+          horaEntradaOption.disabled = false;
         }
       }
     }
-    setDia(diaValue);
+    setReservaData({ ...reservaData, fechaEntrada: e.target.value });
   };
 
   const enviarCorreo = async () => {
@@ -94,40 +97,39 @@ export const Booking = () => {
   };
 
   const handleReserva = async (e: any) => {
-    e.preventDefault();
 
     if (!userInfo) {
       navigate('/login');
       return;
     }
-    const userId = userInfo.usuarioId;
-    const dia = e.target.dia;
-    const hora = e.target.hora;
-    const pistas = e.target.pistas;
-    const mesas = e.target.mesas;
-    const partidas = e.target.partidas;
-    const personas = e.target.personas;
-    console.log('userId: ', userId);
-    console.log('dia: ', dia);
-    console.log('hora: ', hora);
-    console.log('pistas: ', pistas);
-    console.log('mesas: ', mesas);
+    const usuarioId = userInfo.usuarioId;
+    const pistaId = reservaData.pistaId;
+    const mesaId = reservaData.mesaId;
+    const fechaEntrada = reservaData.fechaEntrada;
+    const horaEntrada = reservaData.horaEntrada;
+    const personas = reservaData.personas;
+    const partidas = reservaData.partidas;
+
+    console.log('usuarioId: ', usuarioId);
+    console.log('fechaEntrada: ', fechaEntrada);
+    console.log('horaEntrada: ', horaEntrada);
+    console.log('pistaId: ', pistaId);
+    console.log('mesaId: ', mesaId);
     console.log('partidas: ', partidas);
     console.log('personas: ', personas);
-
-
 
 
     try {
 
       const { data } = await axios.post('/reserva/create', {
-        userId,
-        dia,
-        hora,
-        pistas,
-        mesas,
-        partidas,
+        usuarioId,
+        pistaId,
+        mesaId,
+        fechaEntrada,
+        horaEntrada,
         personas,
+        partidas,
+        
       });
       setResponse(data);
       navigate('/profile');
@@ -151,7 +153,7 @@ export const Booking = () => {
 
         <div className="columns">
           <div className="column">
-            <h2>Horario</h2>
+            <h2>Horarios</h2>
             <ul>
               <li>Lunes: 10:00 - 00:00</li>
               <li>Martes: 10:00 - 00:00</li>
@@ -165,44 +167,52 @@ export const Booking = () => {
 
           <div className="column">
             <h2>Reserva</h2>
-            <label className="dia">
-              Dia:
+            <label className="fechaEntrada">
+              fecha:
               <input
                 type="date"
-                className="dia"
+                className="fechaEntrada"
+                name='fechaEntrada'
+                value={reservaData.fechaEntrada}
                 min={todayString}
-                onChange={handleDiaChange}
+                onChange={handlefechaEntradaChange}
               />
             </label>
 
             <br />
-            <label className="hora">
+            <label className="horaEntrada">
               Hora:
-              <select id="hora" onChange={(e) => setHora(e.target.value)}>
-                <option value="">Selecciona una hora</option>
-                <option value="10">10:00</option>
-                <option value="11">11:00</option>
-                <option value="12">12:00</option>
-                <option value="13">13:00</option>
-                <option value="14">14:00</option>
-                <option value="15">15:00</option>
-                <option value="16">16:00</option>
-                <option value="17">17:00</option>
-                <option value="18">18:00</option>
-                <option value="19">19:00</option>
-                <option value="20">20:00</option>
-                <option value="21">21:00</option>
-                <option value="22">22:00</option>
-                <option value="23">23:00</option>
-                <option value="24">24:00</option>
+              <select 
+                id="horaEntrada" 
+                name='horaEntrada'
+                value={reservaData.horaEntrada}  
+                onChange={(e) => setReservaData({ ...reservaData, horaEntrada: e.target.value })}
+              >
+                <option value="">Selecciona una horaEntrada</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+                <option value="24:00">24:00</option>
               </select>
             </label>
 
             <br />
 
-            <label className="pistas">
-              Pistas:
-              <select name="pistas" onChange={(e) => setPistas(e.target.value)}>
+            <label className="pistaId">
+              pista:
+              <select name="pistaId" value={reservaData.pistaId} 
+                onChange={(e) => setReservaData({ ...reservaData, pistaId: e.target.value })}>
                 <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -213,9 +223,10 @@ export const Booking = () => {
               </select>
             </label>
 
-            <label className="mesas">
-              Mesas:
-              <select name="mesas" onChange={(e) => setMesas(e.target.value)}>
+            <label className="mesaId">
+              mesa:
+              <select name="mesaId" value={reservaData.mesaId}  
+                onChange={(e) => setReservaData({ ...reservaData, mesaId: e.target.value })}>
                 <option value="null">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -227,10 +238,11 @@ export const Booking = () => {
             <br />
 
             <label className="partidas">
-              Partidas:
+              partidas:
               <select
                 name="partidas"
-                onChange={(e) => setPartidas(e.target.value)}
+                value={reservaData.partidas}  
+                onChange={(e) => setReservaData({ ...reservaData, partidas: e.target.value })}
               >
                 <option value="null">0</option>
                 <option value="1">1</option>
@@ -238,11 +250,12 @@ export const Booking = () => {
               </select>
             </label>
 
-            <label className="jugadores">
-              Jugadores:
+            <label className="personas">
+              personas:
               <select
-                name="jugadores"
-                onChange={(e) => setPersonas(e.target.value)}
+                name="personas"
+                value={reservaData.personas}  
+                onChange={(e) => setReservaData({ ...reservaData, personas: e.target.value })}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
