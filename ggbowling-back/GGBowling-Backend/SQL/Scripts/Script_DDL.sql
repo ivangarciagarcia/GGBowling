@@ -28,7 +28,7 @@ capacidad_mesa integer
 
 create table if not exists reserva(
 reserva_id integer primary key auto_increment,
-usuario_id integer references usuario(usuario_id) not null,
+usuario_id integer references usuario(usuario_id),
 pista_id integer references pista(pista_id),
 mesa_id integer references mesa(mesa_id),
 fecha varchar(20) not null,

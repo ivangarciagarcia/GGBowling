@@ -38,19 +38,19 @@ VALUES(6);
 
 INSERT INTO ggbowling.mesa
 (capacidad_mesa)
-VALUES(4);
+VALUES(6);
 
 INSERT INTO ggbowling.mesa
 (capacidad_mesa)
-VALUES(4);
+VALUES(6);
 
 INSERT INTO ggbowling.mesa
 (capacidad_mesa)
-VALUES(4);
+VALUES(6);
 
 INSERT INTO ggbowling.mesa
 (capacidad_mesa)
-VALUES(4);
+VALUES(6);
 
 
 
