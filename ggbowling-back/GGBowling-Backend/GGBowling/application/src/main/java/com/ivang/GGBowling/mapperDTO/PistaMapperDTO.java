@@ -1,7 +1,6 @@
 package com.ivang.GGBowling.mapperDTO;
 
 import com.ivang.GGBowling.dto.Pista.PistaDTO;
-import com.ivang.GGBowling.dto.Pista.PistaToShowDTO;
 import com.ivang.GGBowling.entity.PistaEntity;
 import org.mapstruct.Mapper;
 

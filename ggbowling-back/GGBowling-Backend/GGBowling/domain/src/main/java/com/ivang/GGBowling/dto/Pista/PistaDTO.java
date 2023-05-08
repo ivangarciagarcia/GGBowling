@@ -8,5 +8,4 @@ import lombok.Data;
 public class PistaDTO {
   private Integer pistaId;
   private String capacidad;
-  private ReservaSimpleDTO reserva;
 }

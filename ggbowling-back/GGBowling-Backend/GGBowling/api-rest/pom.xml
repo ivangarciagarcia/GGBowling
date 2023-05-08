@@ -31,6 +31,11 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
         </dependency>
+        <dependency>
+            <groupId>de.vinado.boot</groupId>
+            <artifactId>spring-boot-starter-dkim-javamail</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
 

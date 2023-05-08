@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Data
 public class UsuarioReservaTO {
+  private Integer usuarioId;
   private String username;
   private String nombre;
   private String primerApellido;

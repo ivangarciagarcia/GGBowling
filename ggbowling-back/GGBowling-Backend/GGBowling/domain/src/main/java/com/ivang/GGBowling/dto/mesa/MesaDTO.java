@@ -8,6 +8,5 @@ import lombok.Data;
 public class MesaDTO {
   private Integer mesaId;
   private String capacidad;
-  private ReservaSimpleDTO reserva;
 
 }
