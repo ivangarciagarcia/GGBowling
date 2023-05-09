@@ -16,10 +16,9 @@ interface LoginState {
 }
 
 export const Booking = () => {
-
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
-  
+
   const navigate = useNavigate();
 
   const todayString = new Date().toISOString().split('T')[0];
@@ -27,11 +26,13 @@ export const Booking = () => {
   const [reservaData, setReservaData] = useState({
     fechaEntrada: '',
     horaEntrada: '',
-    pistaId: '',
-    mesaId: '',
+    pistaId: 'null',
+    mesaId: 'null',
     partidas: '',
     personas: '',
   });
+  const [camposSeleccionados, setCamposSeleccionados] = useState(false);
+
   const { userInfo } = useSelector(
     (state: { login: LoginState }) => state.login
   );
@@ -117,7 +118,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
     const personas = reservaData.personas;
     const partidas = reservaData.partidas;
 
-
     try {
       const { data } = await axios.post('/reserva/create', {
         usuarioId,
@@ -128,12 +128,28 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         personas,
         partidas,
       });
-      setResponse(data);
-      navigate('/');
-      enviarCorreo();
+
+      if (camposSeleccionados) {
+        setResponse(data);
+        navigate('/');
+        enviarCorreo();
+        console.log('Reserva realizada');
+      } else {
+        alert('Debes seleccionar al menos una pista o mesa');
+      }
     } catch (error) {
       /*TODO Mensaje de error*/
     }
+  };
+
+  const handlePistaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, pistaId: event.target.value });
+    setCamposSeleccionados(event.target.value !== 'null' || reservaData.mesaId !== 'null');
+  };
+
+  const handleMesaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, mesaId: event.target.value });
+    setCamposSeleccionados(event.target.value !== 'null' || reservaData.pistaId !== 'null');
   };
 
   return (
@@ -216,9 +232,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               <select
                 name="pistaId"
                 value={reservaData.pistaId}
-                onChange={(e) =>
-                  setReservaData({ ...reservaData, pistaId: e.target.value })
-                }
+                onChange={handlePistaChange}
               >
                 <option value="null">Selecciona una pista</option>
                 <option value="1">1</option>
@@ -230,14 +244,14 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               </select>
             </label>
 
+            <br />
+
             <label className="mesaId">
               mesa:
               <select
                 name="mesaId"
                 value={reservaData.mesaId}
-                onChange={(e) =>
-                  setReservaData({ ...reservaData, mesaId: e.target.value })
-                }
+                onChange={handleMesaChange}
               >
                 <option value="null">Selecciona una mesa</option>
                 <option value="1">1</option>
@@ -263,6 +277,8 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 <option value="2">2</option>
               </select>
             </label>
+
+            <br />
 
             <label className="personas">
               personas:
