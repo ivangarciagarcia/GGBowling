@@ -20,11 +20,11 @@ public class ReservaEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   private UsuarioEntity usuario;
 
-  @JoinColumn(name = "pista_id")
+  @JoinColumn(name = "pista_id", nullable = true)
   @ManyToOne(fetch = FetchType.LAZY)
   private PistaEntity pista;
 
-  @JoinColumn(name = "mesa_id")
+  @JoinColumn(name = "mesa_id", nullable = true)
   @ManyToOne(fetch = FetchType.LAZY)
   private MesaEntity mesa;
 
