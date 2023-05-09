@@ -89,6 +89,10 @@ public class ReservaController {
     newReservaDTO.setPersonas(newReservaTO.getPersonas());
     newReservaDTO.setPartidas(newReservaTO.getPartidas());
 
+    if (reservaService.existeReservaEnMismoHorario(newReservaDTO)) {
+      throw new RuntimeException("Ya existe una reserva para el mismo horario y pista/mesa.");
+    }
+
     // Guardar la reserva y convertirla a un ReservaTO
     ReservaDTO reservaDTO = reservaMapperDTO.toReservaDTO2(reservaService.save(newReservaDTO));
     ReservaTO reservaTO = reservaMapperTO.toReservaTO(reservaDTO);

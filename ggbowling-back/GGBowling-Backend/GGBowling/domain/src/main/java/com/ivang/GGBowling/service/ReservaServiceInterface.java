@@ -11,6 +11,7 @@ public interface ReservaServiceInterface {
   ReservaDTO findByReservaId(Integer reservaId);
 
   NewReservaDTO save(NewReservaDTO newReservaDTO);
+  boolean existeReservaEnMismoHorario(NewReservaDTO reservaDTO);
 
   void deleteReserva(Integer reservaId);
 }
