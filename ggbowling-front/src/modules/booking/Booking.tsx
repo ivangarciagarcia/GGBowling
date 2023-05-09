@@ -85,6 +85,29 @@ export const Booking = () => {
     setReservaData({ ...reservaData, fechaEntrada: e.target.value });
   };
 
+  const handlePistaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, pistaId: event.target.value });
+    setCamposSeleccionados(event.target.value !== 'null' || reservaData.mesaId !== 'null');
+  };
+
+  const handleMesaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, mesaId: event.target.value });
+    setCamposSeleccionados(event.target.value !== 'null' || reservaData.pistaId !== 'null');
+  };
+
+  const handleHoraEntradaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, horaEntrada: event.target.value });
+  };
+
+  const handlePartidasChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, partidas: event.target.value });
+  };
+
+  const handlePersonasChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setReservaData({ ...reservaData, personas: event.target.value });
+  };
+
+
   const enviarCorreo = async () => {
     const data = {
       destinatario: userInfo.email,
@@ -103,8 +126,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
 
     const responseData = await response.json();
     console.log(responseData);
-  };
-
+  }; 
+  
+  
   const handleReserva = async (e: any) => {
     if (!userInfo) {
       navigate('/login');
@@ -142,15 +166,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
     }
   };
 
-  const handlePistaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setReservaData({ ...reservaData, pistaId: event.target.value });
-    setCamposSeleccionados(event.target.value !== 'null' || reservaData.mesaId !== 'null');
-  };
-
-  const handleMesaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setReservaData({ ...reservaData, mesaId: event.target.value });
-    setCamposSeleccionados(event.target.value !== 'null' || reservaData.pistaId !== 'null');
-  };
 
   return (
     <div>
@@ -199,12 +214,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 id="horaEntrada"
                 name="horaEntrada"
                 value={reservaData.horaEntrada}
-                onChange={(e) =>
-                  setReservaData({
-                    ...reservaData,
-                    horaEntrada: e.target.value,
-                  })
-                }
+                onChange={handleHoraEntradaChange}
               >
                 <option value="">Selecciona una hora</option>
                 <option value="10:00">10:00</option>
@@ -268,9 +278,8 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               <select
                 name="partidas"
                 value={reservaData.partidas}
-                onChange={(e) =>
-                  setReservaData({ ...reservaData, partidas: e.target.value })
-                }
+                onChange={handlePartidasChange}
+                disabled={reservaData.pistaId === 'null'}
               >
                 <option value="0">Selecciona el numero de partidas</option>
                 <option value="1">1</option>
@@ -285,9 +294,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               <select
                 name="personas"
                 value={reservaData.personas}
-                onChange={(e) =>
-                  setReservaData({ ...reservaData, personas: e.target.value })
-                }
+                onChange={handlePersonasChange}
               >
                 <option value="null">Selecciona el numero de jugadores</option>
                 <option value="1">1</option>
