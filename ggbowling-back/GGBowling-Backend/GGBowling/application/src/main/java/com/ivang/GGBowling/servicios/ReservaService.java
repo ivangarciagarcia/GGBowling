@@ -2,6 +2,8 @@ package com.ivang.GGBowling.servicios;
 
 import com.ivang.GGBowling.dto.reserva.NewReservaDTO;
 import com.ivang.GGBowling.dto.reserva.ReservaDTO;
+import com.ivang.GGBowling.entity.MesaEntity;
+import com.ivang.GGBowling.entity.PistaEntity;
 import com.ivang.GGBowling.mapperDTO.MesaMapperDTO;
 import com.ivang.GGBowling.mapperDTO.PistaMapperDTO;
 import com.ivang.GGBowling.mapperDTO.ReservaMapperDTO;
@@ -10,6 +12,8 @@ import com.ivang.GGBowling.service.ReservaServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -43,11 +47,22 @@ public class ReservaService implements ReservaServiceInterface {
 
   @Override
   public boolean existeReservaEnMismoHorario(NewReservaDTO reservaDTO) {
-    return reservaRepository.countByFechaEntradaAndHoraEntradaAndPistaAndMesa(
-            reservaDTO.getFechaEntrada(),
-            reservaDTO.getHoraEntrada(),
-            pistaMapperDTO.toPistaEntity(reservaDTO.getPista()),
-            mesaMapperDTO.toMesaEntity(reservaDTO.getMesa())) > 0;
+    String fechaEntrada = reservaDTO.getFechaEntrada();
+    String horaEntrada =reservaDTO.getHoraEntrada();
+    PistaEntity pistaEntity = pistaMapperDTO.toPistaEntity(reservaDTO.getPista());
+    MesaEntity mesaEntity = mesaMapperDTO.toMesaEntity(reservaDTO.getMesa());
+
+    // Comprobar si existe una reserva en la misma pista y hora
+    if (pistaEntity != null && reservaRepository.countByFechaEntradaAndHoraEntradaAndPista(fechaEntrada, horaEntrada, pistaEntity) > 0) {
+      return true;
+    }
+
+    // Comprobar si existe una reserva en la misma mesa y hora
+    if (mesaEntity != null && reservaRepository.countByFechaEntradaAndHoraEntradaAndMesa(fechaEntrada, horaEntrada, mesaEntity) > 0) {
+      return true;
+    }
+
+    return false;
   }
 
   @Override
