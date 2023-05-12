@@ -24,13 +24,22 @@ export const Booking = () => {
   const todayString = new Date().toISOString().split('T')[0];
   const [, setResponse] = useState('');
   const [reservaData, setReservaData] = useState({
-    fechaEntrada: '',
-    horaEntrada: '',
+    fechaEntrada: 'null',
+    horaEntrada: 'null',
     pistaId: 'null',
     mesaId: 'null',
+    partidas: 'null',
+    personas: 'null',
+  });
+  const [errores, setErrores] = useState({
+    fechaEntrada: '',
+    horaEntrada: '',
+    pistaId: '',
+    mesaId: '',
     partidas: '',
     personas: '',
   });
+
   const [camposSeleccionados, setCamposSeleccionados] = useState(false);
 
   const { userInfo } = useSelector(
@@ -87,26 +96,35 @@ export const Booking = () => {
 
   const handlePistaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setReservaData({ ...reservaData, pistaId: event.target.value });
-    setCamposSeleccionados(event.target.value !== 'null' || reservaData.mesaId !== 'null');
+    setCamposSeleccionados(
+      event.target.value !== 'null' || reservaData.mesaId !== 'null'
+    );
   };
 
   const handleMesaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setReservaData({ ...reservaData, mesaId: event.target.value });
-    setCamposSeleccionados(event.target.value !== 'null' || reservaData.pistaId !== 'null');
+    setCamposSeleccionados(
+      event.target.value !== 'null' || reservaData.pistaId !== 'null'
+    );
   };
 
-  const handleHoraEntradaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleHoraEntradaChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setReservaData({ ...reservaData, horaEntrada: event.target.value });
   };
 
-  const handlePartidasChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePartidasChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setReservaData({ ...reservaData, partidas: event.target.value });
   };
 
-  const handlePersonasChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePersonasChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setReservaData({ ...reservaData, personas: event.target.value });
   };
-
 
   const enviarCorreo = async () => {
     const data = {
@@ -126,14 +144,22 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
 
     const responseData = await response.json();
     console.log(responseData);
-  }; 
-  
-  
+  };
+
   const handleReserva = async (e: any) => {
     if (!userInfo) {
       navigate('/login');
       return;
     }
+    let erroresActuales = {
+      fechaEntrada: '',
+      horaEntrada: '',
+      pistaId: '',
+      mesaId: '',
+      partidas: '',
+      personas: '',
+    };
+
     const usuarioId = userInfo.usuarioId;
     const pistaId = reservaData.pistaId;
     const mesaId = reservaData.mesaId;
@@ -141,6 +167,32 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
     const horaEntrada = reservaData.horaEntrada;
     const personas = reservaData.personas;
     const partidas = reservaData.partidas;
+
+    // Validar fechaEntrada
+    if (reservaData.fechaEntrada === 'null') {
+      erroresActuales.fechaEntrada = 'Selecciona una fecha';
+    }
+
+    // Validar horaEntrada
+    if (reservaData.horaEntrada === 'null') {
+      erroresActuales.horaEntrada = 'Selecciona una hora';
+    }
+
+    // Validar partidas
+    if (reservaData.partidas === 'null') {
+      erroresActuales.partidas = 'Selecciona el número de jugadores';
+    }
+
+    // Validar personas
+    if (reservaData.personas === 'null') {
+      erroresActuales.personas = 'Selecciona el número de jugadores';
+    }
+
+    // Validar pista y mesa
+    if (reservaData.pistaId && reservaData.mesaId === 'null') {
+      erroresActuales.pistaId = 'Selecciona al menos una pista o una mesa';
+      erroresActuales.mesaId = 'Selecciona al menos una pista o una mesa';
+    }
 
     try {
       const { data } = await axios.post('/reserva/create', {
@@ -162,10 +214,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         alert('Debes seleccionar al menos una pista o mesa');
       }
     } catch (error) {
-      /*TODO Mensaje de error*/
+      setErrores(erroresActuales);
     }
   };
-
 
   return (
     <div>
@@ -206,6 +257,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 onChange={handlefechaEntradaChange}
               />
             </label>
+            {errores.fechaEntrada && (
+              <span className="error">{errores.fechaEntrada}</span>
+            )}
 
             <br />
             <label className="horaEntrada">
@@ -216,7 +270,7 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 value={reservaData.horaEntrada}
                 onChange={handleHoraEntradaChange}
               >
-                <option value="">Selecciona una hora</option>
+                <option value="null">Selecciona una hora</option>
                 <option value="10:00">10:00</option>
                 <option value="11:00">11:00</option>
                 <option value="12:00">12:00</option>
@@ -234,6 +288,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 <option value="24:00">24:00</option>
               </select>
             </label>
+            {errores.horaEntrada && (
+              <span className="error">{errores.horaEntrada}</span>
+            )}
 
             <br />
 
@@ -254,6 +311,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               </select>
             </label>
 
+            {errores.pistaId && (
+              <span className="error">{errores.pistaId}</span>
+            )}
             <br />
 
             <label className="mesaId">
@@ -271,6 +331,8 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
               </select>
             </label>
 
+            {errores.mesaId && <span className="error">{errores.mesaId}</span>}
+
             <br />
 
             <label className="partidas">
@@ -281,11 +343,15 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 onChange={handlePartidasChange}
                 disabled={reservaData.pistaId === 'null'}
               >
-                <option value="0">Selecciona el numero de partidas</option>
+                <option value="null">Selecciona el numero de partidas</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
             </label>
+
+            {errores.partidas && (
+              <span className="error">{errores.partidas}</span>
+            )}
 
             <br />
 
@@ -304,8 +370,12 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
                 <option value="5">5</option>
                 <option value="6">6</option>
               </select>
-              <br />
             </label>
+
+            {errores.personas && (
+              <span className="error">{errores.personas}</span>
+            )}
+            <br />
 
             <button className="button" type="button" onClick={handleReserva}>
               Reservar
