@@ -209,7 +209,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         setResponse(data);
         navigate('/');
         enviarCorreo();
-        console.log('Reserva realizada');
       } else {
         alert('Debes seleccionar al menos una pista o mesa');
       }

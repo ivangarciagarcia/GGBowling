@@ -5,6 +5,8 @@ import com.ivang.GGBowling.dto.mesa.MesaDTO;
 import com.ivang.GGBowling.dto.reserva.NewReservaDTO;
 import com.ivang.GGBowling.dto.reserva.ReservaDTO;
 import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.exceptions.reserva.PersonasCannotBeNullException;
+import com.ivang.GGBowling.exceptions.reserva.ReservaAlreadyDoException;
 import com.ivang.GGBowling.mapperDTO.MesaMapperDTO;
 import com.ivang.GGBowling.mapperDTO.PistaMapperDTO;
 import com.ivang.GGBowling.mapperDTO.ReservaMapperDTO;
@@ -64,7 +66,7 @@ public class ReservaController {
   }
 
   @PostMapping(value = "/create")
-  public ResponseEntity<ReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO){
+  public ResponseEntity<ReservaTO> createReserva(@RequestBody NewReservaTO newReservaTO) throws ReservaAlreadyDoException, PersonasCannotBeNullException {
     // Buscar los objetos correspondientes
     UsuarioDTO usuarioDTO = null;
     if (newReservaTO.getUsuarioId() != null) {
@@ -90,7 +92,12 @@ public class ReservaController {
     newReservaDTO.setPartidas(newReservaTO.getPartidas());
 
     if (reservaService.existeReservaEnMismoHorario(newReservaDTO)) {
-      throw new RuntimeException("Ya existe una reserva para el mismo horario y pista/mesa.");
+      throw new ReservaAlreadyDoException();
+    }
+
+    if (newReservaDTO.getPersonas() == null) {
+      throw new PersonasCannotBeNullException();
+
     }
 
     // Guardar la reserva y convertirla a un ReservaTO
