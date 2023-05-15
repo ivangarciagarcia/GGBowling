@@ -1,4 +1,5 @@
 import './footer.scss';
+import { useNavigate } from 'react-router-dom';
 import {
   AiFillTwitterCircle,
   AiFillInstagram,
@@ -18,7 +19,10 @@ export interface FooterProps {
   supPage1: string;
   supPage2?: string;
 }
+
 export const Footer = (props: FooterProps) => {
+  const navigate = useNavigate();
+
   const {
     title,
     insLink,
@@ -61,8 +65,8 @@ export const Footer = (props: FooterProps) => {
           </div>
           <div className="legal">
             <ul>
-              <li>{supPage1}</li>
-              <li>{supPage2}</li>
+              <li style={{cursor: 'pointer'}} onClick={() => navigate('/terms-and-conditions')}>{supPage1}</li>
+              <li style={{cursor: 'pointer'}}onClick={() => navigate('/privacy-policy')}>{supPage2}</li>
             </ul>
           </div>
         </div>

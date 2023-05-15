@@ -10,6 +10,8 @@ import { Offers } from './modules/offers/Offers';
 import { Profile } from './modules/profile/Profile';
 import { Installations } from './modules/installations/Installations';
 import { Booking } from './modules/booking/Booking';
+import { PrivacyPolicy } from './modules/footer-pages/privacyPolicy/PrivacyPolicy';
+import { TermsAndConditions } from './modules/footer-pages/terms&conditions/TermsAndConditions';
 
 
 function App() {
@@ -25,6 +27,10 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/installations" element={<Installations />}></Route>
         <Route path="/booking" element={<Booking />}></Route>
+        <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />}></Route>
+
+
 
       </Routes>
     </Router>
