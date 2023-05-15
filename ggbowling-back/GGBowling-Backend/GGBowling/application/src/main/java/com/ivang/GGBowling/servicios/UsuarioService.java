@@ -8,6 +8,7 @@ import com.ivang.GGBowling.mapperDTO.UsuarioMapperDTO;
 import com.ivang.GGBowling.repository.UsuarioRepository;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.List;
 public class UsuarioService implements UsuarioServiceInterface {
   private final UsuarioRepository usuarioRepository;
   private final UsuarioMapperDTO usuarioMapperDTO;
+  private final PasswordEncoder passwordEncoder;
+
 
 
   @Override
@@ -26,6 +29,11 @@ public class UsuarioService implements UsuarioServiceInterface {
 
   @Override
   public NewUsuarioDTO save(NewUsuarioDTO newUsuarioDTO) {
+
+    // Encriptar la contraseña antes de guardarla
+    String passwordEncriptada = passwordEncoder.encode(newUsuarioDTO.getPassword());
+    newUsuarioDTO.setPassword(passwordEncriptada);
+
     return usuarioMapperDTO.toNewUsuarioDTO(
         usuarioRepository.save(
           usuarioMapperDTO.toNewUsuarioEntity(newUsuarioDTO)));

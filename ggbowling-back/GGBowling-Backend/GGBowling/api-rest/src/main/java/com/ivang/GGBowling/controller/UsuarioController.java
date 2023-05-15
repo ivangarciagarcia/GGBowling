@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.Map;
 @RequestMapping("/usuario")
 public class UsuarioController {
   private final UsuarioServiceInterface usuarioService;
-
+  private final PasswordEncoder passwordEncoder;
   private final UsuarioMapperTO usuarioMapperTO;
 
   @GetMapping(value = "/status")
@@ -86,6 +87,10 @@ public class UsuarioController {
 
   @PostMapping(value = "/create")
   public ResponseEntity<NewUsuarioTO> createUsuario(@RequestBody NewUsuarioTO newUsuarioTO){
+    // Encriptar la contraseña antes de guardarla
+    String passwordEncriptada = passwordEncoder.encode(newUsuarioTO.getPassword());
+    newUsuarioTO.setPassword(passwordEncriptada);
+
     return new ResponseEntity<>(usuarioMapperTO.toNewUsuarioTO(
         usuarioService.save(
             usuarioMapperTO.toNewUsuarioDTO(newUsuarioTO))),
