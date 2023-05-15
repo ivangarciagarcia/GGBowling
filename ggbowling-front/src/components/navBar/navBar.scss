@@ -1,5 +1,6 @@
 $logo-size: 80px;
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 body {
 	padding: 0;
@@ -16,7 +17,8 @@ body {
 
 header {
 	display: flex;
-  font-size: 20px;
+	font-family: 'Montserrat';
+  	font-size: 20px;
 	align-items: center;
 	justify-content: space-between;
 	height: 80px;
