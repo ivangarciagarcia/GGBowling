@@ -8,6 +8,7 @@
 }
 
 .user-header {
+  font-family: "Montserrat";
   text-align: center;
   h1 {
     color: #2b2d42;
@@ -18,6 +19,7 @@
 }
 
 .user-info {
+  font-family: "Roboto";
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,6 +41,7 @@
       /* Estilo de la etiqueta de información del usuario */
       font-weight: bold;
       margin-right: 10px;
+      
     }
   }
   .user-btn-modify {

@@ -1,3 +1,4 @@
+
 .horarios {
   min-height: 50vh;
   max-width: 100%;
@@ -19,12 +20,18 @@
     }
     .titulo1 {
       font-size: 35px;
+      font-family: Lato, sans-serif;
+
     }
     .titulo2 {
       font-size: 30px;
+      font-family: "Montserrat";
+      
+
     }
     p {
       font-size: 25px;
+      font-family: "Roboto";
     }
     @media (max-width: 920px) {
       .titulo1 {
@@ -53,12 +60,16 @@
     .titulo1 {
       font-size: 35px;
       margin-top: 50px;
+      font-family: "Montserrat";
+
     }
 
     li {
       font-size: 25px;
       margin-right: 30px;
       list-style: none;
+      font-family: "Roboto";
+
     }
     @media (max-width: 920px) {
       .titulo1 {

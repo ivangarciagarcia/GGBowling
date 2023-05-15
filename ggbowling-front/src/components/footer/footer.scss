@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("http://fonts.googleapis.com/css?family=Roboto");
+
 .footer {
   background-color: #af8a05;
   padding: 2rem;
@@ -13,6 +16,7 @@
     
 
     .titulo {
+      font-family: "Montserrat";
       display: flex;
       padding-right: 120px;
       font-size: 40px;
@@ -49,6 +53,7 @@
   }
 
   .contacto-legal {
+    font-family: "Roboto";
     display: flex;
     margin-bottom: 1.5rem;
     justify-content: center;
