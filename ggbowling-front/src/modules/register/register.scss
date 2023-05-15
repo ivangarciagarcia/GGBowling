@@ -23,11 +23,15 @@ $black: #000000;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
+    font-family: "Montserrat";
+
   }
   
   .form-group {
     width: 100%;
     margin-bottom: 20px;
+    font-family: "Roboto";
+
     
     label {
       display: block;
@@ -66,6 +70,8 @@ $black: #000000;
     background-color: $red;
     box-shadow: 0px 0px 10px rgba($black, 0.1);
     transition: background-color 0.3s ease-in-out;
+    font-family: "Roboto";
+
     
     &:hover {
       background-color: darken($red, 10%);

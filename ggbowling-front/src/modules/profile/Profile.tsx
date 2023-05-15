@@ -1,4 +1,3 @@
-import './profile.scss';
 import { User, UserProps } from 'src/components/user/User';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
