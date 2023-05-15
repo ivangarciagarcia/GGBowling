@@ -58,9 +58,24 @@ public class UsuarioController {
 
   @PatchMapping("/update/{usuarioId}")
   public ResponseEntity<UsuarioTO> updateUsuario(@PathVariable Integer usuarioId, @RequestBody UsuarioTO usuarioActualizado) {
-    UsuarioTO usuarioExistente =  usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
-    UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(
-            usuarioActualizado);
+    UsuarioTO usuarioExistente = usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
+
+    // Obtener la contraseña encriptada del usuario existente
+    String contraseñaEncriptadaExistente = usuarioExistente.getPassword();
+
+    // Verificar si se proporcionó una nueva contraseña en el cuerpo de la solicitud
+    if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
+      // Encriptar la nueva contraseña
+      String contraseñaEncriptadaNueva = passwordEncoder.encode(usuarioActualizado.getPassword());
+
+      // Actualizar la contraseña encriptada del usuario actualizado
+      usuarioActualizado.setPassword(contraseñaEncriptadaNueva);
+    } else {
+      // Si no se proporcionó una nueva contraseña, mantener la contraseña encriptada existente
+      usuarioActualizado.setPassword(contraseñaEncriptadaExistente);
+    }
+
+    UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(usuarioActualizado);
     usuarioDTO.setUsuarioId(usuarioId);
 
     UsuarioTO usuarioActualizadoDB = usuarioMapperTO.toUsuarioTO(usuarioService.save2(usuarioDTO));
