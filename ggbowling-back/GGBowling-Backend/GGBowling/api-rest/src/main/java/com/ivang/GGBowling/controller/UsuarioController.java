@@ -69,28 +69,32 @@ public class UsuarioController {
   }
 
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest){
+  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest) {
     String email = loginRequest.get("email");
     String password = loginRequest.get("password");
-
 
     UsuarioTO usuario = usuarioMapperTO.toUsuarioTO(usuarioService.findByEmail(email));
 
     if (usuario == null) {
+      System.out.println(password);
+      System.out.println(usuario.getPassword());
       return ResponseEntity.badRequest().body("Usuario no encontrado");
-    }else if (!usuario.getPassword().equals(password)) {
-      return ResponseEntity.badRequest().body("Contraseña incorrecta");
-    }else {
-      return ResponseEntity.ok(usuario);
+    } else {
+      // Comparar la contraseña encriptada con la contraseña proporcionada
+      if (passwordEncoder.matches(password, usuario.getPassword())) {
+        return ResponseEntity.ok(usuario);
+      } else {
+        return ResponseEntity.badRequest().body("Contraseña incorrecta");
+      }
     }
   }
 
+
+
+
   @PostMapping(value = "/create")
   public ResponseEntity<NewUsuarioTO> createUsuario(@RequestBody NewUsuarioTO newUsuarioTO){
-    // Encriptar la contraseña antes de guardarla
-    String passwordEncriptada = passwordEncoder.encode(newUsuarioTO.getPassword());
-    newUsuarioTO.setPassword(passwordEncriptada);
-
+    
     return new ResponseEntity<>(usuarioMapperTO.toNewUsuarioTO(
         usuarioService.save(
             usuarioMapperTO.toNewUsuarioDTO(newUsuarioTO))),
