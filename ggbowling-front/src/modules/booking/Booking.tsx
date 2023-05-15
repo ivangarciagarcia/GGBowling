@@ -394,7 +394,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
           email={'Correo electrónico: info@bolera.com'}
           supPage1={'Términos y condiciones'}
           supPage2={'Política de privacidad'}
-          supPage3={'Política de cookies'}
         />
       </main>
     </div>

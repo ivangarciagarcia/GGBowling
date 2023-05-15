@@ -17,7 +17,6 @@ export interface FooterProps {
   email: string;
   supPage1: string;
   supPage2?: string;
-  supPage3?: string;
 }
 export const Footer = (props: FooterProps) => {
   const {
@@ -32,7 +31,6 @@ export const Footer = (props: FooterProps) => {
     email,
     supPage1,
     supPage2,
-    supPage3,
   } = props;
 
   return (
@@ -65,7 +63,6 @@ export const Footer = (props: FooterProps) => {
             <ul>
               <li>{supPage1}</li>
               <li>{supPage2}</li>
-              <li>{supPage3}</li>
             </ul>
           </div>
         </div>
