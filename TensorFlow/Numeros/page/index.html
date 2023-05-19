@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <title>Números</title>
+  </head>
+
+  <body>
+    <main>
+            <div id="canvas-container">
+              <canvas id="bigcanvas" width="200" height="200"></canvas>
+              <canvas id="smallcanvas" width="28" height="28"></canvas>
+            </div>
+            
+            <div class="buttons">
+              <button class="limpiar" id="limpiar" onclick=limpiar()>Limpiar</button>
+              <button class="predecir" id="predecir" onclick=predecir()>Predecir</button>
+            </div>  
+            
+            <div id="resultado"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="fabric.min.js"></script>
+    <script src="prueba.js"></script>
+  </body>
+</html>
