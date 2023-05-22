@@ -134,7 +134,7 @@ export const Booking = () => {
 Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`,
     };
 
-    const response = await fetch(SERVER_BASE_URL + '/mail/send', {
+    await fetch(SERVER_BASE_URL + '/mail/send', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -142,8 +142,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
       body: JSON.stringify(data),
     });
 
-    const responseData = await response.json();
-    console.log(responseData);
   };
 
   const handleReserva = async (e: any) => {
@@ -209,8 +207,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         setResponse(data);
         navigate('/');
         enviarCorreo();
-      } else {
-        alert('Debes seleccionar al menos una pista o mesa');
       }
     } catch (error) {
       setErrores(erroresActuales);
