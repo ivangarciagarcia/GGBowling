@@ -61,18 +61,18 @@ public class UsuarioController {
     UsuarioTO usuarioExistente = usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
 
     // Obtener la contraseña encriptada del usuario existente
-    String contraseñaEncriptadaExistente = usuarioExistente.getPassword();
+    String contrasenaEncriptadaExistente = usuarioExistente.getPassword();
 
     // Verificar si se proporcionó una nueva contraseña en el cuerpo de la solicitud
     if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
       // Encriptar la nueva contraseña
-      String contraseñaEncriptadaNueva = passwordEncoder.encode(usuarioActualizado.getPassword());
+      String contrasenaEncriptadaNueva = passwordEncoder.encode(usuarioActualizado.getPassword());
 
       // Actualizar la contraseña encriptada del usuario actualizado
-      usuarioActualizado.setPassword(contraseñaEncriptadaNueva);
+      usuarioActualizado.setPassword(contrasenaEncriptadaNueva);
     } else {
       // Si no se proporcionó una nueva contraseña, mantener la contraseña encriptada existente
-      usuarioActualizado.setPassword(contraseñaEncriptadaExistente);
+      usuarioActualizado.setPassword(contrasenaEncriptadaExistente);
     }
 
     UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(usuarioActualizado);
@@ -103,9 +103,6 @@ public class UsuarioController {
       }
     }
   }
-
-
-
 
   @PostMapping(value = "/create")
   public ResponseEntity<NewUsuarioTO> createUsuario(@RequestBody NewUsuarioTO newUsuarioTO){
