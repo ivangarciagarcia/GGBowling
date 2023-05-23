@@ -21,6 +21,7 @@ export const Booking = () => {
 
   const navigate = useNavigate();
 
+  const ERROR_CODE = 409;
   const todayString = new Date().toISOString().split('T')[0];
   const [, setResponse] = useState('');
   const [reservaData, setReservaData] = useState({
@@ -208,7 +209,11 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         navigate('/');
         enviarCorreo();
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response && error.response.status === ERROR_CODE) {
+        alert('Esta mesa o pista ya está reservada para la fecha y hora escogidas');
+      }
+
       setErrores(erroresActuales);
     }
   };
