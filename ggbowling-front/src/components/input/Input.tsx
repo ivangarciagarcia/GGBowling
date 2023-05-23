@@ -3,11 +3,12 @@ export interface InputProps {
   id: string;
   name: string;
   onChange: (value: any) => void;
+  max?: any;
 
 }
 
 export const Input = (props: InputProps) => {
-  const { type, id, name, onChange } = props;
+  const { type, id, name, onChange, max } = props;
 
   return (
     <input
@@ -20,6 +21,7 @@ export const Input = (props: InputProps) => {
           onChange(e.target.value);
         }
       }}
+      max={max}
     />
   );
 };

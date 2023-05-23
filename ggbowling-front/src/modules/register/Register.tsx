@@ -18,6 +18,12 @@ export const Register = () => {
   const navigate = useNavigate();
   axios.defaults.baseURL = SERVER_BASE_URL;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = FRONT_BASE_URL;
+  const fullAge = 18;
+
+  // Calcula la fecha mínima permitida (18 años atrás desde la fecha actual)
+  const currentDate = new Date();
+  currentDate.setFullYear(currentDate.getFullYear() - fullAge);
+  const minDate = currentDate.toISOString().split('T')[0];
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -117,6 +123,7 @@ export const Register = () => {
               id="fechaNacimiento"
               name="fechaNacimiento"
               onChange={(e) => setBirthDate(e.target.value)}
+              max={minDate} // Establece la fecha mínima permitida
             />
           </div>
           <div>
