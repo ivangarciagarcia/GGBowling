@@ -15,7 +15,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
 
-    public void enviarCorreo(String destinatario, String asunto, String cuerpo, String qrCodeUrl) throws MessagingException {
+    public void enviarCorreo(String destinatario, String asunto, String cuerpo) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -23,7 +23,7 @@ public class EmailService {
         helper.setSubject(asunto);
 
         // Construye el cuerpo del mensaje con la URL del código QR como imagen incrustada
-        String cuerpoConQRCode = cuerpo + "<br/><img src=\"" + qrCodeUrl + "\" alt=\"Código QR de reserva\" width=\"200\" height=\"200\" />";
+        String cuerpoConQRCode = cuerpo;
         helper.setText(cuerpoConQRCode, true); // Establece el contenido del cuerpo como HTML
 
         javaMailSender.send(message);

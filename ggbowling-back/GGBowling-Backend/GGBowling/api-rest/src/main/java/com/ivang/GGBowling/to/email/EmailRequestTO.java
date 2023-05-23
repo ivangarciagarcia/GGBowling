@@ -13,6 +13,4 @@ public class EmailRequestTO {
     private String destinatario;
     private String asunto;
     private String cuerpo;
-    private String qRCodeUrl;
-
 }

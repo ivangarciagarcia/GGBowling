@@ -19,7 +19,7 @@ public class EmailController {
 
     @PostMapping("/send")
     public ResponseEntity<String> enviarCorreo(@RequestBody EmailRequestTO emailRequestTO) throws MessagingException {
-        emailService.enviarCorreo(emailRequestTO.getDestinatario(), emailRequestTO.getAsunto(), emailRequestTO.getCuerpo(), emailRequestTO.getQRCodeUrl());
+        emailService.enviarCorreo(emailRequestTO.getDestinatario(), emailRequestTO.getAsunto(), emailRequestTO.getCuerpo());
         return new ResponseEntity<>(getHeader(), HttpStatus.OK);
     }
 
