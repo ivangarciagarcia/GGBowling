@@ -9,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/mail")
@@ -20,7 +18,7 @@ public class EmailController {
     private final EmailService emailService;
 
     @PostMapping("/send")
-    public ResponseEntity<String> enviarCorreo(@RequestBody EmailRequestTO emailRequestTO) throws MessagingException, IOException {
+    public ResponseEntity<String> enviarCorreo(@RequestBody EmailRequestTO emailRequestTO) throws MessagingException {
         emailService.enviarCorreo(emailRequestTO.getDestinatario(), emailRequestTO.getAsunto(), emailRequestTO.getCuerpo(), emailRequestTO.getQRCodeUrl());
         return new ResponseEntity<>(getHeader(), HttpStatus.OK);
     }

@@ -1,22 +1,13 @@
 package com.ivang.GGBowling.servicios;
 
-import jakarta.activation.DataSource;
-import jakarta.activation.URLDataSource;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.apache.commons.io.IOUtils;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 @Service
 @AllArgsConstructor
