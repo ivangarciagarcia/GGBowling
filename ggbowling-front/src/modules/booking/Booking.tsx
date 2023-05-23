@@ -8,6 +8,7 @@ import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
+import QRCode from 'qrcode';
 
 interface LoginState {
   loading: boolean;
@@ -127,12 +128,31 @@ export const Booking = () => {
     setReservaData({ ...reservaData, personas: event.target.value });
   };
 
+  const generateQRCode = async (data: any) => {
+    const canvas = document.createElement('canvas');
+    await QRCode.toCanvas(canvas, data); // Genera el código QR en el canvas
+    const qRCodeUrl = canvas.toDataURL('image/png'); // Obtiene la URL de la imagen en formato PNG
+    return qRCodeUrl;
+  };
+
   const enviarCorreo = async () => {
+    const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
+  Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`;
+
+    const qrCodeData = {
+      type: 'reservation',
+      data: reservaInfo,
+    };
+
+    const qRCodeUrl = await generateQRCode(JSON.stringify(qrCodeData));
+    //console.log(qrCodeUrl);
+
+    const cuerpo = `${reservaInfo}<br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />`;
+
     const data = {
       destinatario: userInfo.email,
       asunto: 'Reserva',
-      cuerpo: `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
-Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`,
+      cuerpo: cuerpo,
     };
 
     await fetch(SERVER_BASE_URL + '/mail/send', {
@@ -142,7 +162,6 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
       },
       body: JSON.stringify(data),
     });
-
   };
 
   const handleReserva = async (e: any) => {
@@ -211,7 +230,9 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
       }
     } catch (error: any) {
       if (error.response && error.response.status === ERROR_CODE) {
-        alert('Esta mesa o pista ya está reservada para la fecha y hora escogidas');
+        alert(
+          'Esta mesa o pista ya está reservada para la fecha y hora escogidas'
+        );
       }
 
       setErrores(erroresActuales);
