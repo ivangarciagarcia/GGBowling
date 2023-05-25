@@ -99,6 +99,25 @@
   }
 }
 
+.user-btn-delete {
+  margin-top: 10px;
+  background-color: rgb(86, 40, 40);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgb(58, 38, 38);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;

@@ -55,6 +55,27 @@ export const User = (props: UserProps) => {
     navigate('/');
   };
 
+  const handleDelete = () => {
+    const confirmed = window.confirm(
+      '¿Estás seguro de que quieres eliminar este usuario? Esta accion no se podra deshacer'
+    );
+
+    if (confirmed) {
+      const url = SERVER_BASE_URL + `/usuario/delete/${userInfo.usuarioId}`;
+
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUserData),
+      }).then((response) => response.json());
+      dispatch({ type: LOGOUT_REQUEST });
+      dispatch({ type: LOGOUT_RESPONSE, error: null });
+      navigate('/');
+    }
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewUserData({
       ...newUserData,
@@ -154,6 +175,9 @@ export const User = (props: UserProps) => {
           </button>
           <button className="user-btn-logout" onClick={handleLogout}>
             Cerrar sesión
+          </button>
+          <button className="user-btn-delete" onClick={handleDelete}>
+            Eliminar usuario
           </button>
         </div>
       </div>
