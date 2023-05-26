@@ -65,12 +65,20 @@
       font-size: larger;
       @media (max-width: 920px) {
         padding-right: 0px;
+        font-size: large;
+
       }
  
     }
     .legal {
       display: flex;
       font-size: larger;
+      @media (max-width: 920px) {
+        padding-right: 0px;
+        font-size: large;
+        margin-right: 20px;
+
+      }
     }
   }
 }

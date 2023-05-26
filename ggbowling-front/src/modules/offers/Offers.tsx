@@ -67,9 +67,9 @@ export const Offers = () => {
         linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
         target={'_blank'}
         rel={'noreferrer'}
-        street={'Dirección: Calle Falsa 123, Springfield'}
-        phone={'Teléfono: 555-1234'}
-        email={'Correo electrónico: info@bolera.com'}
+        street={'Dirección: Rúa Caballeros, 1, 15006 A Coruña'}
+        phone={'Teléfono: +34 697160793'}
+        email={'Correo electrónico: ggbowlingcoruna@gmail.com'}
         supPage1={'Términos y condiciones'}
         supPage2={'Política de privacidad'}
       />
