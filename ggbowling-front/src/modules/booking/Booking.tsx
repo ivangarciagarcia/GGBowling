@@ -139,15 +139,22 @@ export const Booking = () => {
     const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
   Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`;
 
+    const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
+    Hora de la reserva: ${reservaData.horaEntrada}.
+    Pista numero ${reservaData.pistaId}
+    Cantidad de partidas ${reservaData.partidas}
+    Cantidad de personas ${reservaData.personas} 
+    Numero de mesa ${reservaData.mesaId}`;
+   
     const qrCodeData = {
       type: 'reservation',
-      data: reservaInfo,
+      data: qrDataInfo,
     };
 
     const qRCodeUrl = await generateQRCode(JSON.stringify(qrCodeData));
-    //console.log(qrCodeUrl);
+    //console.log(qRCodeUrl);
 
-    const cuerpo = `${reservaInfo}<br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />`;
+    const cuerpo = `${reservaInfo}<br/><a href="${qRCodeUrl}">CODIGO QR</a><br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />`;
 
     const data = {
       destinatario: userInfo.email,
