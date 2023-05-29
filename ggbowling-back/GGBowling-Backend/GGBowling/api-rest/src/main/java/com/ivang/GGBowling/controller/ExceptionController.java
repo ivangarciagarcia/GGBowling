@@ -2,6 +2,7 @@ package com.ivang.GGBowling.controller;
 
 import com.ivang.GGBowling.exceptions.reserva.PersonasCannotBeNullException;
 import com.ivang.GGBowling.exceptions.reserva.ReservaAlreadyDoException;
+import com.ivang.GGBowling.exceptions.reserva.UsuarioNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,6 +26,12 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
     @ExceptionHandler(PersonasCannotBeNullException.class)
     public ResponseEntity<Object> handlePersonasCannotBeNullException(
             PersonasCannotBeNullException ex, WebRequest request) {
+        return new ResponseEntity<>(getBody(ex, request), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UsuarioNotFoundException.class)
+    public ResponseEntity<Object> handleUsuarioNotFoundException(
+            UsuarioNotFoundException ex, WebRequest request) {
         return new ResponseEntity<>(getBody(ex, request), HttpStatus.BAD_REQUEST);
     }
 

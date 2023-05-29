@@ -1,6 +1,7 @@
 package com.ivang.GGBowling.controller;
 
 import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.exceptions.reserva.UsuarioNotFoundException;
 import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.Usuario.NewUsuarioTO;
@@ -84,22 +85,20 @@ public class UsuarioController {
   }
 
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest) {
+  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest) throws UsuarioNotFoundException {
     String email = loginRequest.get("email");
     String password = loginRequest.get("password");
 
     UsuarioTO usuario = usuarioMapperTO.toUsuarioTO(usuarioService.findByEmail(email));
 
     if (usuario == null) {
-      System.out.println(password);
-      System.out.println(usuario.getPassword());
-      return ResponseEntity.badRequest().body("Usuario no encontrado");
+      throw new UsuarioNotFoundException("Usuario no encontrado");
     } else {
       // Comparar la contraseña encriptada con la contraseña proporcionada
       if (passwordEncoder.matches(password, usuario.getPassword())) {
         return ResponseEntity.ok(usuario);
       } else {
-        return ResponseEntity.badRequest().body("Contraseña incorrecta");
+        throw new UsuarioNotFoundException("Contraseña incorrecta");
       }
     }
   }
