@@ -27,6 +27,35 @@ export const Login = () => {
     }
   }, [userInfo, navigate]);
 
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
+
+  const validateFields = () => {
+    const newErrors = {
+      email: '',
+      password: '',
+    };
+
+    // Valida cada campo y establece el mensaje de error correspondiente si está vacío
+    if (form.email.trim() === '') {
+      newErrors.email = 'El campo Correo electrónico es requerido.';
+    }
+    if (form.password.trim() === '') {
+      newErrors.password = 'El campo Contraseña es requerido.';
+    }
+
+    setErrors(newErrors); // Actualiza los mensajes de error
+
+    // Verifica si hay errores de validación
+    const hasErrors = Object.values(newErrors).some((error) => error !== '');
+
+    if (!hasErrors) {
+      dispatch(login(form)); // Realiza la acción de inicio de sesión si no hay errores
+    }
+  };
+
   return (
     <div>
       <NavBar
@@ -53,6 +82,9 @@ export const Login = () => {
               });
             }}
           />
+          {errors.email && (
+            <span className="error-message">{errors.email}</span>
+          )}
         </div>
 
         <div className="form-group">
@@ -68,10 +100,13 @@ export const Login = () => {
               });
             }}
           />
+          {errors.password && (
+            <span className="error-message">{errors.password}</span>
+          )}
         </div>
 
         <div>
-          <button onClick={() => dispatch(login(form))}>Iniciar sesión</button>
+          <button onClick={validateFields}>Iniciar sesión</button>
         </div>
 
         <div className="register">
