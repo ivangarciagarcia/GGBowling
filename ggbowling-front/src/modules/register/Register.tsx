@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
+import { NavBar } from 'src/components/navBar/NavBar';
+import { Footer } from 'src/components/footer/Footer';
 
 export const Register = () => {
   const [, setUsername] = useState('');
@@ -57,6 +59,14 @@ export const Register = () => {
 
   return (
     <div>
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Bowling'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Reserva'}
+      />
       <main>
         <form className="register-form" onSubmit={handleSubmit}>
           <h2>Registrarse</h2>
@@ -129,8 +139,24 @@ export const Register = () => {
           <div>
             <button type="submit">Resgistrar</button>
           </div>
+          <p>
+            Ya tienes cuenta? <a href={'/login'}>Inicia sesion aquí</a>
+          </p>
         </form>
       </main>
+      <Footer
+        title={'GGBowling'}
+        twiLink={'https://twitter.com/Ivangg__'}
+        insLink={'https://www.instagram.com/ivangg._'}
+        linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
+        target={'_blank'}
+        rel={'noreferrer'}
+        street={'Dirección: Rúa Caballeros, 1, 15006 A Coruña'}
+        phone={'Teléfono: +34 697160793'}
+        email={'Correo electrónico: ggbowlingcoruna@gmail.com'}
+        supPage1={'Términos y condiciones'}
+        supPage2={'Política de privacidad'}
+      />
     </div>
   );
 };

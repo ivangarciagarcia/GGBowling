@@ -8,7 +8,7 @@ import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
-import QRCode from 'qrcode';
+//import QRCode from 'qrcode';
 
 interface LoginState {
   loading: boolean;
@@ -128,18 +128,18 @@ export const Booking = () => {
     setReservaData({ ...reservaData, personas: event.target.value });
   };
 
-  const generateQRCode = async (data: any) => {
+  /* const generateQRCode = async (data: any) => {
     const canvas = document.createElement('canvas');
     await QRCode.toCanvas(canvas, data); // Genera el código QR en el canvas
     const qRCodeUrl = canvas.toDataURL('image/png'); // Obtiene la URL de la imagen en formato PNG
     return qRCodeUrl;
-  };
+  };*/
 
   const enviarCorreo = async () => {
     const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
   Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`;
 
-    const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
+    /* const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
     Hora de la reserva: ${reservaData.horaEntrada}.
     Pista numero ${reservaData.pistaId}
     Cantidad de partidas ${reservaData.partidas}
@@ -152,9 +152,10 @@ export const Booking = () => {
     };
 
     const qRCodeUrl = await generateQRCode(JSON.stringify(qrCodeData));
-    //console.log(qRCodeUrl);
+    //console.log(qRCodeUrl);*/
 
-    const cuerpo = `${reservaInfo}<br/><a href="${qRCodeUrl}">CODIGO QR</a><br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />`;
+    const cuerpo = `${reservaInfo}`;
+    /*<br/><a href="${qRCodeUrl}">CODIGO QR</a><br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />*/
 
     const data = {
       destinatario: userInfo.email,
