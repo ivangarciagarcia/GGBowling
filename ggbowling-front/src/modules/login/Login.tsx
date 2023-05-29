@@ -32,6 +32,8 @@ export const Login = () => {
     password: '',
   });
 
+  const [loginError, setLoginError] = useState('');
+
   const validateFields = () => {
     const newErrors = {
       email: '',
@@ -52,7 +54,16 @@ export const Login = () => {
     const hasErrors = Object.values(newErrors).some((error) => error !== '');
 
     if (!hasErrors) {
-      dispatch(login(form)); // Realiza la acción de inicio de sesión si no hay errores
+      // Realiza la acción de inicio de sesión
+      dispatch(login(form))
+        .then(() => {
+          // Éxito en el inicio de sesión, redirecciona a la página principal
+          navigate('/');
+        })
+        .catch(() => {
+          // Error en el inicio de sesión, muestra el mensaje de usuario no encontrado
+          setLoginError('Usuario no encontrado.');
+        });
     }
   };
 
@@ -108,6 +119,7 @@ export const Login = () => {
         <div>
           <button onClick={validateFields}>Iniciar sesión</button>
         </div>
+        {loginError && <span className="error-message">{loginError}</span>}
 
         <div className="register">
           <p>
