@@ -2,11 +2,7 @@ use GGBowling;
 
 INSERT INTO ggbowling.usuario
 (user_name, contrasena, nombre, primer_apellido, segundo_apellido, email, telefono, fecha_nacimiento)
-VALUES('Robert24', 'Abc123..', 'Robert', 'Martinez', 'Perez', 'Robert@gmail.com', 123123123, '1994-10-12');
-
-INSERT INTO ggbowling.usuario
-(user_name, contrasena, nombre, primer_apellido, segundo_apellido, email, telefono, fecha_nacimiento)
-VALUES('Ivangg', 'qwert', 'Ivan', 'Garcia', 'Garcia', 'garciaivan200@gmail.com', 111222333, '2002-01-11');
+VALUES('Ivangg', '$2a$12$iHotyfHYhfzc7wpQ4zLBxOiRNYVXzq1FGBWkFR9y1e1.17YeTxUL.', 'Ivan', 'Garcia', 'Garcia', 'garciaivan200@gmail.com', 111222333, '2002-01-11');
 
 /*select * from usuario us;*/
 

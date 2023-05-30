@@ -4,6 +4,7 @@ import {
   LOGIN_RESPONSE,
   LOGOUT_REQUEST,
   LOGOUT_RESPONSE,
+  UPDATE_USER_INFO,
 } from './actions';
 
 const initialState = {
@@ -25,7 +26,13 @@ const login = (state = initialState, action: any) => {
         ...state,
         loading: false,
         userInfo: action.userInfo,
-        error: action.error,
+        error: action.error || null,
+      };
+
+    case UPDATE_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.userInfo,
       };
     case LOGIN_ERROR:
       return {
@@ -44,7 +51,6 @@ const login = (state = initialState, action: any) => {
         ...state,
         loading: false,
         userInfo: null,
-        error: action.error,
       };
 
     default:

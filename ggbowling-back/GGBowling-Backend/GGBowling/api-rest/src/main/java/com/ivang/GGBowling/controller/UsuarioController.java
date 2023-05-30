@@ -1,6 +1,7 @@
 package com.ivang.GGBowling.controller;
 
 import com.ivang.GGBowling.dto.usuario.UsuarioDTO;
+import com.ivang.GGBowling.exceptions.reserva.UsuarioNotFoundException;
 import com.ivang.GGBowling.mapperTO.UsuarioMapperTO;
 import com.ivang.GGBowling.service.UsuarioServiceInterface;
 import com.ivang.GGBowling.to.Usuario.NewUsuarioTO;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.Map;
 @RequestMapping("/usuario")
 public class UsuarioController {
   private final UsuarioServiceInterface usuarioService;
-
+  private final PasswordEncoder passwordEncoder;
   private final UsuarioMapperTO usuarioMapperTO;
 
   @GetMapping(value = "/status")
@@ -57,9 +59,24 @@ public class UsuarioController {
 
   @PatchMapping("/update/{usuarioId}")
   public ResponseEntity<UsuarioTO> updateUsuario(@PathVariable Integer usuarioId, @RequestBody UsuarioTO usuarioActualizado) {
-    UsuarioTO usuarioExistente =  usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
-    UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(
-            usuarioActualizado);
+    UsuarioTO usuarioExistente = usuarioMapperTO.toUsuarioTO(usuarioService.findByUsuarioId(usuarioId));
+
+    // Obtener la contraseña encriptada del usuario existente
+    String contrasenaEncriptadaExistente = usuarioExistente.getPassword();
+
+    // Verificar si se proporcionó una nueva contraseña en el cuerpo de la solicitud
+    if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
+      // Encriptar la nueva contraseña
+      String contrasenaEncriptadaNueva = passwordEncoder.encode(usuarioActualizado.getPassword());
+
+      // Actualizar la contraseña encriptada del usuario actualizado
+      usuarioActualizado.setPassword(contrasenaEncriptadaNueva);
+    } else {
+      // Si no se proporcionó una nueva contraseña, mantener la contraseña encriptada existente
+      usuarioActualizado.setPassword(contrasenaEncriptadaExistente);
+    }
+
+    UsuarioDTO usuarioDTO = usuarioMapperTO.toUsuarioDTO(usuarioActualizado);
     usuarioDTO.setUsuarioId(usuarioId);
 
     UsuarioTO usuarioActualizadoDB = usuarioMapperTO.toUsuarioTO(usuarioService.save2(usuarioDTO));
@@ -68,24 +85,27 @@ public class UsuarioController {
   }
 
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest){
+  public ResponseEntity<Object> loginUsuario(@RequestBody Map<String, String> loginRequest) throws UsuarioNotFoundException {
     String email = loginRequest.get("email");
     String password = loginRequest.get("password");
-
 
     UsuarioTO usuario = usuarioMapperTO.toUsuarioTO(usuarioService.findByEmail(email));
 
     if (usuario == null) {
-      return ResponseEntity.badRequest().body("Usuario no encontrado");
-    }else if (!usuario.getPassword().equals(password)) {
-      return ResponseEntity.badRequest().body("Contraseña incorrecta");
-    }else {
-      return ResponseEntity.ok(usuario);
+      throw new UsuarioNotFoundException("Usuario no encontrado");
+    } else {
+      // Comparar la contraseña encriptada con la contraseña proporcionada
+      if (passwordEncoder.matches(password, usuario.getPassword())) {
+        return ResponseEntity.ok(usuario);
+      } else {
+        throw new UsuarioNotFoundException("Contraseña incorrecta");
+      }
     }
   }
 
   @PostMapping(value = "/create")
   public ResponseEntity<NewUsuarioTO> createUsuario(@RequestBody NewUsuarioTO newUsuarioTO){
+    
     return new ResponseEntity<>(usuarioMapperTO.toNewUsuarioTO(
         usuarioService.save(
             usuarioMapperTO.toNewUsuarioDTO(newUsuarioTO))),

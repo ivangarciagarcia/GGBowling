@@ -8,6 +8,8 @@
     grid-gap: 20px;
     margin-bottom: 50px;
     text-align: center;
+    font-family: "Montserrat";
+
   
     button {
       display: none;
@@ -34,6 +36,7 @@
       p {
         font-size: 1rem;
         color: #555;
+        font-family: "Roboto";
       }
     }
     @media screen and (max-width: 768px) {

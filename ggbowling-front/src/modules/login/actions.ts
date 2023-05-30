@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { SERVER_BASE_URL } from 'src/config/Config';
 
 export interface LoginProps {
   email: string;
@@ -13,6 +12,13 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_RESPONSE = 'LOGOUT_RESPONSE';
 
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+
+export const updateUserInfo = (userInfo: any) => ({
+  type: UPDATE_USER_INFO,
+  userInfo,
+});
+
 export const login = (credentials: LoginProps): any => {
   return (
     dispatch: (arg0: { type: string; userInfo?: any; error?: string }) => void
@@ -21,28 +27,25 @@ export const login = (credentials: LoginProps): any => {
       type: LOGIN_REQUEST,
     });
 
-    axios
-      .request({
-        url: '/usuario/login',
-        method: 'POST',
-        //url: '/users',
-        //method: 'GET',
-        baseURL: SERVER_BASE_URL,
-        data: credentials,
-      })
-      .then((response) => {
-        const userInfo = response.data;
-
-        dispatch({
-          type: LOGIN_RESPONSE,
-          userInfo,
+    return new Promise((resolve, reject) => {
+      // Realiza la lógica de inicio de sesión aquí, por ejemplo, una llamada a la API
+      axios
+        .post('/usuario/login', credentials)
+        .then((response) => {
+          const userInfo = response.data;
+          dispatch({
+            type: LOGIN_RESPONSE,
+            userInfo,
+          });
+          resolve(userInfo);
+        })
+        .catch((error) => {
+          dispatch({
+            type: LOGIN_ERROR,
+            error: error.code,
+          });
+          reject(error);
         });
-      })
-      .catch((e) => {
-        dispatch({
-          type: LOGIN_ERROR,
-          error: e.code,
-        });
-      });
+    });
   };
 };

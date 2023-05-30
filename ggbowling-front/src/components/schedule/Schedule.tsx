@@ -23,7 +23,7 @@ export const Schedule = (props: ScheduleProps) => {
         <h1 className="icono">
           <AiOutlineClockCircle />
         </h1>
-        <h1 className="titulo1">-HORARIOS-</h1>
+        <h1 className="titulo1">HORARIOS</h1>
         <h2 className="titulo2">{dias1}</h2>
         <p>{horario1}</p>
         <h2 className="titulo2">{dias2}</h2>
@@ -35,7 +35,7 @@ export const Schedule = (props: ScheduleProps) => {
         <h1 className="icono">
           <AiOutlineInfoCircle />
         </h1>
-        <h1 className="titulo1">-INFORMACION IMPORTANTE-</h1>
+        <h1 className="titulo1">INFORMACION IMPORTANTE</h1>
         <ul>
           <li>{info1}</li>
           <br />

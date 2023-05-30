@@ -10,7 +10,7 @@
     color: white;
     font-size: 50px;
     font-weight: bold;
-    font-family: Lato, sans-serif;
+    font-family: "Montserrat";
     @media (max-width: 767px) {
       font-size: 40px;
     }
@@ -27,7 +27,7 @@
     text-align: center;
     
     color: white;
-    font-family: Lato, sans-serif;
+    font-family: "Roboto";
     @media (max-width: 767px) {
       font-size: 25px;
     }
@@ -43,6 +43,7 @@
     font-size: 24px;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Roboto";
     transition: all 0.2s ease-in-out;
     &:hover {
       transform: scale(1.1);

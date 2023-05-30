@@ -7,7 +7,7 @@ use GGBowling;
 create table if not exists usuario(
 usuario_id integer primary key auto_increment,
 user_name varchar(50)not null ,
-contrasena varchar (50)not null,
+contrasena varchar (150)not null,
 nombre varchar(50)not null,
 primer_apellido varchar(100)not null,
 segundo_apellido varchar(100)not null,

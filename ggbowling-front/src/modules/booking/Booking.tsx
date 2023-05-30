@@ -8,6 +8,7 @@ import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
+//import QRCode from 'qrcode';
 
 interface LoginState {
   loading: boolean;
@@ -21,6 +22,7 @@ export const Booking = () => {
 
   const navigate = useNavigate();
 
+  const ERROR_CODE = 409;
   const todayString = new Date().toISOString().split('T')[0];
   const [, setResponse] = useState('');
   const [reservaData, setReservaData] = useState({
@@ -126,24 +128,48 @@ export const Booking = () => {
     setReservaData({ ...reservaData, personas: event.target.value });
   };
 
+  /* const generateQRCode = async (data: any) => {
+    const canvas = document.createElement('canvas');
+    await QRCode.toCanvas(canvas, data); // Genera el código QR en el canvas
+    const qRCodeUrl = canvas.toDataURL('image/png'); // Obtiene la URL de la imagen en formato PNG
+    return qRCodeUrl;
+  };*/
+
   const enviarCorreo = async () => {
+    const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
+  Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`;
+
+    /* const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
+    Hora de la reserva: ${reservaData.horaEntrada}.
+    Pista numero ${reservaData.pistaId}
+    Cantidad de partidas ${reservaData.partidas}
+    Cantidad de personas ${reservaData.personas} 
+    Numero de mesa ${reservaData.mesaId}`;
+   
+    const qrCodeData = {
+      type: 'reservation',
+      data: qrDataInfo,
+    };
+
+    const qRCodeUrl = await generateQRCode(JSON.stringify(qrCodeData));
+    //console.log(qRCodeUrl);*/
+
+    const cuerpo = `${reservaInfo}`;
+    /*<br/><a href="${qRCodeUrl}">CODIGO QR</a><br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />*/
+
     const data = {
       destinatario: userInfo.email,
       asunto: 'Reserva',
-      cuerpo: `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
-Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`,
+      cuerpo: cuerpo,
     };
 
-    const response = await fetch(SERVER_BASE_URL + '/mail/send', {
+    await fetch(SERVER_BASE_URL + '/mail/send', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
-
-    const responseData = await response.json();
-    console.log(responseData);
   };
 
   const handleReserva = async (e: any) => {
@@ -209,10 +235,14 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
         setResponse(data);
         navigate('/');
         enviarCorreo();
-      } else {
-        alert('Debes seleccionar al menos una pista o mesa');
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response && error.response.status === ERROR_CODE) {
+        alert(
+          'Esta mesa o pista ya está reservada para la fecha y hora escogidas'
+        );
+      }
+
       setErrores(erroresActuales);
     }
   };
@@ -389,12 +419,11 @@ Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} 
           linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
           target={'_blank'}
           rel={'noreferrer'}
-          street={'Dirección: Calle Falsa 123, Springfield'}
-          phone={'Teléfono: 555-1234'}
-          email={'Correo electrónico: info@bolera.com'}
+          street={'Dirección: Rúa Caballeros, 1, 15006 A Coruña'}
+          phone={'Teléfono: +34 697160793'}
+          email={'Correo electrónico: ggbowlingcoruna@gmail.com'}
           supPage1={'Términos y condiciones'}
           supPage2={'Política de privacidad'}
-          supPage3={'Política de cookies'}
         />
       </main>
     </div>

@@ -1,5 +1,5 @@
-$red: #8B0000;
-$blue: #87CEEB;
+$red: #1a3891;
+$blue: #af8a05;
 $white: #FFFFFF;
 $black: #000000;
 
@@ -14,7 +14,9 @@ $black: #000000;
   width: 80%;
   max-width: 400px;
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+
   
   h2 {
     margin-bottom: 20px;
@@ -23,13 +25,16 @@ $black: #000000;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
+    font-family: "Montserrat";
+
   }
   
   .form-group {
-    width: 100%;
+    width: 90%;
     margin-bottom: 20px;
     
     label {
+      font-family: "Roboto";
       display: block;
       margin-bottom: 5px;
       color: $blue;
@@ -39,7 +44,7 @@ $black: #000000;
     
     input {
       display: block;
-      width: 100%;
+      width: 95%;
       padding: 10px;
       border: 2px solid $blue;
       border-radius: 5px;
@@ -56,6 +61,7 @@ $black: #000000;
   }
   
   button {
+    font-family: "Roboto";
     margin-top: 20px;
     padding: 10px 20px;
     border: none;
@@ -70,5 +76,13 @@ $black: #000000;
     &:hover {
       background-color: darken($red, 10%);
     }
+  }
+  p {
+    font-family: "Roboto";
+  }
+  .error-message{
+    color: red;
+    font-family: "Roboto";
+
   }
 }

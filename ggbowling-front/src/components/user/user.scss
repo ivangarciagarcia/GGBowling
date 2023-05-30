@@ -5,10 +5,17 @@
   margin: 50px auto;
   max-width: 600px;
   padding: 20px;
+
+  @media screen and (max-width: 600px) {
+    padding: 10px;
+    margin: 20px;
+  }
 }
 
 .user-header {
+  font-family: 'Montserrat';
   text-align: center;
+
   h1 {
     color: #2b2d42;
     font-size: 2em;
@@ -18,15 +25,14 @@
 }
 
 .user-info {
+  font-family: 'Roboto';
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   .user-info-row {
-    /* Estilo de cada fila de información del usuario */
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     border-bottom: 1px solid #ddd;
     padding: 10px;
     transition: all 0.3s ease;
@@ -36,52 +42,80 @@
     }
 
     .user-info-label {
-      /* Estilo de la etiqueta de información del usuario */
       font-weight: bold;
-      margin-right: 10px;
-    }
-  }
-  .user-btn-modify {
-    /* Estilo de los botones */
-    background-color: #3f51b5;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: #303f9f;
+      margin-bottom: 5px;
     }
 
-    &:active {
-      transform: scale(0.95);
-    }
-  }
-  .user-btn-logout {
-    /* Estilo de los botones */
-    background-color: #b53f3f;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    input {
+      padding: 0.5rem;
+      margin-top: 10px;
 
-    &:hover {
-      background-color: #9f3030;
-    }
-
-    &:active {
-      transform: scale(0.95);
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      background-color: #f2f2f2;
+      &:focus {
+        outline: none;
+        border-color: #333;
+      }
     }
   }
 }
 
-/* Animaciones */
-.user-container {
-  animation: slideIn 0.5s ease-in-out;
+.user-btn-modify {
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #303f9f;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.user-btn-logout {
+  margin-top: 10px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgb(202, 27, 27);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.user-btn-delete {
+  margin-top: 10px;
+  background-color: rgb(86, 40, 40);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgb(58, 38, 38);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 @keyframes slideIn {
@@ -97,6 +131,7 @@
 
 .user-info-row {
   transition: background-color 0s ease-in-out;
+
   &:hover {
     background-color: #ffc800;
   }

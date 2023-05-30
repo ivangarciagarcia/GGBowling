@@ -7,6 +7,8 @@ import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { LoginProps, login } from './actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { NavBar } from 'src/components/navBar/NavBar';
+import { Footer } from 'src/components/footer/Footer';
 
 export const Login = () => {
   axios.defaults.baseURL = SERVER_BASE_URL;
@@ -20,54 +22,124 @@ export const Login = () => {
   });
 
   useEffect(() => {
-    if (userInfo != null) {
+    if (userInfo !== null && Object.keys(userInfo).length !== 0) {
       navigate('/');
     }
   }, [userInfo, navigate]);
 
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [loginError, setLoginError] = useState('');
+
+  const validateFields = () => {
+    const newErrors = {
+      email: '',
+      password: '',
+    };
+
+    // Valida cada campo y establece el mensaje de error correspondiente si está vacío
+    if (form.email.trim() === '') {
+      newErrors.email = 'El campo Correo electrónico es requerido.';
+    }
+    if (form.password.trim() === '') {
+      newErrors.password = 'El campo Contraseña es requerido.';
+    }
+
+    setErrors(newErrors); // Actualiza los mensajes de error
+
+    // Verifica si hay errores de validación
+    const hasErrors = Object.values(newErrors).some((error) => error !== '');
+
+    if (!hasErrors) {
+      // Realiza la acción de inicio de sesión
+      dispatch(login(form))
+        .then(() => {
+          // Éxito en el inicio de sesión, redirecciona a la página principal
+          navigate('/');
+        })
+        .catch(() => {
+          // Error en el inicio de sesión, muestra el mensaje de usuario no encontrado
+          setLoginError('Usuario no encontrado.');
+        });
+    }
+  };
+
   return (
-    <div className="login-form">
-      <h2>Iniciar sesión</h2>
+    <div>
+      <NavBar
+        img={'/img/logo.png'}
+        alt={'logo'}
+        item1={'Bowling'}
+        item2={'Restaurante'}
+        item3={'Ofertas'}
+        item4={'Reserva'}
+      />
+      <div className="login-form">
+        <h2>Iniciar sesión</h2>
 
-      <div className="form-group">
-        <label htmlFor="email">Correo electrónico</label>
-        <Input
-          type={'email'}
-          id="email"
-          name="email"
-          onChange={(value) => {
-            setForm({
-              ...form,
-              email: value,
-            });
-          }}
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="email">Correo electrónico</label>
+          <Input
+            type={'email'}
+            id="email"
+            name="email"
+            onChange={(value) => {
+              setForm({
+                ...form,
+                email: value,
+              });
+            }}
+          />
+          {errors.email && (
+            <span className="error-message">{errors.email}</span>
+          )}
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="password">Contraseña</label>
-        <Input
-          type={'password'}
-          id="password"
-          name="password"
-          onChange={(value) => {
-            setForm({
-              ...form,
-              password: value,
-            });
-          }}
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="password">Contraseña</label>
+          <Input
+            type={'password'}
+            id="password"
+            name="password"
+            onChange={(value) => {
+              setForm({
+                ...form,
+                password: value,
+              });
+            }}
+          />
+          {errors.password && (
+            <span className="error-message">{errors.password}</span>
+          )}
+        </div>
 
-      <div>
-        <button onClick={() => dispatch(login(form))}>Iniciar sesión</button>
-      </div>
+        <div>
+          <button onClick={validateFields}>Iniciar sesión</button>
+        </div>
+        {loginError && <span className="error-message">{loginError}</span>}
 
-      <div className="register">
-        <p>
-          No tienes cuenta? <a href={'/register'}>Registrate aquí</a>
-        </p>
+        <div className="register">
+          <p>
+            No tienes cuenta? <a href={'/register'}>Registrate aquí</a>
+          </p>
+        </div>
       </div>
+      <Footer
+        title={'GGBowling'}
+        twiLink={'https://twitter.com/Ivangg__'}
+        insLink={'https://www.instagram.com/ivangg._'}
+        linLink={'https://www.linkedin.com/in/ivan-garcia-garcia/'}
+        target={'_blank'}
+        rel={'noreferrer'}
+        street={'Dirección: Rúa Caballeros, 1, 15006 A Coruña'}
+        phone={'Teléfono: +34 697160793'}
+        email={'Correo electrónico: ggbowlingcoruna@gmail.com'}
+        supPage1={'Términos y condiciones'}
+        supPage2={'Política de privacidad'}
+      />
     </div>
   );
 };
