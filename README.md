@@ -25,8 +25,8 @@ Proyecto final de ciclo superior de Desarrollo de Aplicaciones Web
 
       -spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
       -spring.datasource.url=jdbc:mysql://localhost:3306/ggbowling
-      -spring.datasource.username=root
-      -spring.datasource.password=Abc123..
+      -spring.datasource.username={tu nombre de usuario en tu bbdd}
+      -spring.datasource.password={tu password}
 
       #CONEXION A EMAIL
 
