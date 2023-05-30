@@ -15,19 +15,17 @@ export const Prices = () => {
         item4={'Reserva'}
       />
       <main className="main">
-        {/*PRIMERA COLUMNA */}
-
+        {/* PRIMERA COLUMNA */}
         <div className="service-card">
           <ServiceCard
             src={'img/precios/zapatos.png'}
             alt={'Alquiler de zapatos'}
             title={'ALQUILER DE ZAPATOS 1,50€'}
-            description={'*Solo se podra entrar a pista con zapatos de bolos'}
+            description={'*Solo se podrá entrar a pista con zapatos de bolos'}
           />
         </div>
 
-        {/*SEGUNDA COLUMNA */}
-
+        {/* SEGUNDA COLUMNA */}
         <div className="service-card">
           <ServiceCard
             src={'img/precios/week.png'}
@@ -37,7 +35,7 @@ export const Prices = () => {
           />
         </div>
 
-        {/*TERCERA COLUMNA */}
+        {/* TERCERA COLUMNA */}
         <div className="service-card">
           <ServiceCard
             src={'img/precios/weekend.png'}
