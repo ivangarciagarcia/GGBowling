@@ -23,19 +23,19 @@ Proyecto final de ciclo superior de Desarrollo de Aplicaciones Web
 
       #CONEXION A BBDD
 
-      -spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-      -spring.datasource.url=jdbc:mysql://localhost:3306/ggbowling
-      -spring.datasource.username={tu nombre de usuario en tu bbdd}
-      -spring.datasource.password={tu password}
+      - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+      - spring.datasource.url=jdbc:mysql://localhost:3306/ggbowling
+      - spring.datasource.username={tu nombre de usuario en tu bbdd}
+      - spring.datasource.password={tu password}
 
       #CONEXION A EMAIL
 
-      -spring.mail.host=smtp.gmail.com
-      -spring.mail.port=587
-      -spring.mail.username=ggbowlingcoruna@gmail.com
-      -spring.mail.password=omabyzfiqjyfmovb
-      -spring.mail.properties.mail.smtp.auth=true
-      -spring.mail.properties.mail.smtp.starttls.enable=true
+      - spring.mail.host=smtp.gmail.com
+      - spring.mail.port=587
+      - spring.mail.username=ggbowlingcoruna@gmail.com
+      - spring.mail.password=omabyzfiqjyfmovb
+      - spring.mail.properties.mail.smtp.auth=true
+      - spring.mail.properties.mail.smtp.starttls.enable=true
 
 6. Ejecute el servidor con el comando `mvn spring-boot:run` o iniciando la clase main que se encuentra en el modulo 'boot'.
 
