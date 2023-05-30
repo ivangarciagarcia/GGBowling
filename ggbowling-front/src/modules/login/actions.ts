@@ -23,7 +23,7 @@ export const login = (credentials: LoginProps): any => {
     return new Promise((resolve, reject) => {
       // Realiza la lógica de inicio de sesión aquí, por ejemplo, una llamada a la API
       axios
-        .post('http://localhost:8080/login', credentials)
+        .post('/usuario/login', credentials)
         .then((response) => {
           const userInfo = response.data;
           dispatch({
