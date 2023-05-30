@@ -19,7 +19,9 @@ Proyecto final de ciclo superior de Desarrollo de Aplicaciones Web
 
 4. Ejecute la aplicación web con el comando `yarn start`. 
 
-5. Configurar el archivo application.properties para establecer la conexión con la base de datos.
+5. Ejecute la base de datos
+
+6. Configurar el archivo application.properties para establecer la conexión con la base de datos.
 
       #CONEXION A BBDD
 
@@ -37,7 +39,7 @@ Proyecto final de ciclo superior de Desarrollo de Aplicaciones Web
       - spring.mail.properties.mail.smtp.auth=true
       - spring.mail.properties.mail.smtp.starttls.enable=true
 
-6. Ejecute el servidor con el comando `mvn spring-boot:run` o iniciando la clase main que se encuentra en el modulo 'boot'.
+7. Ejecute el servidor con el comando `mvn spring-boot:run` o iniciando la clase main que se encuentra en el modulo 'boot'.
 
 
 ## Licencia

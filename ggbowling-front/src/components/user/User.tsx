@@ -40,9 +40,11 @@ export const User = (props: UserProps) => {
     fechaNacimiento,
   } = props;
 
+  const [encryptedPassword, setEncryptedPassword] = useState(password);
+
+
   const [newUserData, setNewUserData] = useState({
     username,
-    password,
     nombre,
     primerApellido,
     email,
@@ -81,19 +83,22 @@ export const User = (props: UserProps) => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUserData({
-      ...newUserData,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === 'password') {
+      setEncryptedPassword(event.target.value);
+    } else {
+      setNewUserData({
+        ...newUserData,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
+  
 
   const updateUser = () => {
     const url = SERVER_BASE_URL + `/usuario/update/${userInfo.usuarioId}`;
   
     const updatedData = { ...newUserData };
-    if (newUserData.password === '') {
-      updatedData.password = newUserData.password;
-    }
+    
   
     fetch(url, {
       method: 'PATCH',
@@ -136,7 +141,7 @@ export const User = (props: UserProps) => {
           <input
             type="password"
             name="password"
-            value={newUserData.password}
+            value={encryptedPassword}
             onChange={handleInputChange}
           />
         </div>
