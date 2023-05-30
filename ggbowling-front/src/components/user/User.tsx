@@ -136,7 +136,7 @@ export const User = (props: UserProps) => {
           <input
             type="password"
             name="password"
-            value={'********'}
+            value={newUserData.password}
             onChange={handleInputChange}
           />
         </div>
