@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { LOGOUT_REQUEST, LOGOUT_RESPONSE } from '../../modules/login/actions';
+import {
+  LOGOUT_REQUEST,
+  LOGOUT_RESPONSE,
+  updateUserInfo,
+} from '../../modules/login/actions';
 import { useDispatch } from 'react-redux';
 import './user.scss';
 import { useNavigate } from 'react-router-dom';
@@ -85,14 +89,23 @@ export const User = (props: UserProps) => {
 
   const updateUser = () => {
     const url = SERVER_BASE_URL + `/usuario/update/${userInfo.usuarioId}`;
-
+  
+    const updatedData = { ...newUserData };
+    if (newUserData.password === '') {
+      updatedData.password = newUserData.password;
+    }
+  
     fetch(url, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newUserData),
-    }).then((response) => response.json());
+      body: JSON.stringify(updatedData), // Utiliza el objeto actualizado
+    })
+      .then((response) => response.json())
+      .then((updatedUserInfo) => {
+        dispatch(updateUserInfo(updatedUserInfo)); // Actualiza el estado userInfo
+      });
   };
 
   const handleModify = () => {
@@ -123,7 +136,7 @@ export const User = (props: UserProps) => {
           <input
             type="password"
             name="password"
-            value={newUserData.password}
+            value={'********'}
             onChange={handleInputChange}
           />
         </div>

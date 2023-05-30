@@ -22,7 +22,7 @@ export const Login = () => {
   });
 
   useEffect(() => {
-    if (userInfo != null) {
+    if (userInfo !== null && Object.keys(userInfo).length !== 0) {
       navigate('/');
     }
   }, [userInfo, navigate]);
