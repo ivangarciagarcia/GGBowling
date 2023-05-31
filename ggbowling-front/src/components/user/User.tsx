@@ -9,6 +9,7 @@ import './user.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { SERVER_BASE_URL } from 'src/config/Config';
+import Modal from 'react-modal';
 
 export interface UserProps {
   username: string;
@@ -42,6 +43,7 @@ export const User = (props: UserProps) => {
 
   const [, setEncryptedPassword] = useState(password);
   const [newPassword, setNewPassword] = useState('');
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
   const [newUserData, setNewUserData] = useState({
     username,
@@ -61,25 +63,23 @@ export const User = (props: UserProps) => {
     navigate('/');
   };
 
+  const showConfirmation = () => {
+    setShowConfirmationDialog(true);
+  };
+
   const handleDelete = () => {
-    const confirmed = window.confirm(
-      '¿Estás seguro de que quieres eliminar este usuario? Esta accion no se podra deshacer'
-    );
+    const url = SERVER_BASE_URL + `/usuario/delete/${userInfo.usuarioId}`;
 
-    if (confirmed) {
-      const url = SERVER_BASE_URL + `/usuario/delete/${userInfo.usuarioId}`;
-
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newUserData),
-      }).then((response) => response.json());
-      dispatch({ type: LOGOUT_REQUEST });
-      dispatch({ type: LOGOUT_RESPONSE, error: null });
-      navigate('/');
-    }
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUserData),
+    }).then((response) => response.json());
+    dispatch({ type: LOGOUT_REQUEST });
+    dispatch({ type: LOGOUT_RESPONSE, error: null });
+    navigate('/');
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,7 +125,12 @@ export const User = (props: UserProps) => {
   };
 
   return (
-    <div className="user-container">
+    <div
+      className={`user-container ${
+        showConfirmationDialog ? 'blur-effect' : ''
+      }`}
+    >
+      {' '}
       <div className="user-header">
         <h1>{username}'s Profile</h1>
       </div>
@@ -139,6 +144,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <label className="user-info-label">Password:</label>
           <input
@@ -148,6 +154,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <label className="user-info-label">New Password:</label>
           <input
@@ -173,6 +180,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <label className="user-info-label">Email:</label>
           <input
@@ -182,6 +190,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <label className="user-info-label">Phone:</label>
           <input
@@ -191,6 +200,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <label className="user-info-label">Birthdate:</label>
           <input
@@ -200,6 +210,7 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="user-info-row">
           <button className="user-btn-modify" onClick={handleModify}>
             Modificar
@@ -207,7 +218,26 @@ export const User = (props: UserProps) => {
           <button className="user-btn-logout" onClick={handleLogout}>
             Cerrar sesión
           </button>
-          <button className="user-btn-delete" onClick={handleDelete}>
+          <Modal
+            isOpen={showConfirmationDialog}
+            onRequestClose={() => setShowConfirmationDialog(false)}
+            contentLabel="Confirmar eliminación"
+            className="confirmation-dialog"
+            overlayClassName="confirmation-dialog-overlay"
+          >
+            <div className="confirmation-dialog-content">
+              <h2>Confirmar eliminación</h2>
+              <p>
+                ¿Estás seguro de que quieres eliminar este usuario? Esta acción
+                no se podrá deshacer.
+              </p>
+              <button onClick={handleDelete}>Eliminar</button>
+              <button onClick={() => setShowConfirmationDialog(false)}>
+                Cancelar
+              </button>
+            </div>
+          </Modal>
+          <button className="user-btn-delete" onClick={showConfirmation}>
             Eliminar usuario
           </button>
         </div>
