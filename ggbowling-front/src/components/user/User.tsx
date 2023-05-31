@@ -41,7 +41,7 @@ export const User = (props: UserProps) => {
   } = props;
 
   const [encryptedPassword, setEncryptedPassword] = useState(password);
-
+  const [newPassword, setNewPassword] = useState('');
 
   const [newUserData, setNewUserData] = useState({
     username,
@@ -85,6 +85,8 @@ export const User = (props: UserProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'password') {
       setEncryptedPassword(event.target.value);
+    } else if (event.target.name === 'newPassword') {
+      setNewPassword(event.target.value);
     } else {
       setNewUserData({
         ...newUserData,
@@ -92,24 +94,25 @@ export const User = (props: UserProps) => {
       });
     }
   };
-  
 
   const updateUser = () => {
     const url = SERVER_BASE_URL + `/usuario/update/${userInfo.usuarioId}`;
-  
-    const updatedData = { ...newUserData };
-    
-  
+
+    const updatedData = {
+      ...newUserData,
+      password: newPassword, // Agrega la nueva contraseña al objeto actualizado
+    };
+
     fetch(url, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedData), // Utiliza el objeto actualizado
+      body: JSON.stringify(updatedData),
     })
       .then((response) => response.json())
       .then((updatedUserInfo) => {
-        dispatch(updateUserInfo(updatedUserInfo)); // Actualiza el estado userInfo
+        dispatch(updateUserInfo(updatedUserInfo));
       });
   };
 
@@ -145,6 +148,16 @@ export const User = (props: UserProps) => {
             onChange={handleInputChange}
           />
         </div>
+        <div className="user-info-row">
+          <label className="user-info-label">New Password:</label>
+          <input
+            type="password"
+            name="newPassword"
+            value={newPassword}
+            onChange={(event) => setNewPassword(event.target.value)}
+          />
+        </div>
+
         <div className="user-info-row">
           <label className="user-info-label">Name:</label>
           <input
