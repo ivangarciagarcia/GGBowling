@@ -8,7 +8,6 @@ import { FRONT_BASE_URL, SERVER_BASE_URL } from 'src/config/Config';
 import { useNavigate } from 'react-router-dom';
 import { Footer } from 'src/components/footer/Footer';
 import { useSelector } from 'react-redux';
-//import QRCode from 'qrcode';
 
 interface LoginState {
   loading: boolean;
@@ -127,13 +126,6 @@ export const Booking = () => {
   ) => {
     setReservaData({ ...reservaData, personas: event.target.value });
   };
-
-  /* const generateQRCode = async (data: any) => {
-    const canvas = document.createElement('canvas');
-    await QRCode.toCanvas(canvas, data); // Genera el código QR en el canvas
-    const qRCodeUrl = canvas.toDataURL('image/png'); // Obtiene la URL de la imagen en formato PNG
-    return qRCodeUrl;
-  };*/
 
   const enviarCorreo = async () => {
     const cuerpo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}h a nombre de ${userInfo.nombre} ${userInfo.primerApellido} ${userInfo.segundoApellido} para ${reservaData.personas} personas. La reserva contiene la pista numero ${reservaData.pistaId} y la mesa numero ${reservaData.mesaId}. Espero que la visita sea de su agrado y gracias por confiar en GGBowling.`;
