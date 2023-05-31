@@ -136,8 +136,7 @@ export const Booking = () => {
   };*/
 
   const enviarCorreo = async () => {
-    const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}.
-  Usted ha reservado la pista ${reservaData.pistaId} para ${reservaData.partidas} partidas con ${reservaData.personas} jugadores y la mesa ${reservaData.mesaId}`;
+    const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}h a nombre de ${userInfo.nombre} ${userInfo.primerApellido} ${userInfo.segundoApellido} para ${reservaData.personas} personas. La reserva contiene la pista numero ${reservaData.pistaId} y la mesa numero ${reservaData.mesaId}. Espero que la visita sea de su agrado y gracias por confiar en GGBowling.`;
 
     /* const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
     Hora de la reserva: ${reservaData.horaEntrada}.
