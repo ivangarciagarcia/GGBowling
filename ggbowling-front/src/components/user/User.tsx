@@ -40,7 +40,7 @@ export const User = (props: UserProps) => {
     fechaNacimiento,
   } = props;
 
-  const [encryptedPassword, setEncryptedPassword] = useState(password);
+  const [, setEncryptedPassword] = useState(password);
   const [newPassword, setNewPassword] = useState('');
 
   const [newUserData, setNewUserData] = useState({
@@ -144,7 +144,7 @@ export const User = (props: UserProps) => {
           <input
             type="password"
             name="password"
-            value={encryptedPassword}
+            value={'********'}
             onChange={handleInputChange}
           />
         </div>
