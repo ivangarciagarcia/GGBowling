@@ -136,26 +136,7 @@ export const Booking = () => {
   };*/
 
   const enviarCorreo = async () => {
-    const reservaInfo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}h a nombre de ${userInfo.nombre} ${userInfo.primerApellido} ${userInfo.segundoApellido} para ${reservaData.personas} personas. La reserva contiene la pista numero ${reservaData.pistaId} y la mesa numero ${reservaData.mesaId}. Espero que la visita sea de su agrado y gracias por confiar en GGBowling.`;
-
-    /* const qrDataInfo = `Dia de la reserva: ${reservaData.fechaEntrada}.
-    Hora de la reserva: ${reservaData.horaEntrada}.
-    Pista numero ${reservaData.pistaId}
-    Cantidad de partidas ${reservaData.partidas}
-    Cantidad de personas ${reservaData.personas} 
-    Numero de mesa ${reservaData.mesaId}`;
-   
-    const qrCodeData = {
-      type: 'reservation',
-      data: qrDataInfo,
-    };
-
-    const qRCodeUrl = await generateQRCode(JSON.stringify(qrCodeData));
-    //console.log(qRCodeUrl);*/
-
-    const cuerpo = `${reservaInfo}`;
-    /*<br/><a href="${qRCodeUrl}">CODIGO QR</a><br/><img src="${qRCodeUrl}" alt="Código QR de reserva" />*/
-
+    const cuerpo = `Se ha completado una reserva para el día ${reservaData.fechaEntrada} a las ${reservaData.horaEntrada}h a nombre de ${userInfo.nombre} ${userInfo.primerApellido} ${userInfo.segundoApellido} para ${reservaData.personas} personas. La reserva contiene la pista numero ${reservaData.pistaId} y la mesa numero ${reservaData.mesaId}. Espero que la visita sea de su agrado y gracias por confiar en GGBowling.`;
     const data = {
       destinatario: userInfo.email,
       asunto: 'Reserva',
